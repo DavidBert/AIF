@@ -35,6 +35,7 @@ nav:
     #   - Project: xai/interpretability.md
     - Introduction to Natural Language Processing (NLP):
       - Course and practical session: nlp/nlp.md
+      - Quizz: nlp/quizz.md
     #   - Project: nlp.md
   - Schedule: schedule.md
   #- Evaluation: evaluation.md
