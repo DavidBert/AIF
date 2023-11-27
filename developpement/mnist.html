@@ -64,9 +64,33 @@
 <li>
     <a href="colorize.html" class="dropdown-item">Practical session 2</a>
 </li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Recommender systems</a>
+    <ul class="dropdown-menu">
             
 <li>
-    <a href="quizz.html" class="dropdown-item">Quizz</a>
+    <a href="../rec_sys/rec_sys.html" class="dropdown-item">Course and practical session</a>
+</li>
+            
+<li>
+    <a href="../rec_sys/quizz.html" class="dropdown-item">Quizz</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Introduction to Natural Language Processing (NLP)</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../nlp/nlp.html" class="dropdown-item">Course and practical session</a>
+</li>
+            
+<li>
+    <a href="../nlp/quizz.html" class="dropdown-item">Quizz</a>
 </li>
     </ul>
   </li>
@@ -152,6 +176,11 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#solutions" class="nav-link">Solutions:</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
         </ul>
@@ -470,7 +499,6 @@ def batch_predict():
     return jsonify({&quot;predictions&quot;: predictions.tolist()})
   ```
 
-
 ## A simple GUI with tkinter
 The file `mnist_gui.py` contains a simple GUI that will allow you to draw a digit and send it to the API to get a prediction.
 Run the script with:
@@ -547,7 +575,19 @@ This is very useful when you want to deploy your application on a server or in t
 docker run mnist-flask-app python mnist_gradio.py --weights_path weights/mnist_net.pth
 ``` -->
 
-<p>DO NOT FORGET TO DELETE YOUR DOCKER IMAGE AND CONTAINER WHEN YOU ARE DONE.</p></div>
+<p>DO NOT FORGET TO DELETE YOUR DOCKER IMAGE AND CONTAINER WHEN YOU ARE DONE.</p>
+<h1 id="solutions">Solutions:</h1>
+<h3 id="modelpy">model.py</h3>
+<script src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2FDavidBert%2FAIF2024%2Fblob%2Fsolutions%2Fdeveloppement%2FMNIST%2Fmodel.py&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on"></script>
+
+<h3 id="trainpy">train.py</h3>
+<script src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2FDavidBert%2FAIF2024%2Fblob%2Fsolutions%2Fdeveloppement%2FMNIST%2Ftrain.py&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on"></script>
+
+<h3 id="mnist_apipy">mnist_api.py</h3>
+<script src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2FDavidBert%2FAIF2024%2Fblob%2Fsolutions%2Fdeveloppement%2FMNIST%2Fmnist_api.py&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on"></script>
+
+<h3 id="mnist_webapppy">mnist_webapp.py</h3>
+<script src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2FDavidBert%2FAIF2024%2Fblob%2Fsolutions%2Fdeveloppement%2FMNIST%2Fmnist_gradio.py&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on"></script></div>
             </div>
         </div>
 

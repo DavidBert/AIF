@@ -7,11 +7,11 @@
         
         
         
-        <link rel="shortcut icon" href="/img/favicon.ico">
-        <title>AI Frameworks</title>
-        <link href="/css/bootstrap.min.css" rel="stylesheet">
-        <link href="/css/font-awesome.min.css" rel="stylesheet">
-        <link href="/css/base.css" rel="stylesheet">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Quizz - AI Frameworks</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/docco.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
         <script>hljs.highlightAll();</script> 
@@ -20,7 +20,7 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="/index.html">AI Frameworks</a>
+                <a class="navbar-brand" href="../index.html">AI Frameworks</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
@@ -31,9 +31,9 @@
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
                             <li class="navitem">
-                                <a href="/index.html" class="nav-link">Home</a>
+                                <a href="../index.html" class="nav-link">Home</a>
                             </li>
-                            <li class="dropdown">
+                            <li class="dropdown active">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Courses <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
@@ -42,27 +42,27 @@
     <ul class="dropdown-menu">
             
 <li>
-    <a href="/developpement/pytorch.html" class="dropdown-item">Introduction to Pytorch</a>
+    <a href="../developpement/pytorch.html" class="dropdown-item">Introduction to Pytorch</a>
 </li>
             
 <li>
-    <a href="/developpement/git_intro.html" class="dropdown-item">Introduction to Git</a>
+    <a href="../developpement/git_intro.html" class="dropdown-item">Introduction to Git</a>
 </li>
             
 <li>
-    <a href="/developpement/docker.html" class="dropdown-item">Introduction to Docker</a>
+    <a href="../developpement/docker.html" class="dropdown-item">Introduction to Docker</a>
 </li>
             
 <li>
-    <a href="/developpement/api.html" class="dropdown-item">Introduction to REST APIs</a>
+    <a href="../developpement/api.html" class="dropdown-item">Introduction to REST APIs</a>
 </li>
             
 <li>
-    <a href="/developpement/mnist.html" class="dropdown-item">Practical session 1</a>
+    <a href="../developpement/mnist.html" class="dropdown-item">Practical session 1</a>
 </li>
             
 <li>
-    <a href="/developpement/colorize.html" class="dropdown-item">Practical session 2</a>
+    <a href="../developpement/colorize.html" class="dropdown-item">Practical session 2</a>
 </li>
     </ul>
   </li>
@@ -72,11 +72,11 @@
     <ul class="dropdown-menu">
             
 <li>
-    <a href="/rec_sys/rec_sys.html" class="dropdown-item">Course and practical session</a>
+    <a href="rec_sys.html" class="dropdown-item">Course and practical session</a>
 </li>
             
 <li>
-    <a href="/rec_sys/quizz.html" class="dropdown-item">Quizz</a>
+    <a href="quizz.html" class="dropdown-item active">Quizz</a>
 </li>
     </ul>
   </li>
@@ -86,18 +86,18 @@
     <ul class="dropdown-menu">
             
 <li>
-    <a href="/nlp/nlp.html" class="dropdown-item">Course and practical session</a>
+    <a href="../nlp/nlp.html" class="dropdown-item">Course and practical session</a>
 </li>
             
 <li>
-    <a href="/nlp/quizz.html" class="dropdown-item">Quizz</a>
+    <a href="../nlp/quizz.html" class="dropdown-item">Quizz</a>
 </li>
     </ul>
   </li>
                                 </ul>
                             </li>
                             <li class="navitem">
-                                <a href="/schedule.html" class="nav-link">Schedule</a>
+                                <a href="../schedule.html" class="nav-link">Schedule</a>
                             </li>
                             <li class="navitem">
                                 <a href="https://github.com/DavidBert/AIF2024" class="nav-link">Github repository</a>
@@ -110,6 +110,16 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="rec_sys.html" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../nlp/nlp.html" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
                     </ul>
                 </div>
             </div>
@@ -117,15 +127,28 @@
 
         <div class="container">
             <div class="row">
-
-    <div class="row-fluid">
-      <div id="main-content" class="span12">
-        <h1 id="404-page-not-found" style="text-align: center">404</h1>
-        <p style="text-align: center"><strong>Page not found</strong></p>
-      </div>
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
     </div>
 
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#quizz-recommender-systems" class="nav-link">Quizz: Recommender systems</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
 
+<h1 id="quizz-recommender-systems">Quizz: Recommender systems</h1>
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdnoiXzUIckpm7IiSUJi-u0ERvcbGrk_OwgvjK9v7S6Tm9AMw/viewform?embedded=true" width="640" height="5631" frameborder="0" marginheight="0" marginwidth="0">Chargement…</iframe></div>
             </div>
         </div>
 
@@ -133,17 +156,17 @@
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
-        <script src="/js/jquery-3.6.0.min.js"></script>
-        <script src="/js/bootstrap.min.js"></script>
+        <script src="../js/jquery-3.6.0.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
         <script>
-            var base_url = "/",
+            var base_url = "..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="/js/base.js"></script>
-        <script src="/javascripts/mathjax.js"></script>
+        <script src="../js/base.js"></script>
+        <script src="../javascripts/mathjax.js"></script>
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-        <script src="/search/main.js"></script>
+        <script src="../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
