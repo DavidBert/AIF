@@ -20,7 +20,7 @@
 ## Practical session:
 *   IMDB recommender system: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DavidBert/AIF2024/blob/main/rec_sys/recommender_systems/INSA_Reco.ipynb)
 
-<!-- *   Solution: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DavidBert/AIF2024/blob/solutions/rec_sys/recommender_systems/INSA_Reco_solution.ipynb) -->
+*   Solution: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DavidBert/AIF2024/blob/solutions/rec_sys/recommender_systems/INSA_Reco_solution.ipynb)
 
 ## Project:
 
