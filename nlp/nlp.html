@@ -12,15 +12,18 @@
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/docco.min.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/docco.min.css">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
     </head>
 
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="../index.html">AI Frameworks</a>
+                <a class="navbar-brand" href="..">AI Frameworks</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
@@ -82,6 +85,16 @@
   </li>
                                     
   <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Introduction to Reinforcement Learning</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../rl/rl.html" class="dropdown-item">Course and practical session</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
     <a href="#" class="dropdown-item">Introduction to Natural Language Processing (NLP)</a>
     <ul class="dropdown-menu">
             
@@ -114,7 +127,7 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../rec_sys/quizz.html" class="nav-link">
+                                <a rel="prev" href="../rl/rl.html" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
@@ -179,10 +192,9 @@
 <h2 id="practical-session">Practical session</h2>
 <p><a href="https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/DavidBert/AIF2024/blob/main/nlp/AIF_nlp.ipynb">Practical session</a>
 <a href="https://colab.research.google.com/github/DavidBert/AIF2024/blob/main/nlp/AIF_nlp.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
-<!-- [Solution](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/wikistat/AI-Frameworks/blob/website/code/nlp/INSA_NLP_TP_solutions.ipynb)
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wikistat/AI-Frameworks/blob/website/code/nlp/INSA_NLP_TP_solutions.ipynb)
-
-Additional resource: TP on neural translation with PyTorch (taken from Supaero SDD NLP course) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wikistat/AI-Frameworks/blob/website/code/nlp/Natural_Language_Generation_pyTorch.ipynb) -->
+<p><a href="https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/DavidBert/AIF2024/blob/solutions/nlp/AIF_nlp_solution.ipynb">Solution</a>
+<a href="https://colab.research.google.com/github/DavidBert/AIF2024/blob/solutions/nlp/AIF_nlp_solution.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
+<!-- Additional resource: TP on neural translation with PyTorch (taken from Supaero SDD NLP course) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wikistat/AI-Frameworks/blob/website/code/nlp/Natural_Language_Generation_pyTorch.ipynb) -->
 
 <h2 id="project">Project:</h2>
 <p>During the practical session, you saw how to compute embeddings of documents using three techniques: Bag_of_words, Word2Vec and BERT.<br />
@@ -199,17 +211,15 @@ The web app should be light and fast and provide the possibility to choose the e
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
-        <script src="../js/jquery-3.6.0.min.js"></script>
-        <script src="../js/bootstrap.min.js"></script>
         <script>
             var base_url = "..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../js/base.js"></script>
-        <script src="../javascripts/mathjax.js"></script>
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-        <script src="../search/main.js"></script>
+        <script src="../js/base.js" defer></script>
+        <script src="../javascripts/mathjax.js" defer></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
+        <script src="../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -219,13 +229,16 @@ The web app should be light and fast and provide the possibility to choose the e
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
             </div>
             <div class="modal-body">
-                <p>From here you can search these documents. Enter your search terms below.</p>
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
                 <form>
                     <div class="form-group">
                         <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
                     </div>
                 </form>
-                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+                <div id="mkdocs-search-results"></div>
             </div>
             <div class="modal-footer">
             </div>
