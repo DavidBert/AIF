@@ -29,6 +29,7 @@ nav:
     #   - Project: rec_sys/rec_sys.md
     - Introduction to Reinforcement Learning:
       -  Course and practical session: rl/rl.md
+      -  Quizz: rl/quizz.md
     #   -  Project: rl.md
     # - Interpretability:
     #   - Course and practical session: xai/interpretability.md
