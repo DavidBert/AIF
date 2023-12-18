@@ -12,16 +12,16 @@
  -->
 *   [Slides](https://drive.google.com/file/d/1ayuwg9HrAoaIX3RF9B3lDCTSfmVikmOj/view?usp=sharing)
 
-<!-- **Practical sessions:**
+**Practical sessions:**
 
-*   [![Policy iteration and Value Iteration](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DavidBert/N7-techno-IA/blob/master/code/reinforcement_learning/frozen_lake.ipynb)
-,  solution:[![[Solution]](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DavidBert/N7-techno-IA/blob/master/code/reinforcement_learning/frozen_lake_solution.ipynb)
-
-
-*   [![Q-learning](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DavidBert/N7-techno-IA/blob/master/code/reinforcement_learning/Taxi.ipynb)
-, solution:[![[Solution]](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DavidBert/N7-techno-IA/blob/master/code/reinforcement_learning/Taxi_solution.ipynb)
+*   [![Policy iteration and Value Iteration](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DavidBert/AIF2024/blob/main/rl/frozen_lake.ipynb)
+,  solution:[![[Solution]](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DavidBert/AIF2024/blob/solutions/rl/frozen_lake_solution.ipynb)
 
 
-*   [![Deep Q-learning](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DavidBert/N7-techno-IA/blob/master/code/reinforcement_learning/DQN.ipynb)
-, solution:[![[Solution]](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DavidBert/N7-techno-IA/blob/master/code/reinforcement_learning/DQN_solution.ipynb) -->
+*   [![Q-learning](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DavidBert/AIF2024/blob/main/rl/Taxi.ipynb)
+, solution:[![[Solution]](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DavidBert/AIF2024/blob/solutions/rl/Taxi_solution.ipynb)
+
+
+*   [![Deep Q-learning](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DavidBert/AIF2024/blob/main/rl/DQN.ipynb)
+, solution:[![[Solution]](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DavidBert/AIF2024/blob/solutions/rl/DQN_solution.ipynb)
 
