@@ -12,18 +12,15 @@
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/docco.min.css">
-
-        <script src="../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/docco.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="..">AI Frameworks</a>
+                <a class="navbar-brand" href="../index.html">AI Frameworks</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
@@ -90,6 +87,10 @@
             
 <li>
     <a href="../rl/rl.html" class="dropdown-item">Course and practical session</a>
+</li>
+            
+<li>
+    <a href="../rl/quizz.html" class="dropdown-item">Quizz</a>
 </li>
     </ul>
   </li>
@@ -241,7 +242,7 @@ The <code>requests</code> library is a de facto standard for making HTTP request
 <h5 id="crafting-a-get-request-for-weather-data">Crafting a GET Request for Weather Data</h5>
 <p>We can use the <code>requests</code> library to make a GET request to fetch weather data from the API. 
  We'll fetch the current weather for a city. For our example, let's use London.</p>
-<pre><code class="python">
+<pre><code class="language-python">
  import requests
 
 # Mock URL for London's weather (no real API key needed)
@@ -256,7 +257,6 @@ The <code>requests</code> library is a de facto standard for making HTTP request
      print(f&quot;Weather in {data['name']} - {data['weather'][0]['description']}&quot;)
      print(f&quot;Temperature: {data['main']['temp']}K&quot;)
 </code></pre>
-
 <p>This script will print the current weather description and temperature in Kelvin for London.</p>
 <p><strong>Note</strong>: The data returned is in JSON format. It's structured and easy to parse in Python, which makes it a popular choice for APIs.
 APIs can return a lot of data. Here, besides the weather description and temperature, you can also access humidity, pressure, wind speed, and much more. Explore the <code>data</code> dictionary to uncover these details.</p>
@@ -264,17 +264,16 @@ APIs can return a lot of data. Here, besides the weather description and tempera
 <p>While GET requests are primarily used to retrieve information from a server without causing any side effects, POST requests serve a different purpose. The POST method is designed to submit data to a server, usually resulting in a change in the server's state, such as creating a new record, updating data, or triggering an action. In essence, while GET is about asking the server for specific data, POST is about sending data to the server. With that understanding, let's delve into how to send data using POST requests in Python.</p>
 <p>For the sake of our pedagogical example, let's use <a href="https://jsonplaceholder.typicode.com/">JSONPlaceholder</a>, a free fake online REST API used for testing and prototyping. Specifically, we'll be simulating the process of creating a new post.  </p>
 <p>Before sending data, we must prepare it. Let's consider we're creating a new blog post:</p>
-<pre><code class="python"># The data we want to send
+<pre><code class="language-python"># The data we want to send
  post_data = {
      &quot;title&quot;: &quot;Understanding REST APIs&quot;,
      &quot;body&quot;: &quot;REST APIs are fundamental in web services...&quot;,
      &quot;userId&quot;: 1
  }
 </code></pre>
-
 <p>This is our blog post with a title, body, and an associated user ID.</p>
 <p>With our data ready, we can send it using the <code>requests</code> library:</p>
-<pre><code class="python"> import requests
+<pre><code class="language-python"> import requests
 
 # The API endpoint where we want to create the new post
  url = 'https://jsonplaceholder.typicode.com/posts'
@@ -288,7 +287,6 @@ APIs can return a lot of data. Here, besides the weather description and tempera
  else:
      print(&quot;Failed to create the post.&quot;)
 </code></pre>
-
 <p>Here, we've specified the URL to which we want to send the data and provided our post data in JSON format.</p>
 <p><strong>Note</strong>: It's essential to check the response status code. A <code>201</code> status indicates that our data was successfully received and a new resource was created on the server.</p>
 <p>When you send a POST request, the server typically responds with details about the newly created resource. In our example, the server returns the ID of the newly created post, which we then print.</p>
@@ -300,7 +298,7 @@ APIs can return a lot of data. Here, besides the weather description and tempera
 <code>pip install flask</code></p>
 <p>Create a new file named <strong>app.py</strong>. This will be our main application file.</p>
 <p>For our example, we'll use the following code:</p>
-<pre><code class="python">from flask import Flask, jsonify, request
+<pre><code class="language-python">from flask import Flask, jsonify, request
 
 app = Flask(name)
 
@@ -324,7 +322,6 @@ return jsonify({&quot;name&quot;: name, &quot;letter_count&quot;: len(name)})
 if name == 'main':
 app.run(debug=True)
 </code></pre>
-
 <p>This code sets up a Flask application with two routes:
 1. <strong>/api/count</strong>: When accessed, it increases a counter and returns the current count.
 2. <strong>/api/letter_count</strong>: Accepts a <strong>POST</strong> request with a <strong>JSON</strong> payload containing a name and returns the number of letters in the name.</p>
@@ -334,7 +331,7 @@ app.run(debug=True)
 <h4 id="requesting-the-flask-api-using-python">Requesting the Flask API using Python</h4>
 <p>With our Flask API running, let's now query it using Python:</p>
 <p>Create a new file named <strong>client.py</strong> and add the following code:</p>
-<pre><code class="python">import requests
+<pre><code class="language-python">import requests
 
 # Making a GET request to the count endpoint
 count_response = requests.get('http://127.0.0.1:5000/api/count')
@@ -345,7 +342,6 @@ data = {&quot;name&quot;: &quot;Alice&quot;}
 letter_count_response = requests.post('http://127.0.0.1:5000/api/letter_count', json=data)
 print(letter_count_response.json())
 </code></pre>
-
 <p>The first request will return the current request count, while the second one will tell us the number of letters in the name "Alice".</p>
 <p>Flask provides an intuitive way to set up RESTful APIs quickly. With just a few lines of code, we've set up a server that can handle requests, perform operations, and return data. By understanding these basics, you can extend the functionality and integrate more complex operations, such as serving machine learning models.</p></div>
             </div>
@@ -355,15 +351,17 @@ print(letter_count_response.json())
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../js/jquery-3.6.0.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
         <script>
             var base_url = "..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../js/base.js" defer></script>
-        <script src="../javascripts/mathjax.js" defer></script>
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6" defer></script>
-        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
-        <script src="../search/main.js" defer></script>
+        <script src="../js/base.js"></script>
+        <script src="../javascripts/mathjax.js"></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -373,16 +371,13 @@ print(letter_count_response.json())
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
             </div>
             <div class="modal-body">
-                <p>
-                    From here you can search these documents. Enter
-                    your search terms below.
-                </p>
+                <p>From here you can search these documents. Enter your search terms below.</p>
                 <form>
                     <div class="form-group">
                         <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
                     </div>
                 </form>
-                <div id="mkdocs-search-results"></div>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
             </div>
             <div class="modal-footer">
             </div>

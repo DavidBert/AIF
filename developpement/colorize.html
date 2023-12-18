@@ -12,18 +12,15 @@
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/docco.min.css">
-
-        <script src="../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/docco.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="..">AI Frameworks</a>
+                <a class="navbar-brand" href="../index.html">AI Frameworks</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
@@ -90,6 +87,10 @@
             
 <li>
     <a href="../rl/rl.html" class="dropdown-item">Course and practical session</a>
+</li>
+            
+<li>
+    <a href="../rl/quizz.html" class="dropdown-item">Quizz</a>
 </li>
     </ul>
   </li>
@@ -202,7 +203,7 @@ Then fork <a href="https://github.com/DavidBert/AIF2024/tree/main">this reposito
 <img alt="" src="../img/code/fork.png" />  </p>
 <p>Then navigate to the <code>developpement/colorize</code> folder.<br />
 Your working directory should look like this:</p>
-<pre><code class="bash">code/
+<pre><code class="language-bash">code/
 ├── data_utils.py
 ├── model.py
 ├── train.py
@@ -219,7 +220,6 @@ requirements.txt
 
 download_landscapes.sh
 </code></pre>
-
 <!-- The solution is available here.  [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DavidBert/N7-techno-IA/blob/master/code/developpement/colorize_solution.ipynb)  
 Try to complete the practical session without looking at it! -->
 
@@ -228,9 +228,8 @@ Try to complete the practical session without looking at it! -->
 Instead of using it to train a classifier, we will use it to train a neural network to colorize black and white images.<br />
 <img alt="" src="../img/gcloud_b%26w.png" /> <img alt="" src="../img/gcloud_color.png" /><br />
 Run the <code>download_landscapes.sh</code> script to download and extract the dataset.</p>
-<pre><code class="bash">./download_landscapes.sh
+<pre><code class="language-bash">./download_landscapes.sh
 </code></pre>
-
 <p>Here, we only have access to color images, so we will have to generate our own black and white images.
 The file <code>data_utils.py</code> contains some useful functions to load the dataset.<br />
 In particuler given a dataset containing landscape images, the function <code>get_colorized_dataset_loader</code> returns a PyTorch <code>DataLoader</code> object that can be used to iterate over the dataset yielding batches of black and white images and their corresponding colorized version.  </p>
@@ -242,7 +241,7 @@ Unets are a particular form of Auto-Encoders using skip connections between corr
 <p>The network architecture is defined in the <code>unet.py</code> file and need to be completed.  <br />
 <img alt="" src="../img/Unet.png" /></p>
 <p>Help yourself with the above image to implement a Unet network using the template located in the <code>unet.py</code> file:</p>
-<pre><code class="python">import torch
+<pre><code class="language-python">import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
@@ -325,11 +324,9 @@ if __name__=='__main__':
     print('Shapes OK')
 
 </code></pre>
-
 <p>Check that your network is producing correct outputs by running your file with:</p>
 <pre><code>python model.py
 </code></pre>
-
 <h2 id="training-script">Training script</h2>
 <p>You will now implement the training procedure.  </p>
 <p>Training a network to colorize images is a supervised regression problem.<br />
@@ -337,7 +334,7 @@ Consider <span class="arithmatex">\(x\)</span> a grayscaled image and <span clas
 Training a parametrized network <span class="arithmatex">\(f_\theta\)</span> to predict colorized images <span class="arithmatex">\(ŷ\)</span> amounts to minimizing the distance between the prediction <span class="arithmatex">\(ŷ\)</span> and the actual <span class="arithmatex">\(y\)</span>.<br />
 That is to say minimizing <span class="arithmatex">\(MSE(y, f_\theta(x))\)</span>.</p>
 <p>Fill the <code>train.py</code> file to train a UNet to colorize images (you can inspire yourself from the one in the MNIST example. However, be careful in your criterion choice):  </p>
-<pre><code class="python">import argparse # to parse script arguments
+<pre><code class="language-python">import argparse # to parse script arguments
 from statistics import mean # to compute the mean of a list
 from tqdm import tqdm #used to generate progress bar during training
 
@@ -426,7 +423,6 @@ if __name__=='__main__':
     # Save model weights
     torch.save(unet.state_dict(), 'unet.pth')
 </code></pre>
-
 <p>Some of you may have GPUs on their local machine.
 If that is the case, you can use them to train your model.
 If not, you can use Google Colab to train your model on a GPU for free.  </p>
@@ -464,13 +460,16 @@ To do so:
 <p>DO NOT FORGET TO DELETE YOUR DOCKER IMAGE AND CONTAINER WHEN YOU ARE DONE.</p>
 <h1 id="solutions">Solutions:</h1>
 <h3 id="modelpy">model.py</h3>
-<p><script src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2FDavidBert%2FAIF2024%2Fblob%2Fsolutions%2Fdeveloppement%2FColorize%2Fcode%2Fmodel.py&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on"></script></p>
+<script src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2FDavidBert%2FAIF2024%2Fblob%2Fsolutions%2Fdeveloppement%2FColorize%2Fcode%2Fmodel.py&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on"></script>
+
 <h3 id="trainpy">train.py</h3>
-<p><script src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2FDavidBert%2FAIF2024%2Fblob%2Fsolutions%2Fdeveloppement%2FColorize%2Fcode%2Ftrain.py&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on"></script></p>
+<script src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2FDavidBert%2FAIF2024%2Fblob%2Fsolutions%2Fdeveloppement%2FColorize%2Fcode%2Ftrain.py&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on"></script>
+
 <h3 id="colorize_apipy">colorize_api.py</h3>
-<p><script src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2FDavidBert%2FAIF2024%2Fblob%2Fsolutions%2Fdeveloppement%2FColorize%2Fcode%2Fcolorize_api.py&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on"></script></p>
+<script src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2FDavidBert%2FAIF2024%2Fblob%2Fsolutions%2Fdeveloppement%2FColorize%2Fcode%2Fcolorize_api.py&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on"></script>
+
 <h3 id="colorize_web_apppy">colorize_web_app.py</h3>
-<p><script src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2FDavidBert%2FAIF2024%2Fblob%2Fsolutions%2Fdeveloppement%2FColorize%2Fcode%2Fcolorize_webapp.py&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on"></script></p></div>
+<script src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2FDavidBert%2FAIF2024%2Fblob%2Fsolutions%2Fdeveloppement%2FColorize%2Fcode%2Fcolorize_webapp.py&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on"></script></div>
             </div>
         </div>
 
@@ -478,15 +477,17 @@ To do so:
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../js/jquery-3.6.0.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
         <script>
             var base_url = "..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../js/base.js" defer></script>
-        <script src="../javascripts/mathjax.js" defer></script>
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6" defer></script>
-        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
-        <script src="../search/main.js" defer></script>
+        <script src="../js/base.js"></script>
+        <script src="../javascripts/mathjax.js"></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -496,16 +497,13 @@ To do so:
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
             </div>
             <div class="modal-body">
-                <p>
-                    From here you can search these documents. Enter
-                    your search terms below.
-                </p>
+                <p>From here you can search these documents. Enter your search terms below.</p>
                 <form>
                     <div class="form-group">
                         <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
                     </div>
                 </form>
-                <div id="mkdocs-search-results"></div>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
             </div>
             <div class="modal-footer">
             </div>
