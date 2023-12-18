@@ -31,8 +31,8 @@ nav:
       -  Course and practical session: rl/rl.md
       -  Quizz: rl/quizz.md
     #   -  Project: rl.md
-    # - Interpretability:
-    #   - Course and practical session: xai/interpretability.md
+    - Interpretability:
+      - Course and practical session: xai/interpretability.md
     #   - Project: xai/interpretability.md
     - Introduction to Natural Language Processing (NLP):
       - Course and practical session: nlp/nlp.md
