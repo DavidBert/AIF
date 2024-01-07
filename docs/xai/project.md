@@ -14,7 +14,7 @@ Before starting, copy the following files ([agent.py](https://github.com/DavidBe
 pip install procgen
 ```
 
-You can instanciaite the environment with the following code:
+You can instanciate the environment with the following code:
 
 ```python
 import torch
