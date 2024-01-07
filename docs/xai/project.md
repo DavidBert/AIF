@@ -8,7 +8,7 @@ You are supposed to return a notebook with your code and explanations. The noteb
 You will try to explain the decisions of a reinforcement learning agent in a simple video game called fruitbot from the [procgen suite](https://openai.com/blog/procgen-benchmark/).
 You are not supposed to train the agent yourself, you can use a pretrained agent whose weights are provided [here](https://drive.google.com/file/d/1FnLCCYnvhuT5FBpzH3vjeesztZGhtgSx/view?usp=drive_link).  
 
-Before starting, copy the following files on your folder and install the procgen suite.
+Before starting, copy the following files ([agent.py](https://github.com/DavidBert/AIF2024/raw/main/xai/project/agent.py) , [procgen_wrappers.py](https://github.com/DavidBert/AIF2024/raw/main/xai/project/procgen_wrappers.py)) on your folder and install the procgen suite.
     
 ```bash
 pip install procgen
@@ -109,6 +109,6 @@ env.close()
 display_trajectory(frames)
 ```
 
-You are free to code on your own machine, but you will have to submit a notebook that can be run on colab.
+You are free to code on your own machine, but you will have to submit a notebook that can be run on [colab](https://colab.research.google.com/github/DavidBert/AIF2024/blob/main/xai/project/XAI_project.ipynb).
 
 Good luck!
