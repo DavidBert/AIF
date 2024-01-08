@@ -53,11 +53,9 @@ The following code shows how to use the agent to play a game:
 obs = env.reset()
 
 while True:
-    frames.append(obs)
     obs = torch.FloatTensor(obs).to('cuda')
     action = agent(obs).argmax(1).cpu().numpy()
     obs, _, done ,_ = env.step(action)
-    img = env.render()
     if done[0]:
         break
 
