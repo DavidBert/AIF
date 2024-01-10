@@ -39,7 +39,9 @@ nav:
       - Course and practical session: nlp/nlp.md
       - Quizz: nlp/quizz.md
     #   - Project: nlp.md
-  - Help on project: project/Docker_compose.md
+  - Project:
+    - Help on project: project/Docker_compose.md
+    - Project evaluation: project/Assignment.md
   - Schedule: schedule.md
   #- Evaluation: evaluation.md
   - Github repository: https://github.com/DavidBert/AIF2024
