@@ -1,0 +1,45 @@
+name: Sync Files to Repo testn7
+
+on:
+  push:
+    branches:
+      - website
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        repository: 'DavidBert/AIF2024'
+        ref: 'website'
+        
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x' # Use the version of Python you need
+
+    - name: Install MkDocs and dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install mkdocs mkdocs-material mkdocs-bootswatch
+        
+    - name: Copy files
+      env:
+        GITHUB_TOKEN: ${{ secrets.PAT }}
+      run: |
+        git config --global user.email "davidbertoin@gmail.com"
+        git config --global user.name "David Bertoin"
+        git clone https://x-access-token:${GITHUB_TOKEN}@github.com/DavidBert/testn7.git
+        rm docs/index.md
+        cp -r docs/ testn7/docs/ 
+        cd testn7
+        # Set up git to use the GITHUB_TOKEN
+        git config --local user.email "davidbertoin@gmail.com"
+        git config --local user.name "David Bertoin"
+        git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/DavidBert/testn7.git
+        
+        git add .
+        git commit -m "Sync files from Repo AIF2024"
+        git push
+        mkdocs gh-deploy --force
