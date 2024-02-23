@@ -7,7 +7,7 @@
 *   [Slides](https://github.com/wikistat/AI-Frameworks/tree/master/slides/Code_Development_Docker.pdf)
 
 
-## Practical Session
+<!-- ## Practical Session
 
 In this practical session, you will now run your code through a Docker container.  
 Using docker in data science projects has two advantages:  
@@ -140,4 +140,4 @@ sudo shutdown -h now
 ```  
 
 Do not hesitate to play a little more with Docker.  
-For instance try to train the MNIST classifier directly in your container and to collect the tensorboard logs and the resulting weights on your local machine.
+For instance try to train the MNIST classifier directly in your container and to collect the tensorboard logs and the resulting weights on your local machine. -->
