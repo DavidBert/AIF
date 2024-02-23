@@ -1,4 +1,4 @@
-name: Sync Files to Repo testn7
+name: Sync Files to Repo MODIA_AIF
 
 on:
   push:
@@ -30,14 +30,14 @@ jobs:
       run: |
         git config --global user.email "davidbertoin@gmail.com"
         git config --global user.name "David Bertoin"
-        git clone https://x-access-token:${GITHUB_TOKEN}@github.com/DavidBert/testn7.git
+        git clone https://x-access-token:${GITHUB_TOKEN}@github.com/DavidBert/MODIA_AIF.git
         rm docs/index.md
-        cp -r docs/ testn7/docs/ 
-        cd testn7
+        cp -r docs/ MODIA_AIF/docs/ 
+        cd MODIA_AIF
         # Set up git to use the GITHUB_TOKEN
         git config --local user.email "davidbertoin@gmail.com"
         git config --local user.name "David Bertoin"
-        git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/DavidBert/testn7.git
+        git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/DavidBert/MODIA_AIF.git
         
         git add .
         git commit -m "Sync files from Repo AIF2024"
