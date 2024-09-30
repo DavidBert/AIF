@@ -13,7 +13,7 @@ extra_javascript:
 
 nav:
   - Home: index.md
-  - Courses:
+  # - Courses:
     # - Course Introduction: introduction.md
   #   - Development tools for Data Scientist: 
   #     - Introduction to Pytorch: developpement/pytorch.md
