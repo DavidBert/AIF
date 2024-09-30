@@ -15,36 +15,36 @@ nav:
   - Home: index.md
   - Courses:
     # - Course Introduction: introduction.md
-    - Development tools for Data Scientist: 
-      - Introduction to Pytorch: developpement/pytorch.md
-      - Introduction to Git: developpement/git_intro.md
-      - Introduction to Docker: developpement/docker.md
-      - Introduction to REST APIs: developpement/api.md
-      - Practical session 1: developpement/mnist.md
-      - Practical session 2: developpement/colorize.md
-      # - Quizz: developpement/quizz.md
-    - Recommender systems: 
-      - Course and practical session: rec_sys/rec_sys.md
-      - Quizz: rec_sys/quizz.md
-    #   - Project: rec_sys/rec_sys.md
-    - Introduction to Reinforcement Learning:
-      -  Course and practical session: rl/rl.md
-      -  Quizz: rl/quizz.md
-    #   -  Project: rl.md
-    - Interpretability:
-      - Course and practical session: xai/interpretability.md
-      - Quizz: xai/quizz.md
-      - Project: xai/project.md
-    - Introduction to Natural Language Processing (NLP):
-      - Course and practical session: nlp/nlp.md
-      - Quizz: nlp/quizz.md
-    #   - Project: nlp.md
-  - Project:
-    - Help on project: project/Docker_compose.md
-    - Project evaluation: project/Assignment.md
-  - Schedule: schedule.md
+  #   - Development tools for Data Scientist: 
+  #     - Introduction to Pytorch: developpement/pytorch.md
+  #     - Introduction to Git: developpement/git_intro.md
+  #     - Introduction to Docker: developpement/docker.md
+  #     - Introduction to REST APIs: developpement/api.md
+  #     - Practical session 1: developpement/mnist.md
+  #     - Practical session 2: developpement/colorize.md
+  #     # - Quizz: developpement/quizz.md
+  #   - Recommender systems: 
+  #     - Course and practical session: rec_sys/rec_sys.md
+  #     - Quizz: rec_sys/quizz.md
+  #   #   - Project: rec_sys/rec_sys.md
+  #   - Introduction to Reinforcement Learning:
+  #     -  Course and practical session: rl/rl.md
+  #     -  Quizz: rl/quizz.md
+  #   #   -  Project: rl.md
+  #   - Interpretability:
+  #     - Course and practical session: xai/interpretability.md
+  #     - Quizz: xai/quizz.md
+  #     - Project: xai/project.md
+  #   - Introduction to Natural Language Processing (NLP):
+  #     - Course and practical session: nlp/nlp.md
+  #     - Quizz: nlp/quizz.md
+  #   #   - Project: nlp.md
+  # - Project:
+  #   - Help on project: project/Docker_compose.md
+  #   - Project evaluation: project/Assignment.md
+  # - Schedule: schedule.md
   #- Evaluation: evaluation.md
-  - Github repository: https://github.com/DavidBert/AIF2024
+  - Github repository: https://github.com/DavidBert/AIF
 #theme: slate
 theme:
   name: 'flatly'
