@@ -29,17 +29,11 @@ While the aforementioned courses delved into the theory and methods of machine l
     - Word embeddings
     - Introduction to Transformers
 
-4. **Session 4: Reinforcement Learning**
-    - Understanding Markov decision processes
-    - Policy evaluation and improvement
-    - Introduction to Q-learning and Deep Q-learning
+4. **Session 4: Conformal Prediction**
+    
 
-5. **Session 5: Explainable AI (XAI)**
-    - Understanding feature importance
-    - Post-hoc explainability
-    - Delving into local and global explainability
-    - Exploring black-box explainability
-    - Introduction to attribution methods
+5. **Session 5: Anomaly Detection**
+    
 
 Each session consists of three components:  
 
@@ -50,8 +44,8 @@ You will be evaluated on your understanding of the theoretical concepts through 
 #### Practical Application:
 Comprising a series of Jupyter notebooks and Python scripts, this hands-on component requires you to code and answer questions. A teaching assistant will be available to assist and clarify any doubts. Additionally, you're not expected to complete this in a single session; feel free to continue at home. This is also the time to work on your final project.
 
-#### Final Project:
-In teams of 4-5, you'll harness the knowledge gained throughout the course. The project encompasses two major tasks: constructing a movie recommender system with a user interface, and crafting a reinforcement learning agent to navigate a video game, while elucidating its decisions using XAI tools. While an hour is dedicated at the end of each practical session for this, additional work at home is anticipated. Upon course completion, you'll be expected to present a Docker image of your project along with its GitHub repository. Further specifics will be shared during the practical sessions.
+<!-- #### Final Project:
+In teams of 4-5, you'll harness the knowledge gained throughout the course. The project encompasses two major tasks: constructing a movie recommender system with a user interface, and crafting a reinforcement learning agent to navigate a video game, while elucidating its decisions using XAI tools. While an hour is dedicated at the end of each practical session for this, additional work at home is anticipated. Upon course completion, you'll be expected to present a Docker image of your project along with its GitHub repository. Further specifics will be shared during the practical sessions. -->
 
 ### Evaluation
 Grading will be based on the final project (60%) and a quizzes (40%). The quizzes will be held at the beginning of each session and will test your understanding of the theoretical concepts.
