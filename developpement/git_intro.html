@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Introduction to git - AI Frameworks</title>
+        <title>Introduction to Git - AI Frameworks</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -37,6 +37,45 @@
                             <li class="nav-item">
                                 <a href="../index.html" class="nav-link">Home</a>
                             </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Courses</a>
+                                <ul class="dropdown-menu">
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Development tools for Data Scientist</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="pytorch.html" class="dropdown-item">Introduction to Pytorch</a>
+</li>
+            
+<li>
+    <a href="git_intro.html" class="dropdown-item active" aria-current="page">Introduction to Git</a>
+</li>
+            
+<li>
+    <a href="docker.html" class="dropdown-item">Introduction to Docker</a>
+</li>
+            
+<li>
+    <a href="api.html" class="dropdown-item">Introduction to REST APIs</a>
+</li>
+            
+<li>
+    <a href="mnist.html" class="dropdown-item">Practical session 1</a>
+</li>
+            
+<li>
+    <a href="colorize.html" class="dropdown-item">Practical session 2</a>
+</li>
+            
+<li>
+    <a href="quizz.html" class="dropdown-item">Quizz</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
                             <li class="nav-item">
                                 <a href="https://github.com/DavidBert/AIF" class="nav-link">Github repository</a>
                             </li>
@@ -48,6 +87,16 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="pytorch.html" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="docker.html" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
                     </ul>
                 </div>
             </div>
@@ -70,6 +119,53 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#practical-session-basic-git-workflow-and-introduction-to-and-cicd" class="nav-link">Practical session: Basic Git Workflow and Introduction to and CI/CD</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#introduction" class="nav-link">Introduction:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#understanding-version-control" class="nav-link">Understanding Version Control</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#git" class="nav-link">Git</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#gits-basic-paradigms" class="nav-link">Git's Basic Paradigms</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#the-three-states-in-git" class="nav-link">The Three States in Git</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#git-areas-and-workflow" class="nav-link">Git Areas and Workflow</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#github" class="nav-link">GitHub</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#setting-up-your-environment" class="nav-link">Setting up your environment</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#practical-session-a-flask-web-app-development-with-git-and-github" class="nav-link">Practical session: A Flask Web App Development with Git and GitHub</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#for-the-assigned-team-member" class="nav-link">For the Assigned Team Member:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
@@ -77,11 +173,1299 @@
 
 <h1 id="introduction-to-git">Introduction to git</h1>
 <p><img src="../img/Git-logo.svg.png" alt="drawing" width="200"/></p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/meEcQAttqAo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/3M5XLw_tuxg?si=oJ8psg_3Udeeon_8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1S0EFq44Po4?si=Mb-X9T9KOqFywfub" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/vGro-4gce0A?si=y6wqDapQCLg6edmo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/5t3VSnR9Nd0?si=NaMqAYlgCtqFbNWC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 <ul>
-<li><a href="https://raw.githubusercontent.com/DavidBert/N7-techno-IA/master/slides/IA%20Framework%20Git%20Intro.pdf">Slides</a></li>
-</ul></div>
+<li><a href="https://docs.google.com/presentation/d/1KSNI4OVEsT2bhDDgmZkKUWUlnU7-rGA6Rq90ThpwCe8/edit?usp=sharing">Slides</a></li>
+</ul>
+<p>A useful cheatsheet: <a href="https://training.github.com/downloads/github-git-cheat-sheet.pdf">https://training.github.com/downloads/github-git-cheat-sheet.pdf</a><br />
+A useful reference: <a href="https://git-scm.com/docs">https://git-scm.com/docs</a></p>
+<h1 id="practical-session-basic-git-workflow-and-introduction-to-and-cicd">Practical session: Basic Git Workflow and Introduction to and CI/CD</h1>
+<h2 id="introduction">Introduction:</h2>
+<p>This practical session is designed for small groups of 2-3 people to work through together.<br />
+It is very important that every member of the group runs the different commands in this practical session all shared with the same repository (we will see later what this means).
+During this project, you will learn if not already, how to use Git and GitHub to manage your code and to collaborate with your team.<br />
+You will also learn how to use GitHub Actions to deploy your code and to run tests.
+This practical session is not a full Git and GitHub course, but rather a practical introduction to these tools providing you with the basic knowledge to be able to use them during this project.<br />
+If you want to learn more about Git and GitHub, you can refer to the <a href="https://docs.GitHub.com/en/get-started/quickstart/set-up-git">official documentation</a>.</p>
+<h2 id="understanding-version-control">Understanding Version Control</h2>
+<p>Version control is a system that helps track and manage changes to files over time. It's an essential tool for software development, enabling developers to collaborate effectively, maintain a history of changes, and manage different versions of their code. With version control, you can revert files to a previous state, compare changes over time, see who last modified something that might be causing issues, and more. It acts as a safety net, allowing developers to experiment with new ideas without fear of losing their original work.</p>
+<h3 id="example">Example:</h3>
+<p>Imagine you're working on a Python application for a bookstore. Over time, you add several features, but one of them turns out to be problematic. With version control, you can easily remove just the unwanted feature while keeping the other improvements. Let's see how this might look:</p>
+<ul>
+<li><strong>Day 1:</strong> You start with a basic Book class.</li>
+</ul>
+<pre><code class="language-python">class Book:
+    def __init__(self, title, author, price):
+        self.title = title
+        self.author = author
+        self.price = price
+
+    def display_info(self):
+        return f&quot;{self.title} by {self.author}: ${self.price}&quot;
+</code></pre>
+<ul>
+<li><strong>Day 3:</strong> You add a discount feature.</li>
+</ul>
+<pre><code class="language-python">class Book:
+    def __init__(self, title, author, price):
+        self.title = title
+        self.author = author
+        self.price = price
+
+    def display_info(self):
+        return f&quot;{self.title} by {self.author}: ${self.price}&quot;
+
+    def apply_discount(self, discount):
+        self.price = self.price * (1 - discount)
+</code></pre>
+<ul>
+<li><strong>Day 5:</strong> You add a feature to track stock, but it has a bug.</li>
+</ul>
+<pre><code class="language-python">class Book:
+    def __init__(self, title, author, price, stock):
+        self.title = title
+        self.author = author
+        self.price = price
+        self.stock = stock
+
+    def display_info(self):
+        return f&quot;{self.title} by {self.author}: ${self.price} (In stock: {self.stock})&quot;
+
+    def apply_discount(self, discount):
+        self.price = self.price * (1 - discount)
+
+    def update_stock(self, quantity):
+        self.stock += quantity  # Bug: This allows negative stock!
+</code></pre>
+<ul>
+<li><strong>Day 7:</strong> You add a method to calculate total value.</li>
+</ul>
+<pre><code class="language-python">class Book:
+    def __init__(self, title, author, price, stock):
+        self.title = title
+        self.author = author
+        self.price = price
+        self.stock = stock
+
+    def display_info(self):
+        return f&quot;{self.title} by {self.author}: ${self.price} (In stock: {self.stock})&quot;
+
+    def apply_discount(self, discount):
+        self.price = self.price * (1 - discount)
+
+    def update_stock(self, quantity):
+        self.stock += quantity  # Bug: This allows negative stock!
+
+    def total_value(self):
+        return self.price * self.stock
+</code></pre>
+<ul>
+<li><strong>Day 10:</strong> You realize the stock tracking feature has a bug allowing negative stock.</li>
+</ul>
+<p>With version control, you can:
+1. Review the history of changes to identify when the bug was introduced.
+2. Revert just the problematic <code>update_stock</code> method while keeping the other beneficial changes.
+3. Fix the bug and commit the corrected version.</p>
+<p>Modern development teams use version control systems to manage their code, track changes, and collaborate effectively. Git is one of the most popular version control systems, providing a robust set of features for managing codebases of all sizes.</p>
+<h1 id="git">Git</h1>
+<p><img alt="" src="img/git.png" />  </p>
+<p>Git is a distributed version control system that has revolutionized how developers manage and track changes in their code. Created by Linus Torvalds in 2005, Git was born out of the need for a fast, efficient, and reliable system to manage the development of the Linux kernel. Unlike centralized version control systems that preceded it, Git allows developers to have a complete copy of the project history on their local machines, enabling offline work and providing a safeguard against data loss.
+Git's distributed nature facilitates collaboration among developers, allowing them to work on different features simultaneously and merge their changes seamlessly. Its branching and merging capabilities make it easy to experiment with new ideas without affecting the main codebase. Since its inception, Git has become the de facto standard for version control in software development, used by millions of developers and organizations worldwide.</p>
+<h2 id="gits-basic-paradigms">Git's Basic Paradigms</h2>
+<ol>
+<li>
+<p><strong>Snapshots, Not Differences</strong>: 
+   Unlike other version control systems that store data as changes to a base version of each file, Git thinks of its data more like a series of snapshots of a miniature filesystem. Every time you commit, or save the state of your project in Git, it basically takes a picture of what all your files look like at that moment and stores a reference to that snapshot.
+   <img alt="" src="img/snapshots.png" /></p>
+</li>
+<li>
+<p><strong>Local Operations</strong>:
+   Most operations in Git need only local files and resources to operate. This means you can work on your project even when you're offline or not on a VPN, unlike centralized systems that need to communicate with a server for almost every operation.</p>
+</li>
+<li>
+<p><strong>Integrity</strong>:
+   Everything in Git is check-summed before it is stored and is then referred to by that checksum. This means it's impossible to change the contents of any file or directory without Git knowing about it. This functionality is built into Git at the lowest levels and is integral to its philosophy.</p>
+</li>
+<li>
+<p><strong>Branching Model</strong>:
+   Git's branching model is its "killer feature." Unlike many other VCSs, Git encourages workflows that branch and merge often. This allows for feature branches, experimentation, and parallel development streams that can be easily merged when ready.</p>
+</li>
+<li>
+<p><strong>Distributed Development</strong>:
+   In Git, every developer's working copy of the code is also a repository that can contain the full history of all changes. This allows for multiple backup copies and various collaborative development models.</p>
+</li>
+<li>
+<p><strong>Fast and Lightweight</strong>:
+   Git is designed to be fast and efficient with large projects. Most operations are local, reducing the overhead of communicating with a centralized server.</p>
+</li>
+</ol>
+<h2 id="the-three-states-in-git">The Three States in Git</h2>
+<p>In Git, files can exist in three states:</p>
+<ol>
+<li><strong>Modified</strong>: You have changed the file but have not committed it to your database yet.</li>
+<li><strong>Staged</strong>: You have marked a modified file in its current version to go into your next commit snapshot.</li>
+<li><strong>Committed</strong>: The data is safely stored in your local database.</li>
+</ol>
+<p>These three states correspond to the three main sections of a Git project.
+When not tracked by Git, a file is in the <strong>Untracked</strong> state.
+<img alt="" src="img/lifecycle.png" /></p>
+<h2 id="git-areas-and-workflow">Git Areas and Workflow</h2>
+<p>Understanding the different areas in Git is crucial for mastering its workflow. Git manages your project's files through four main areas:</p>
+<ol>
+<li>
+<p><strong>Working Directory (Working Tree)</strong>:</p>
+<ul>
+<li>This is where you actually work on your project files.</li>
+<li>It's a single checkout of one version of the project.</li>
+<li>These files are pulled out of the compressed database in the Git directory and placed on disk for you to use or modify.</li>
+</ul>
+</li>
+<li>
+<p><strong>Staging Area (Index)</strong>:</p>
+<ul>
+<li>This is a file, generally contained in your Git directory, that stores information about what will go into your next commit.</li>
+<li>It's sometimes referred to as the "Index".</li>
+<li>Think of it as a prep area for your next commit.</li>
+<li>Files are added to this area with the <code>git add</code> command.</li>
+</ul>
+</li>
+<li>
+<p><strong>Local Repository</strong>:</p>
+<ul>
+<li>This is where Git stores the metadata and object database for your project.</li>
+<li>It's what's copied when you clone a repository from another computer.</li>
+<li>The local repository contains all of your committed changes.</li>
+<li>It's located in the <code>.git</code> directory of your project.</li>
+</ul>
+</li>
+<li>
+<p><strong>Remote Repository</strong>:</p>
+<ul>
+<li>This is a version of your project that is hosted on the Internet or network somewhere (like GitHub, GitLab, or Bitbucket).</li>
+<li>You can have several of them, each of which generally is either read-only or read/write for you.</li>
+<li>Collaborating with others involves managing your remote repositories and pushing and pulling data to and from them when you need to share work.</li>
+</ul>
+</li>
+</ol>
+<h3 id="basic-git-workflow">Basic Git Workflow:</h3>
+<ol>
+<li>You <strong>modify</strong> files in your Working Directory.</li>
+<li>You <strong>stage</strong> the files, adding snapshots of them to your Staging Area.</li>
+<li>You do a <strong>commit</strong>, which takes the files as they are in the Staging Area and stores that <strong>snapshot</strong> permanently to your Local Repository.</li>
+<li>You <strong>push</strong> your changes to a <strong>Remote Repository</strong> to share with others or as a backup.
+   <img alt="" src="img/areas.png" /></li>
+</ol>
+<p>Understanding these areas and how they interact is key to understanding Git's workflow and effectively managing your projects with version control.</p>
+<h1 id="github">GitHub</h1>
+<p><img alt="" src="img/github.png" />
+GitHub is a web-based hosting service for Git repositories. Launched in 2008, it has become the world's largest host of source code and a central hub for collaboration among developers. While Git is a command-line tool, GitHub provides a web-based graphical interface. It also offers access control and several collaboration features, such as bug tracking, feature requests, task management, and wikis for every project.</p>
+<p>Key features of GitHub include:</p>
+<ol>
+<li>
+<p><strong>Repository Hosting</strong>: GitHub can host your Git repositories in the cloud, making it easy to share and collaborate on code.</p>
+</li>
+<li>
+<p><strong>Fork and Pull Request</strong>: Users can "fork" an existing repository (creating their own copy), make changes, and then submit a "pull request" to propose those changes back to the original project.</p>
+</li>
+<li>
+<p><strong>Issue Tracking</strong>: GitHub provides a system for reporting and managing bugs, feature requests, and other tasks related to a project.</p>
+</li>
+<li>
+<p><strong>Project Management Tools</strong>: Including project boards, milestones, and other tools to help manage and organize work on repositories.</p>
+</li>
+<li>
+<p><strong>Social Coding</strong>: Users can follow repositories and other users, star repositories they like, and see a feed of activity from repositories and users they're interested in.</p>
+</li>
+<li>
+<p><strong>GitHub Pages</strong>: A feature that allows hosting of static websites directly from a GitHub repository.</p>
+</li>
+<li>
+<p><strong>Integrations</strong>: GitHub can integrate with many third-party services, enhancing its capabilities for things like continuous integration and deployment.</p>
+</li>
+</ol>
+<p>GitHub has played a significant role in the growth of open-source software, providing a platform where developers from around the world can collaborate on projects. It's used not only by individual developers and open-source projects but also by large companies to host and manage their code.</p>
+<h2 id="setting-up-your-environment">Setting up your environment</h2>
+<h3 id="anaconda-and-python">Anaconda and Python:</h3>
+<p><img alt="" src="img/conda.png" /></p>
+<ol>
+<li>Download and install Anaconda from the official website: https://www.anaconda.com/products/distribution</li>
+<li>During installation, make sure to add Anaconda to your PATH environment variable when prompted.</li>
+<li>Open an Anaconda Prompt (on Windows) or a terminal (on macOS/Linux).</li>
+<li>Create a new environment for this project:</li>
+</ol>
+<pre><code>conda create --name gitproject python=3.8
+</code></pre>
+<ol>
+<li>Activate the environment:</li>
+</ol>
+<pre><code>conda activate gitproject
+</code></pre>
+<ol>
+<li>Install Flask (we'll use it for examples during the session):</li>
+</ol>
+<pre><code>pip install flask
+</code></pre>
+<h3 id="git_1">Git</h3>
+<p><img alt="" src="img/git.png" />
+1. Download Git from the official website: https://git-scm.com/downloads
+2. Follow the installation instructions for your operating system.
+3. After installation, open a new terminal or command prompt and verify the installation:</p>
+<pre><code>git --version
+</code></pre>
+<ol>
+<li>Configure your Git username and email:</li>
+</ol>
+<pre><code>git config --global user.name &quot;Your Name&quot;
+git config --global user.email &quot;your.email@example.com&quot;
+</code></pre>
+<h3 id="github_1">GitHub</h3>
+<p><img alt="" src="img/github.png" />
+We will use GitHub as our remote repository for this project.<br />
+If you don't have a GitHub account, you can create one for free at https://github.com/.</p>
+<h3 id="remote-repository">Remote repository</h3>
+<p>(Just one person in the group should do this and invite others to collaborate)</p>
+<ol>
+<li>Log in to GitHub.</li>
+<li>Click the "new" button on the left menu.</li>
+<li>Name your repository (e.g., "flask-git-demo").</li>
+<li>Choose to make it public.</li>
+<li>Initialize the repository with a README file.</li>
+<li>Click "Create project".</li>
+<li>To invite collaborators:</li>
+<li>Go to your repository's page.</li>
+<li>On the left menu, click on "Members" and invite the other members of the group.</li>
+<li>Give them the "Developer" role.</li>
+</ol>
+<h3 id="local-repository">Local repository</h3>
+<ol>
+<li>Open a terminal or command prompt.</li>
+<li>Navigate to the directory where you want to create your project:</li>
+</ol>
+<pre><code>cd path/to/your/project/directory
+</code></pre>
+<ol>
+<li>Clone the remote repository:</li>
+</ol>
+<pre><code>git clone https://github.com/your-username/flask-git-demo.git
+</code></pre>
+<p>(Replace 'your-username' with the GitHub username of the person who created the repository)
+4. Navigate into the cloned repository:</p>
+<pre><code>cd flask-git-demo
+</code></pre>
+<p>Now your environment is set up and ready for the Git and GitHub practical session. Each member of the group should have Python, Flask, and Git installed, a GitHub account, and a local copy of the repository. The repository owner has set up the remote repository and invited other group members as collaborators.</p>
+<h2 id="practical-session-a-flask-web-app-development-with-git-and-github">Practical session: A Flask Web App Development with Git and GitHub</h2>
+<p>We'll build a Flask web app that collects a user's name and date of birth, then displays various information based on this input. We'll develop this app in stages, using Git and GitHub to manage our development process.</p>
+<h3 id="stage-1-basic-setup-and-first-commit-explained-guide">Stage 1: Basic Setup and First Commit - Explained Guide</h3>
+<p>In this stage, we'll set up a basic Flask app within our existing Git repository. To avoid conflicts, only one person (the team lead) should perform the initial setup and push the changes. Other team members will then pull these changes.</p>
+<h4 id="for-the-team-lead">For the Team Lead:</h4>
+<h5 id="1-navigate-to-the-project-directory">1. Navigate to the Project Directory</h5>
+<p>First, we need to ensure we're in the correct directory for our project.</p>
+<pre><code>cd path/to/flask-git-demo
+</code></pre>
+<p>This command changes the current directory to your project folder.</p>
+<h5 id="2-create-the-flask-app">2. Create the Flask App</h5>
+<p>Now, we'll create the basic structure for our Flask application.</p>
+<ol>
+<li>Create a new file called <code>app.py</code>:</li>
+</ol>
+<pre><code>touch app.py
+# touch is a command that creates an empty file
+# on windows just create it manually
+</code></pre>
+<p>This command creates an empty file named <code>app.py</code>.</p>
+<ol>
+<li>Open <code>app.py</code> in your preferred text editor and add the following code:</li>
+</ol>
+<pre><code class="language-python">from flask import Flask, render_template, request
+from datetime import datetime
+
+app = Flask(__name__)
+
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    if request.method == 'POST':
+        name = request.form['name']
+        dob = request.form['dob']
+        welcome_message = f&quot;Welcome, {name}! Your date of birth is {dob}.&quot;
+        return render_template('result.html', message=welcome_message)
+    return render_template('index.html')
+
+if __name__ == '__main__':
+    app.run(debug=True)
+</code></pre>
+<p>This code sets up a basic Flask app with a route that handles both GET and POST requests.</p>
+<ol>
+<li>Create a new directory for our HTML templates:</li>
+</ol>
+<pre><code>mkdir templates
+# mkdir is a command that creates a new directory
+# on windows just create it manually
+</code></pre>
+<p>This command creates a new directory named "templates", where Flask will look for our HTML files.</p>
+<ol>
+<li>Create two HTML files in the <code>templates</code> directory:</li>
+</ol>
+<p>For <code>index.html</code>:</p>
+<pre><code>touch templates/index.html
+# on windows just create it manually
+</code></pre>
+<p>Then add the HTML content for the form in your text editor.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Birthday App&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;{{ url_for('static', filename='style.css') }}&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Welcome to the Birthday App&lt;/h1&gt;
+    &lt;form method=&quot;POST&quot;&gt;
+        &lt;label for=&quot;name&quot;&gt;Name:&lt;/label&gt;
+        &lt;input type=&quot;text&quot; id=&quot;name&quot; name=&quot;name&quot; required&gt;
+
+        &lt;label for=&quot;dob&quot;&gt;Date of Birth:&lt;/label&gt;
+        &lt;input type=&quot;date&quot; id=&quot;dob&quot; name=&quot;dob&quot; required&gt;
+
+        &lt;input type=&quot;submit&quot; value=&quot;Submit&quot;&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>For <code>result.html</code>:</p>
+<pre><code>touch templates/result.html
+# on windows just create it manually
+</code></pre>
+<p>Then add the HTML content for the result page in your text editor.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Birthday App Result&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;{{ url_for('static', filename='style.css') }}&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Your Birthday Information&lt;/h1&gt;
+    &lt;p&gt;{{ message }}&lt;/p&gt;
+    &lt;a href=&quot;{{ url_for('index') }}&quot;&gt;Go back&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h5 id="3-update-gitignore">3. Update .gitignore</h5>
+<p>To keep our repository clean, we'll update the .gitignore file to exclude unnecessary files.</p>
+<pre><code>echo &quot;venv/&quot; &gt;&gt; .gitignore
+echo &quot;__pycache__/&quot; &gt;&gt; .gitignore
+echo &quot;*.pyc&quot; &gt;&gt; .gitignore
+</code></pre>
+<p>These commands append new lines to the .gitignore file, telling Git to ignore the virtual environment directory, Python cache files, and compiled Python files.
+By adding these files to the .gitignore file, we ensure that they are not tracked by Git, meaning they won't be committed to the repository.</p>
+<h5 id="4-git-operations">4. Git Operations</h5>
+<p>Now we'll use Git to track our new files and push them to the remote repository.</p>
+<ol>
+<li>Check the status of your repository:</li>
+</ol>
+<pre><code>git status
+</code></pre>
+<p>This command shows you which files have been changed or are untracked.</p>
+<ol>
+<li>Add the new files to the staging area:</li>
+</ol>
+<pre><code>git add .
+</code></pre>
+<p>This stages all new and modified files, preparing them for commit.
+   Check the status again to verify that the files have been staged:</p>
+<pre><code>git status
+</code></pre>
+<ol>
+<li>Commit the changes:</li>
+</ol>
+<pre><code>git commit -m &quot;Add basic Flask app structure&quot;
+</code></pre>
+<p>This creates a new commit with the staged changes and adds a descriptive message.
+   Check the status again to verify that the commit has been created:</p>
+<pre><code>git status
+</code></pre>
+<ol>
+<li>Push the changes to the remote repository:</li>
+</ol>
+<pre><code>git push origin main
+</code></pre>
+<p>This uploads your local commits to the remote repository on GitHub.
+   Check the status again to verify that the commit has been pushed:</p>
+<pre><code>git status
+</code></pre>
+<h5 id="5-testing-the-app">5. Testing the App</h5>
+<p>Before notifying your team, make sure the app works as expected:</p>
+<pre><code>python app.py
+</code></pre>
+<p>This command runs your Flask application. Open a web browser and go to <code>http://127.0.0.1:5000/</code> to verify the app is functioning correctly.</p>
+<h5 id="6-notify-team-members">6. Notify Team Members</h5>
+<p>Once you've successfully pushed the changes and tested the app, notify your team members that the initial setup is complete and they can proceed with their steps.</p>
+<h4 id="for-other-team-members">For Other Team Members:</h4>
+<p>After the team lead has completed the setup and pushed the changes, follow these steps:</p>
+<ol>
+<li>Pull the latest changes from the remote repository:</li>
+</ol>
+<pre><code>git pull origin main
+</code></pre>
+<p>This command fetches the latest changes from the remote repository and merges them into your local branch.</p>
+<ol>
+<li>Test the app to ensure it's working on your local machine:</li>
+</ol>
+<pre><code>python app.py
+</code></pre>
+<p>This runs the Flask application. Check <code>http://127.0.0.1:5000/</code> in your browser to verify it's working correctly.</p>
+<h4 id="collaboration-notes">Collaboration Notes</h4>
+<ul>
+<li>Always pull the latest changes before starting work each day:</li>
+</ul>
+<pre><code>git pull origin main
+</code></pre>
+<p>This ensures you're working with the most up-to-date version of the project.</p>
+<ul>
+<li>
+<p>If you encounter any issues or merge conflicts, communicate with your team to resolve them.</p>
+</li>
+<li>
+<p>Remember to commit your changes frequently with meaningful commit messages as you start working on new features in the upcoming stages.</p>
+</li>
+</ul>
+<p>In the next stages, we'll add more features to this app and explore more Git and GitHub concepts as a team.</p>
+<h3 id="stage-2-implementing-age-calculation-direct-implementation">Stage 2: Implementing Age Calculation - Direct Implementation</h3>
+<p>In this stage, we'll add a feature to calculate the user's age based on their date of birth. We'll implement this directly on the main branch to practice basic Git workflows.</p>
+<h4 id="for-the-student-lead-of-stage-2">For the Student Lead of Stage 2:</h4>
+<h5 id="1-prepare-your-local-repository">1. Prepare Your Local Repository</h5>
+<p>Ensure your local repository is up-to-date:</p>
+<pre><code>git pull origin main
+</code></pre>
+<p>This fetches and merges the latest changes from the main branch.</p>
+<h3 id="2-implement-age-calculation">2. Implement Age Calculation</h3>
+<ol>
+<li>Open <code>app.py</code> and add a new function to calculate age:</li>
+</ol>
+<pre><code class="language-python">from datetime import datetime
+
+def calculate_age(dob):
+    today = datetime.today()
+    birth_date = datetime.strptime(dob, &quot;%Y-%m-%d&quot;)
+    age = today.year - birth_date.year - ((today.month, today.day) &lt; (birth_date.month, birth_date.day))
+    return age
+</code></pre>
+<ol>
+<li>Modify the <code>index</code> function to use this new calculation:</li>
+</ol>
+<pre><code class="language-python">@app.route('/', methods=['GET', 'POST'])
+def index():
+    if request.method == 'POST':
+        name = request.form['name']
+        dob = request.form['dob']
+        age = calculate_age(dob)
+        welcome_message = f&quot;Welcome, {name}! You are {age} years old.&quot;
+        return render_template('result.html', message=welcome_message)
+    return render_template('index.html')
+</code></pre>
+<h5 id="3-test-your-changes">3. Test Your Changes</h5>
+<p>Run the Flask application to test your changes:</p>
+<pre><code>python app.py
+</code></pre>
+<p>Verify that the age calculation works correctly by submitting the form and checking the result.</p>
+<h3 id="4-commit-your-changes">4. Commit Your Changes</h3>
+<p>After confirming that everything works:</p>
+<pre><code>git add app.py
+git commit -m &quot;Add age calculation feature&quot;
+</code></pre>
+<p>This stages and commits your changes to your local main branch.</p>
+<h5 id="5-push-your-changes">5. Push Your Changes</h5>
+<p>Push your commits to the remote repository:</p>
+<pre><code>git push origin main
+</code></pre>
+<p>This updates the main branch on GitHub with your new changes.</p>
+<h5 id="6-notify-team-members_1">6. Notify Team Members</h5>
+<p>Let your team know that you've pushed new changes to the main branch.</p>
+<h4 id="for-other-team-members_1">For Other Team Members:</h4>
+<p>After the student lead has pushed the changes:</p>
+<ol>
+<li>Pull the latest changes from the remote repository:</li>
+</ol>
+<pre><code>git pull origin main
+</code></pre>
+<p>This updates your local main branch with the new changes.</p>
+<ol>
+<li>Test the updated application to ensure everything works correctly:</li>
+</ol>
+<pre><code>python app.py
+</code></pre>
+<ol>
+<li>If you encounter any issues, communicate with the team to resolve them.</li>
+</ol>
+<h3 id="stage-3-adding-zodiac-sign-feature-branching-and-pull-requests">Stage 3: Adding Zodiac Sign Feature - Branching and Pull Requests</h3>
+<p>Now that we've implemented a feature directly on the main branch, let's discuss the concept of branching and why it's useful:</p>
+<p>Branching in Git allows developers to diverge from the main line of development and work independently on features or experiments without affecting the main codebase. This has several advantages:</p>
+<ol>
+<li><strong>Isolation</strong>: You can work on different features or experiments without interfering with the main codebase or other developers' work.</li>
+<li><strong>Easier collaboration</strong>: Multiple developers can work on different features simultaneously without conflicts.</li>
+<li><strong>Code review</strong>: Branches facilitate code reviews through pull requests before merging changes into the main codebase.</li>
+<li><strong>Experimentation</strong>: You can try out ideas without the risk of breaking the main codebase.</li>
+</ol>
+<p>In this stage, we'll add a feature to determine the user's zodiac sign based on their date of birth. We'll use Git branching and create a pull request to implement this feature, demonstrating a more advanced Git workflow.</p>
+<h4 id="for-the-student-lead-of-stage-3">For the Student Lead of Stage 3:</h4>
+<h5 id="1-ensure-your-repository-is-up-to-date">1. Ensure Your Repository is Up-to-Date</h5>
+<p>First, make sure you're on the main branch and it's up-to-date:</p>
+<pre><code>git checkout main
+git pull origin main
+</code></pre>
+<h5 id="2-create-a-new-branch">2. Create a New Branch</h5>
+<p>Create and switch to a new branch for the zodiac sign feature:</p>
+<pre><code>git checkout -b feature/zodiac-sign
+</code></pre>
+<h5 id="3-implement-the-zodiac-sign-feature">3. Implement the Zodiac Sign Feature</h5>
+<ol>
+<li>In <code>app.py</code>, add a new function to determine the zodiac sign:</li>
+</ol>
+<pre><code class="language-python">def get_zodiac_sign(dob):
+    month, day = map(int, dob.split('-')[1:])
+    zodiac_signs = [
+        (1, 20, &quot;Capricorn&quot;), (2, 19, &quot;Aquarius&quot;), (3, 20, &quot;Pisces&quot;), (4, 20, &quot;Aries&quot;),
+        (5, 21, &quot;Taurus&quot;), (6, 21, &quot;Gemini&quot;), (7, 22, &quot;Cancer&quot;), (8, 23, &quot;Leo&quot;),
+        (9, 23, &quot;Virgo&quot;), (10, 23, &quot;Libra&quot;), (11, 22, &quot;Scorpio&quot;), (12, 22, &quot;Sagittarius&quot;),
+        (12, 31, &quot;Capricorn&quot;)
+    ]
+    for m, d, sign in zodiac_signs:
+        if (month, day) &lt;= (m, d):
+            return sign
+</code></pre>
+<ol>
+<li>Modify the <code>index</code> function to include the zodiac sign:</li>
+</ol>
+<pre><code class="language-python">@app.route('/', methods=['GET', 'POST'])
+def index():
+    if request.method == 'POST':
+        name = request.form['name']
+        dob = request.form['dob']
+        age = calculate_age(dob)
+        zodiac = get_zodiac_sign(dob)
+        message = f&quot;Welcome, {name}! You are {age} years old. Your zodiac sign is {zodiac}.&quot;
+        return render_template('result.html', message=message)
+    return render_template('index.html')
+</code></pre>
+<h5 id="4-test-your-changes">4. Test Your Changes</h5>
+<p>Run the Flask application and test the new feature:</p>
+<pre><code>python app.py
+</code></pre>
+<h5 id="5-commit-your-changes">5. Commit Your Changes</h5>
+<p>After ensuring everything works:</p>
+<pre><code>git add app.py
+git commit -m &quot;Add zodiac sign feature&quot;
+</code></pre>
+<h5 id="6-push-your-branch-to-github">6. Push Your Branch to GitHub</h5>
+<p>Push your feature branch to the remote repository:</p>
+<pre><code>git push -u origin feature/zodiac-sign
+</code></pre>
+<h5 id="7-create-a-pull-request">7. Create a Pull Request</h5>
+<ol>
+<li>Go to your repository on GitHub.</li>
+<li>You should see a prompt to create a pull request for your recently pushed branch. Click on it.</li>
+<li>Fill in the details of your pull request, describing the new zodiac sign feature.</li>
+<li>Assign team members to review your pull request.</li>
+</ol>
+<h4 id="for-other-team-members-reviewers">For Other Team Members (Reviewers):</h4>
+<h5 id="reviewing-the-pull-request">Reviewing the Pull Request</h5>
+<ol>
+<li>Go to the repository on GitHub and navigate to the Pull Requests tab.</li>
+<li>Click on the pull request for the zodiac sign feature.</li>
+<li>Review the changes:</li>
+<li>Check the code for correctness and style.</li>
+<li>Consider how this feature integrates with the existing codebase.</li>
+<li>To test the changes locally:
+   <code>git fetch origin # to update the local repository with the latest changes from the remote repository
+   git checkout feature/zodiac-sign # to switch to the feature branch
+   python app.py # to test the changes locally</code></li>
+<li>Leave comments or request changes if necessary.</li>
+<li>If everything looks good, approve the pull request.</li>
+</ol>
+<h5 id="after-the-pull-request-is-merged">After the Pull Request is Merged</h5>
+<p>Once the pull request is approved and merged:</p>
+<ol>
+<li>Switch back to the main branch:</li>
+</ol>
+<pre><code>git checkout main
+</code></pre>
+<ol>
+<li>Pull the latest changes:</li>
+</ol>
+<pre><code>git pull origin main
+</code></pre>
+<ol>
+<li>Test the updated application to ensure everything works correctly.</li>
+</ol>
+<p>In the next stage, we'll continue to build on our app and explore more advanced Git and GitHub features, such as handling merge conflicts.</p>
+<h3 id="stage-4-enhancing-the-ui-git-stash-and-github-issues">Stage 4: Enhancing the UI - Git Stash and GitHub Issues</h3>
+<p>In this stage, we'll improve the user interface of our Flask application by adding some basic CSS. We'll also learn about Git stash for managing temporary changes and use GitHub Issues for task tracking.</p>
+<h4 id="for-the-project-manager-can-be-any-team-member">For the Project Manager (can be any team member):</h4>
+<h5 id="1-create-github-issues">1. Create GitHub Issues</h5>
+<ol>
+<li>Go to your GitHub repository and navigate to the "Issues" tab.</li>
+<li>Create a new issue titled "Enhance UI with CSS".</li>
+<li>In the description, outline the following tasks:</li>
+<li>Add a CSS file for styling</li>
+<li>Style the form on the index page</li>
+<li>Improve the layout of the result page</li>
+<li>Add labels like "enhancement" and "ui".</li>
+<li>Assign the issue to a team member.</li>
+</ol>
+<h2 id="for-the-assigned-team-member">For the Assigned Team Member:</h2>
+<h5 id="1-set-up-your-work-environment">1. Set Up Your Work Environment</h5>
+<p>Ensure your local repository is up-to-date:</p>
+<pre><code>git checkout main
+git pull origin main
+</code></pre>
+<h5 id="2-create-a-new-branch_1">2. Create a New Branch</h5>
+<p>Create a branch for the UI enhancements:</p>
+<pre><code>git checkout -b feature/ui-enhancement
+</code></pre>
+<h5 id="3-add-css-file">3. Add CSS File</h5>
+<ol>
+<li>Create a new directory named <code>static</code> in your project root:</li>
+</ol>
+<pre><code>mkdir static
+</code></pre>
+<ol>
+<li>Create a new CSS file:</li>
+</ol>
+<pre><code>touch static/style.css
+</code></pre>
+<ol>
+<li>Add some basic CSS to <code>style.css</code>:</li>
+</ol>
+<pre><code class="language-css">body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+h1 {
+    color: #333;
+}
+
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+input[type=&quot;text&quot;], input[type=&quot;date&quot;] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+input[type=&quot;submit&quot;] {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+input[type=&quot;submit&quot;]:hover {
+    background-color: #555;
+}
+</code></pre>
+<h5 id="4-test-your-changes_1">4. Test Your Changes</h5>
+<p>Run the Flask application and verify the UI improvements:</p>
+<pre><code>python app.py
+</code></pre>
+<h5 id="5-demonstrate-git-stash">5. Demonstrate Git Stash</h5>
+<p>Let's say you notice a small bug in the age calculation while working on the UI. Here's how to use Git stash:</p>
+<ol>
+<li>Make a small change in <code>app.py</code> to fix the bug.</li>
+<li>Instead of committing this change, use Git stash:</li>
+</ol>
+<pre><code>git stash save &quot;Fix age calculation bug&quot;
+</code></pre>
+<ol>
+<li>Your working directory is now clean and back to the state of the last commit.</li>
+<li>To apply the stashed changes later:</li>
+</ol>
+<pre><code>git stash pop
+</code></pre>
+<h5 id="6-commit-ui-changes">6. Commit UI Changes</h5>
+<p>Now, commit your UI enhancements:</p>
+<pre><code>git add static/style.css templates/index.html templates/result.html
+git commit -m &quot;Enhance UI with CSS styling&quot;
+</code></pre>
+<h5 id="7-push-and-create-pull-request">7. Push and Create Pull Request</h5>
+<p>Push your branch and create a merge request:</p>
+<pre><code>git push -u origin feature/ui-enhancement
+</code></pre>
+<p>Create a pull request on GitHub, referencing the issue number in the description (e.g., "Closes #1").</p>
+<h4 id="for-reviewers">For Reviewers:</h4>
+<ol>
+<li>Review the pull request, checking both the code and the visual changes.</li>
+<li>Test the changes locally if necessary.</li>
+<li>Provide feedback or approve the changes.</li>
+</ol>
+<h4 id="after-merging">After Merging:</h4>
+<ol>
+<li>Close the GitHub issue once the pull request is merged.</li>
+<li>All team members should pull the latest changes:</li>
+</ol>
+<pre><code>git checkout main
+git pull origin main
+</code></pre>
+<p>Discuss as a team:
+1. How did using GitHub Issues help in organizing the task?
+2. What was your experience with Git stash? How might it be useful in other scenarios?
+3. How has the workflow evolved from the earlier stages of the project?</p>
+<p>In the next stage, we'll implement a more complex feature and explore handling merge conflicts.</p>
+<h3 id="stage-5-merging-and-rebasing-with-conflicts">Stage 5: Merging and Rebasing with Conflicts</h3>
+<p>Git offers two primary ways to integrate changes from one branch into another: merging and rebasing. </p>
+<h4 id="merge">Merge</h4>
+<p>Merging creates a new commit that combines the tips of two branches. This method preserves the entire history of both branches, providing a non-destructive operation that maintains a clear record of when branches diverged and were integrated. The resulting history shows the parallel development that occurred, with a visible branching structure. Merging is particularly safe for shared branches as it doesn't rewrite history. However, in projects with frequent merges, this can lead to a more complex history that may be harder to follow.</p>
+<h4 id="rebase">Rebase</h4>
+<p>Rebasing, on the other hand, moves the entire feature branch to begin on the tip of the main branch, effectively replaying your work on top of it. This results in a linear project history, as if the work was done sequentially rather than in parallel. Rebasing creates a cleaner, more streamlined history which can make it easier to track features. However, it achieves this by rewriting the project history, which can be problematic if the rebased branch has been shared with others. As such, rebasing requires more care when used on public or shared branches.</p>
+<p>The choice between merging and rebasing often depends on the specific needs of your project and team. Merging is generally preferred for preserving complete history and for work on public branches, while rebasing is often used to maintain a cleaner history, especially for local branches or before merging a feature branch into the main line of development.</p>
+<p>In this stage, we'll practice merging and rebasing, including handling conflicts. We'll do this by creating a new feature branch, making changes to the main branch, and then exploring both merge and rebase workflows.</p>
+<h4 id="part-1-merging-with-conflicts">Part 1: Merging with Conflicts</h4>
+<h5 id="for-developer-a">For Developer A:</h5>
+<ol>
+<li>Ensure your main branch is up-to-date:</li>
+</ol>
+<pre><code>git checkout main
+git pull origin main
+</code></pre>
+<ol>
+<li>Create a new branch for a feature:</li>
+</ol>
+<pre><code>git checkout -b feature/birthday-countdown
+</code></pre>
+<ol>
+<li>Implement the birthday countdown feature in <code>app.py</code>:</li>
+</ol>
+<pre><code class="language-python">from datetime import datetime, date
+
+def days_to_birthday(dob):
+    today = date.today()
+    dob = datetime.strptime(dob, &quot;%Y-%m-%d&quot;).date()
+    next_birthday = date(today.year, dob.month, dob.day)
+    if next_birthday &lt; today:
+        next_birthday = date(today.year + 1, dob.month, dob.day)
+    return (next_birthday - today).days
+
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    if request.method == 'POST':
+        name = request.form['name']
+        dob = request.form['dob']
+        age = calculate_age(dob)
+        zodiac = get_zodiac_sign(dob)
+        days_to_bday = days_to_birthday(dob)
+        message = f&quot;Welcome, {name}! You are {age} years old. Your zodiac sign is {zodiac}. There are {days_to_bday} days until your next birthday!&quot;
+        return render_template('result.html', message=message)
+    return render_template('index.html')
+</code></pre>
+<ol>
+<li>Commit your changes:</li>
+</ol>
+<pre><code>git add app.py
+git commit -m &quot;Add birthday countdown feature&quot;
+</code></pre>
+<h5 id="for-developer-b">For Developer B:</h5>
+<ol>
+<li>Make sure you're on the main branch and it's up-to-date:</li>
+</ol>
+<pre><code>git checkout main
+git pull origin main
+</code></pre>
+<ol>
+<li>Make a change to the <code>index</code> function in <code>app.py</code>:</li>
+</ol>
+<pre><code class="language-python">@app.route('/', methods=['GET', 'POST'])
+def index():
+    if request.method == 'POST':
+        name = request.form['name']
+        dob = request.form['dob']
+        age = calculate_age(dob)
+        zodiac = get_zodiac_sign(dob)
+        message = f&quot;Hello, {name}! Your age is {age} and your zodiac sign is {zodiac}.&quot;
+        return render_template('result.html', message=message)
+    return render_template('index.html')
+</code></pre>
+<ol>
+<li>Commit and push this change:</li>
+</ol>
+<pre><code>git add app.py
+git commit -m &quot;Update welcome message format&quot;
+git push origin main
+</code></pre>
+<h5 id="back-to-developer-a">Back to Developer A:</h5>
+<ol>
+<li>Try to merge the main branch into your feature branch:</li>
+</ol>
+<pre><code>git checkout feature/birthday-countdown
+git merge main
+</code></pre>
+<ol>
+<li>You'll encounter a merge conflict. Open <code>app.py</code> and you'll see something like:</li>
+</ol>
+<pre><code class="language-python">   &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+   message = f&quot;Welcome, {name}! You are {age} years old. Your zodiac sign is {zodiac}. There are {days_to_bday} days until your next birthday!&quot;
+   =======
+   message = f&quot;Hello, {name}! Your age is {age} and your zodiac sign is {zodiac}.&quot;
+   &gt;&gt;&gt;&gt;&gt;&gt;&gt; main
+</code></pre>
+<ol>
+<li>Resolve the conflict by combining both changes:</li>
+</ol>
+<pre><code class="language-python">   message = f&quot;Hello, {name}! Your age is {age} and your zodiac sign is {zodiac}. There are {days_to_bday} days until your next birthday!&quot;
+</code></pre>
+<ol>
+<li>Stage the resolved file, commit the merge, and push:</li>
+</ol>
+<pre><code>git add app.py
+git commit -m &quot;Merge main into feature/birthday-countdown and resolve conflicts&quot;
+git push origin feature/birthday-countdown
+</code></pre>
+<p>Before moving to the next part, you can merge the feature branch into the main branch, either using a merge request or if you have the right to do it directly:</p>
+<pre><code>git checkout main
+git merge feature/birthday-countdown
+</code></pre>
+<h4 id="part-2-rebasing-with-conflicts">Part 2: Rebasing with Conflicts</h4>
+<p>Now, let's practice rebasing with a similar scenario.</p>
+<h5 id="for-developer-a_1">For Developer A:</h5>
+<ol>
+<li>Create a new feature branch from main:</li>
+</ol>
+<pre><code>git checkout main
+git pull origin main
+git checkout -b feature/lucky-number
+</code></pre>
+<ol>
+<li>Add a lucky number feature to <code>app.py</code>:</li>
+</ol>
+<pre><code class="language-python">import random
+
+def get_lucky_number():
+    return random.randint(1, 100)
+
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    if request.method == 'POST':
+        name = request.form['name']
+        dob = request.form['dob']
+        age = calculate_age(dob)
+        zodiac = get_zodiac_sign(dob)
+        lucky_number = get_lucky_number()
+        message = f&quot;Hello, {name}! Your age is {age}, your zodiac sign is {zodiac}, and there are {days_to_bday} days until your next birthday. Your lucky number is {lucky_number}!&quot;
+        return render_template('result.html', message=message)
+    return render_template('index.html')
+</code></pre>
+<ol>
+<li>Commit your changes:</li>
+</ol>
+<pre><code>git add app.py
+git commit -m &quot;Add lucky number feature&quot;
+</code></pre>
+<h5 id="for-developer-b_1">For Developer B:</h5>
+<ol>
+<li>Make another change to the main branch:</li>
+</ol>
+<pre><code>git checkout main
+git pull origin main
+</code></pre>
+<ol>
+<li>Update the <code>index</code> function in <code>app.py</code>:</li>
+</ol>
+<pre><code class="language-python">@app.route('/', methods=['GET', 'POST'])
+def index():
+    if request.method == 'POST':
+        name = request.form['name']
+        dob = request.form['dob']
+        age = calculate_age(dob)
+        zodiac = get_zodiac_sign(dob)
+        days_to_bday = days_to_birthday(dob)
+        message = f&quot;Greetings, {name}! You're {age} years old with the zodiac sign {zodiac}. Your next birthday is in {days_to_bday} days.&quot;
+        return render_template('result.html', message=message)
+    return render_template('index.html')
+</code></pre>
+<ol>
+<li>Commit and push this change:</li>
+</ol>
+<pre><code>git add app.py
+git commit -m &quot;Refine welcome message&quot;
+git push origin main
+</code></pre>
+<h5 id="back-to-developer-a_1">Back to Developer A:</h5>
+<ol>
+<li>Try to rebase your feature branch onto the updated main:</li>
+</ol>
+<pre><code>git checkout feature/lucky-number
+git rebase main
+</code></pre>
+<ol>
+<li>You'll encounter a rebase conflict. Open <code>app.py</code> and resolve the conflict:</li>
+</ol>
+<pre><code class="language-python">@app.route('/', methods=['GET', 'POST'])
+def index():
+    if request.method == 'POST':
+        name = request.form['name']
+        dob = request.form['dob']
+        age = calculate_age(dob)
+        zodiac = get_zodiac_sign(dob)
+        days_to_bday = days_to_birthday(dob)
+        lucky_number = get_lucky_number()
+        message = f&quot;Greetings, {name}! You're {age} years old with the zodiac sign {zodiac}. Your next birthday is in {days_to_bday} days. Your lucky number is {lucky_number}!&quot;
+        return render_template('result.html', message=message)
+    return render_template('index.html')
+</code></pre>
+<ol>
+<li>After resolving the conflict:</li>
+</ol>
+<pre><code>git add app.py
+git rebase --continue
+</code></pre>
+<ol>
+<li>Force push your rebased branch:</li>
+</ol>
+<pre><code>git push origin feature/lucky-number --force
+</code></pre>
+<p>Make a merge request to merge the feature branch into the main branch.</p>
+<h3 id="stage-6-implementing-tests-for-the-flask-application">Stage 6: Implementing Tests for the Flask Application</h3>
+<p>In this stage, we'll add tests to our Flask application to ensure its functionality and to practice test-driven development (TDD). We'll write both unit tests for individual functions and integration tests for the application routes.</p>
+<h4 id="1-set-up-testing-environment">1. Set Up Testing Environment</h4>
+<p>First, we need to set up our testing environment:</p>
+<ol>
+<li>Install pytest, a popular testing framework for Python:</li>
+</ol>
+<pre><code>pip install pytest
+</code></pre>
+<ol>
+<li>Create a new file called <code>test_app.py</code> in your project root directory.</li>
+</ol>
+<h4 id="2-writing-unit-tests">2. Writing Unit Tests</h4>
+<p>Let's start by writing unit tests for our existing functions:</p>
+<ol>
+<li>Open <code>test_app.py</code> and add the following code:</li>
+</ol>
+<pre><code class="language-python">from app import calculate_age, get_zodiac_sign, days_to_birthday
+from datetime import date
+
+def test_calculate_age():
+    assert calculate_age(&quot;1990-01-01&quot;) == date.today().year - 1990
+
+def test_get_zodiac_sign():
+    assert get_zodiac_sign(&quot;1990-01-01&quot;) == &quot;Capricorn&quot;
+    assert get_zodiac_sign(&quot;1990-07-01&quot;) == &quot;Cancer&quot;
+
+def test_days_to_birthday():
+    today = date.today()
+    next_birthday = date(today.year, 12, 31)
+    if next_birthday &lt; today:
+        next_birthday = date(today.year + 1, 12, 31)
+    expected_days = (next_birthday - today).days
+    assert days_to_birthday(&quot;2000-12-31&quot;) == expected_days
+</code></pre>
+<p>These tests check the core functionality of our utility functions.</p>
+<h4 id="3-writing-integration-tests">3. Writing Integration Tests</h4>
+<p>Now, let's add integration tests for our Flask routes:</p>
+<ol>
+<li>Add the following code to <code>test_app.py</code>:</li>
+</ol>
+<pre><code class="language-python">import pytest
+from app import app
+
+@pytest.fixture
+def client():
+    app.config['TESTING'] = True
+    with app.test_client() as client:
+        yield client
+
+def test_home_page(client):
+    response = client.get('/')
+    assert response.status_code == 200
+    assert b&quot;Welcome to the Birthday App&quot; in response.data
+
+def test_form_submission(client):
+    response = client.post('/', data={
+        'name': 'John Doe',
+        'dob': '1990-01-01'
+    }, follow_redirects=True)
+    assert response.status_code == 200
+    assert b&quot;John Doe&quot; in response.data
+    assert b&quot;Your age is&quot; in response.data
+    assert b&quot;Your zodiac sign is&quot; in response.data
+</code></pre>
+<p>These tests check that our application's routes are working correctly.</p>
+<h4 id="4-running-the-tests">4. Running the Tests</h4>
+<p>To run the tests:</p>
+<ol>
+<li>In your terminal, navigate to your project directory.</li>
+<li>Run the following command:</li>
+</ol>
+<pre><code>pytest
+</code></pre>
+<p>You should see output indicating which tests passed or failed.
+In our case you should see that <code>test_form_submission</code> failed can you see why, and how to fix it?</p>
+<h4 id="5-test-driven-development-adding-a-new-feature">5. Test-Driven Development: Adding a New Feature</h4>
+<p>Test-Driven Development (TDD) is a software development approach where tests are written before the actual code. The TDD cycle, often referred to as Red-Green-Refactor, consists of three steps:</p>
+<ol>
+<li>
+<p>Red: Write a test that fails. This test describes a desired functionality that doesn't exist yet.</p>
+</li>
+<li>
+<p>Green: Write the minimal amount of code necessary to make the test pass. The focus here is on making the test pass, not on writing perfect code.</p>
+</li>
+<li>
+<p>Refactor: Improve the code without changing its functionality. This step is about cleaning up the code, removing duplication, and ensuring it follows good design principles.</p>
+</li>
+</ol>
+<p>The benefits of TDD include:</p>
+<ul>
+<li>
+<p>Improved code quality: By thinking about how to test the code before writing it, developers often create more modular, flexible, and easier-to-maintain code.</p>
+</li>
+<li>
+<p>Better understanding of requirements: Writing tests first forces developers to clearly understand what the code should do before implementing it.</p>
+</li>
+<li>
+<p>Built-in regression testing: As features are added, the growing suite of tests helps ensure that new changes don't break existing functionality.</p>
+</li>
+<li>
+<p>Documentation: Tests serve as a form of documentation, showing how the code is expected to behave in various scenarios.</p>
+</li>
+<li>
+<p>Confidence in refactoring: With a comprehensive test suite, developers can refactor code with confidence, knowing that if they break something, a test will fail.</p>
+</li>
+</ul>
+<p>Let's practice TDD by adding a new feature to determine if it's the user's birthday today.</p>
+<ol>
+<li>First, write a test for the new function in <code>test_app.py</code>:</li>
+</ol>
+<pre><code class="language-python">from app import is_birthday_today
+
+def test_is_birthday_today():
+    today = date.today()
+    assert is_birthday_today(f&quot;{today.year}-{today.month:02d}-{today.day:02d}&quot;) == True
+    assert is_birthday_today(&quot;1990-01-01&quot;) == (date.today().month == 1 and date.today().day == 1)
+</code></pre>
+<ol>
+<li>
+<p>Run the tests. The new test should fail because we haven't implemented the function yet.</p>
+</li>
+<li>
+<p>Now, implement the function in <code>app.py</code>:</p>
+</li>
+</ol>
+<pre><code class="language-python">def is_birthday_today(dob):
+    today = date.today()
+    birth_date = datetime.strptime(dob, &quot;%Y-%m-%d&quot;).date()
+    return (today.month, today.day) == (birth_date.month, birth_date.day)
+</code></pre>
+<ol>
+<li>
+<p>Run the tests again. They should all pass now.</p>
+</li>
+<li>
+<p>Finally, update your <code>index</code> route to use this new function:</p>
+</li>
+</ol>
+<pre><code class="language-python">@app.route('/', methods=['GET', 'POST'])
+def index():
+    if request.method == 'POST':
+        name = request.form['name']
+        dob = request.form['dob']
+        age = calculate_age(dob)
+        zodiac = get_zodiac_sign(dob)
+        days_to_bday = days_to_birthday(dob)
+        is_birthday = is_birthday_today(dob)
+        lucky_number = get_lucky_number()
+        message = f&quot;Greetings, {name}! You're {age} years old with the zodiac sign {zodiac}. Your next birthday is in {days_to_bday} days. Your lucky number is {lucky_number}!&quot;
+        if is_birthday:
+            message += &quot;Happy Birthday!&quot;
+        else:
+            message += f&quot;There are {days_to_bday} days until your next birthday.&quot;
+        return render_template('result.html', message=message)
+    return render_template('index.html')
+</code></pre>
+<ol>
+<li>Add a test for this new route behavior in <code>test_app.py</code>:</li>
+</ol>
+<pre><code class="language-python">def test_birthday_today(client):
+    today = date.today()
+    response = client.post('/', data={
+        'name': 'John Doe',
+        'dob': f&quot;{today.year}-{today.month:02d}-{today.day:02d}&quot;
+    }, follow_redirects=True)
+    assert b&quot;Happy Birthday!&quot; in response.data
+</code></pre>
+<ol>
+<li>Run the tests one final time to ensure everything is working.</li>
+</ol>
+<h3 id="stage-7-introduction-to-cicd">Stage 7: Introduction to CI/CD</h3>
+<p>Continuous Integration (CI) and Continuous Deployment (CD) are practices in software development that aim to improve the process of building, testing, and releasing software.</p>
+<h4 id="continuous-integration-ci">Continuous Integration (CI)</h4>
+<p>Continuous Integration is the practice of frequently merging code changes into a shared repository. Each integration is verified by automated builds and tests. The main goals of CI are:</p>
+<ol>
+<li>Detect and address integration issues early</li>
+<li>Improve software quality</li>
+<li>Reduce the time to validate and release new updates</li>
+</ol>
+<p>With CI, developers integrate their work frequently, usually daily, leading to multiple integrations per day. Each integration triggers automated builds and tests to detect issues quickly.</p>
+<h4 id="continuous-deployment-cd">Continuous Deployment (CD)</h4>
+<p>Continuous Deployment takes CI one step further. In CD, every change that passes the automated tests is automatically deployed to production. The main benefits of CD are:</p>
+<ol>
+<li>Faster release cycles</li>
+<li>Reduced manual processes and human error</li>
+<li>More frequent user feedback</li>
+<li>Improved developer productivity</li>
+</ol>
+<p>CD can also refer to Continuous Delivery, where changes are automatically deployed to a staging environment but require manual approval for production deployment.</p>
+<h4 id="why-cicd-is-useful">Why CI/CD is Useful</h4>
+<ol>
+<li>
+<p><strong>Faster Bug Detection and Resolution</strong>: Issues are caught earlier in the development process, making them easier and less expensive to fix.</p>
+</li>
+<li>
+<p><strong>Improved Collaboration</strong>: Frequent integration encourages communication between team members and keeps everyone up to date with changes.</p>
+</li>
+<li>
+<p><strong>Higher Quality Software</strong>: Automated testing ensures that tests are run consistently and frequently, catching bugs that might be missed in manual testing.</p>
+</li>
+<li>
+<p><strong>Faster Time to Market</strong>: Automating the build, test, and deployment processes reduces the time between writing code and using it in production.</p>
+</li>
+<li>
+<p><strong>Reduced Risk</strong>: Smaller, more frequent updates are less risky and easier to roll back if issues occur.</p>
+</li>
+<li>
+<p><strong>Increased Confidence</strong>: With a robust CI/CD pipeline, teams can be more confident in the stability and quality of their code.</p>
+</li>
+</ol>
+<p>In the following section, we'll implement a basic CI/CD pipeline using GitHub Actions, experiencing firsthand how these practices can improve our development workflow.</p>
+<h5 id="implementing-cicd-with-github">Implementing CI/CD with GitHub</h5>
+<p>In this final part, we'll set up a Continuous Integration/Continuous Deployment (CI/CD) pipeline using GitHub Actions. We'll deliberately introduce a failing test, observe it fail both locally and in the CI pipeline, and then fix it.</p>
+<h4 id="1-setting-up-github-cicd">1. Setting Up GitHub CI/CD</h4>
+<ul>
+<li>In your local repository, create a new file <code>.github/workflows/python-app.yml</code> with the following content:</li>
+</ul>
+<pre><code class="language-yaml">name: Python Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flask pytest
+
+    - name: Run tests
+      run: pytest
+</code></pre>
+<p>This GitHub CI/CD configuration does the following:</p>
+<ul>
+<li>Uses a Python 3.8 Docker image for the CI environment</li>
+<li>Defines a single stage called "test"</li>
+<li>Installs the necessary dependencies (Flask and pytest)</li>
+<li>Runs the pytest command to execute the tests</li>
+<li>
+<p>Triggers the pipeline on pushes to the main branch and for merge requests</p>
+</li>
+<li>
+<p>Commit and push this new file:</p>
+</li>
+</ul>
+<pre><code>git add .github/workflows/python-app.yml
+git commit -m &quot;Add GitHub CI/CD configuration&quot;
+git push origin main
+</code></pre>
+<h4 id="2-introducing-a-failing-test">2. Introducing a Failing Test</h4>
+<p>Let's modify our <code>calculate_age</code> function to introduce a bug, and update its test to catch this bug.</p>
+<ol>
+<li>In <code>app.py</code>, change the <code>calculate_age</code> function:</li>
+</ol>
+<pre><code class="language-python">def calculate_age(dob):
+    today = date.today()
+    birth_date = datetime.strptime(dob, &quot;%Y-%m-%d&quot;).date()
+    age = today.year - birth_date.year
+    # Introduce a bug: forget to check if birthday has occurred this year
+    return age  # This might be off by one year
+</code></pre>
+<ol>
+<li>In <code>test_app.py</code>, update the <code>test_calculate_age</code> function:</li>
+</ol>
+<pre><code class="language-python">def test_calculate_age():
+    today = date.today()
+    assert calculate_age(f&quot;{today.year-30}-{today.month:02d}-{today.day:02d}&quot;) == 30
+    assert calculate_age(f&quot;{today.year-30}-{today.month:02d}-{today.day+1:02d}&quot;) == 29  # This will fail
+</code></pre>
+<h4 id="3-running-tests-locally">3. Running Tests Locally</h4>
+<p>Run the tests locally to see the failure:</p>
+<pre><code>pytest
+</code></pre>
+<p>You should see that the second assertion in <code>test_calculate_age</code> fails.</p>
+<h4 id="4-pushing-to-github-and-observing-ci-failure">4. Pushing to GitHub and Observing CI Failure</h4>
+<p>Commit and push these changes:</p>
+<pre><code>git add app.py test_app.py
+git commit -m &quot;Update calculate_age function and its test&quot;
+git push origin main
+</code></pre>
+<p>Go to your GitHub repository, click on the "Build/Pipelines" tab, and you should see the pipeline running. It will fail due to the failing test.
+Because of that failure, the code won't be deployed to the production environment.<br />
+You can think of the pipeline as a way to ensure that the code is working as expected before it is deployed to the production environment.</p>
+<h4 id="5-fixing-the-bug">5. Fixing the Bug</h4>
+<p>Now, let's fix the bug in the <code>calculate_age</code> function:</p>
+<ol>
+<li>In <code>app.py</code>, correct the <code>calculate_age</code> function:</li>
+</ol>
+<pre><code class="language-python">def calculate_age(dob):
+    today = date.today()
+    birth_date = datetime.strptime(dob, &quot;%Y-%m-%d&quot;).date()
+    age = today.year - birth_date.year
+    # Check if birthday has occurred this year
+    if today &lt; date(today.year, birth_date.month, birth_date.day):
+        age -= 1
+    return age
+</code></pre>
+<ol>
+<li>Commit and push the fix:</li>
+</ol>
+<pre><code>git add app.py
+git commit -m &quot;Fix calculate_age function&quot;
+git push origin main
+</code></pre>
+<ol>
+<li>Go back to the GitHub tab and watch the new workflow run. It should pass all tests now.</li>
+</ol>
+<p>By following these steps, you've implemented a basic CI/CD pipeline using GitHub. This pipeline will automatically run your tests whenever you push changes to the repository, helping you catch issues early and ensure the quality of your code. </p></div>
             </div>
         </div>
 
