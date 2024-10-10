@@ -18,7 +18,7 @@ Try to complete the practical session without looking at it! -->
 
 ## Practical session repository:
 If you haven't already done so, create an account on [Github](https://github.com/).
-Then fork [this repository](https://github.com/DavidBert/AIF2024/tree/main) and clone it on your computer.  
+Then fork [this repository](https://github.com/DavidBert/AIF/tree/main) and clone it on your computer.  
 ![](../img/code/fork.png)
 
 
