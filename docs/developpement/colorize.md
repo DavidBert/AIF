@@ -296,16 +296,16 @@ Finally complete the ```Dockerfile``` file to deploy your app on a local server.
 DO NOT FORGET TO DELETE YOUR DOCKER IMAGE AND CONTAINER WHEN YOU ARE DONE.
 
 
-<!-- # Solutions: -->
+# Solutions:
 
-<!-- ### model.py
-<script src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2FDavidBert%2FAIF2024%2Fblob%2Fsolutions%2Fdeveloppement%2FColorize%2Fcode%2Fmodel.py&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on"></script>
+ ### model.py
+<script src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2FDavidBert%2FAIF%2Fblob%2Fsolutions%2Fdeveloppement%2FColorize%2Fcode%2Fmodel.py&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on"></script>
 
 ### train.py
-<script src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2FDavidBert%2FAIF2024%2Fblob%2Fsolutions%2Fdeveloppement%2FColorize%2Fcode%2Ftrain.py&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on"></script>
+<script src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2FDavidBert%2FAIF%2Fblob%2Fsolutions%2Fdeveloppement%2FColorize%2Fcode%2Ftrain.py&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on"></script>
 
 ### colorize_api.py
-<script src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2FDavidBert%2FAIF2024%2Fblob%2Fsolutions%2Fdeveloppement%2FColorize%2Fcode%2Fcolorize_api.py&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on"></script>
+<script src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2FDavidBert%2FAIF%2Fblob%2Fsolutions%2Fdeveloppement%2FColorize%2Fcode%2Fcolorize_api.py&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on"></script>
 
 ### colorize_web_app.py
-<script src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2FDavidBert%2FAIF2024%2Fblob%2Fsolutions%2Fdeveloppement%2FColorize%2Fcode%2Fcolorize_webapp.py&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on"></script> -->
+<script src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2FDavidBert%2FAIF%2Fblob%2Fsolutions%2Fdeveloppement%2FColorize%2Fcode%2Fcolorize_webapp.py&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on"></script> 
