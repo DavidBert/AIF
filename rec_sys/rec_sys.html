@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Recommendation Systems - AI Frameworks</title>
+        <title>Course and practical session - AI Frameworks</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -38,7 +38,7 @@
                                 <a href="../index.html" class="nav-link">Home</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Courses</a>
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Courses</a>
                                 <ul class="dropdown-menu">
                                     
   <li class="dropdown-submenu">
@@ -74,6 +74,20 @@
 </li>
     </ul>
   </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Recommender systems</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="rec_sys.html" class="dropdown-item active" aria-current="page">Course and practical session</a>
+</li>
+            
+<li>
+    <a href="quizz.html" class="dropdown-item">Quizz</a>
+</li>
+    </ul>
+  </li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
@@ -96,6 +110,16 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../developpement/quizz.html" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="quizz.html" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
                     </ul>
                 </div>
             </div>
@@ -154,13 +178,10 @@
 
 <h2 id="practical-session">Practical session:</h2>
 <ul>
-<li>
-<p>IMDB recommender system: <a href="https://colab.research.google.com/github/DavidBert/AIF2024/blob/main/rec_sys/recommender_systems/INSA_Reco.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
-</li>
-<li>
-<p>Solution: <a href="https://colab.research.google.com/github/DavidBert/AIF2024/blob/solutions/rec_sys/recommender_systems/INSA_Reco_solution.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
-</li>
+<li>IMDB recommender system: <a href="https://colab.research.google.com/github/DavidBert/AIF/blob/main/rec_sys/recommender_systems/INSA_Reco.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></li>
 </ul>
+<!-- *   Solution: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DavidBert/AIF/blob/solutions/rec_sys/recommender_systems/INSA_Reco_solution.ipynb) -->
+
 <h2 id="project">Project:</h2>
 <p>During the practical session, you saw how to build a recommender system based on content using the movie posters.<br />
 Use <code>Gradio</code> to build a web app that takes as input a movie poster and returns the images of the 5 most similar movies according to their poster.<br />
