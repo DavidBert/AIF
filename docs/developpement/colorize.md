@@ -8,7 +8,7 @@ Once again, you are expected to use Python scripts to train your model and to de
 
 ## Practical session repository:
 If you haven't already done so, create an account on [Github](https://github.com/).
-Then fork [this repository](https://github.com/DavidBert/AIF2024/tree/main) and clone it on your computer.  
+Then fork [this repository](https://github.com/DavidBert/AIF/tree/main) and clone it on your computer.  
 ![](../img/code/fork.png)  
 
 Then navigate to the `developpement/colorize` folder.  
@@ -258,7 +258,7 @@ If you are using Google Colab, you are expected to do all the code development o
 Try to run your code on your local machine for one or two minibatches to check that everything is working.
 If it is the case, you can send your code to Google Colab to train your model.
 To do so:
-- Open the [run_in_colab.ipynb](https://colab.research.google.com/github/DavidBert/AIF2024/blob/main/developpement/Colorize/run_in_colab.ipynb) notebook in Google Colab.
+- Open the [run_in_colab.ipynb](https://colab.research.google.com/github/DavidBert/AIF/blob/main/developpement/Colorize/run_in_colab.ipynb) notebook in Google Colab.
 - Make sure you are connected to a GPU runtime.
 - Run the first cell to download the dataset.
 - Upload the files `data_utils.py`, `model.py` and `train.py` to the `code` folder in Google Colab.
@@ -298,7 +298,7 @@ DO NOT FORGET TO DELETE YOUR DOCKER IMAGE AND CONTAINER WHEN YOU ARE DONE.
 
 # Solutions:
 
- ### model.py
+### model.py
 <script src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2FDavidBert%2FAIF%2Fblob%2Fsolutions%2Fdeveloppement%2FColorize%2Fcode%2Fmodel.py&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on"></script>
 
 ### train.py

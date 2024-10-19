@@ -23,9 +23,9 @@ nav:
       - Practical session 1: developpement/mnist.md
       - Practical session 2: developpement/colorize.md
       - Quizz: developpement/quizz.md
-  #   - Recommender systems: 
-  #     - Course and practical session: rec_sys/rec_sys.md
-  #     - Quizz: rec_sys/quizz.md
+    - Recommender systems: 
+      - Course and practical session: rec_sys/rec_sys.md
+      - Quizz: rec_sys/quizz.md
   #   #   - Project: rec_sys/rec_sys.md
   #   - Introduction to Reinforcement Learning:
   #     -  Course and practical session: rl/rl.md
