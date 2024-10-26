@@ -30,7 +30,7 @@ Please do not store the models weights in your repository, but rather on a cloud
 #### Dataset:
 I created a dataset of movie posters and their corresponding genres.  
 Posters are stored in their corresponding genre folder in such a way that it is easy for you to load with the `torchvision.datasets.ImageFolder` class. 
-You can download it [here](https://github.com/DavidBert/AIF/blob/main/project/project_part1_dataset.zip).  
+You can download it [here](https://drive.google.com/file/d/1-1OSGlN2EOqyZuehBgpgI8FNOtK-caYf/view?usp=sharing).  
 Do not store it in your Github repository!
 
 #### Additional help:
@@ -102,13 +102,13 @@ I would like you to mimic a real recommender system using a vector database.
 To do so I want the database to be requested by the web app through a REST API. 
 The web app should be light and fast.  
 Use a pre-trained network only to extract the vector representation of the input image and call through the REST API the annoy index you built during the practical session to find the 5 most similar movies.
-![](schema.png)    
+![](../img/project/Project2.png)    
 
 For the sake of simplicity, I would recommend you to use the same network you used in the previous part and just adding a new route to the API to return the 5 most similar movies.  
 #### Dataset:
 Use the same dataset as in the practical session.  
 
 #### Additional help:
-You can find a small example of how to create and orchestrate both the API and the web interface using docker compose [here](Docker_compose.md).
+You can find a small example of how to create and orchestrate both the API and the web interface using docker compose [here](Docker_compose_annoy.md).
 Try to understand how it works and then modify it to fit the project.
 
