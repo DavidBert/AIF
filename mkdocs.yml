@@ -40,6 +40,7 @@ nav:
   #     - Quizz: nlp/quizz.md
   #   #   - Project: nlp.md
   - Project:
+    - Project presentation: project/project.md
     - Help on project: project/Docker_compose.md
   #   - Project evaluation: project/Assignment.md
   # - Schedule: schedule.md

@@ -22,7 +22,7 @@
 
 <!-- *   Solution: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DavidBert/AIF/blob/solutions/rec_sys/recommender_systems/INSA_Reco_solution.ipynb) -->
 
-## Project:
+<!-- ## Project:
 
 During the practical session, you saw how to build a recommender system based on content using the movie posters.  
 Use `Gradio` to build a web app that takes as input a movie poster and returns the images of the 5 most similar movies according to their poster.  
@@ -89,4 +89,4 @@ To stop and remove the containers, networks, and volumes created by docker-compo
     
 ```bash
 docker-compose down
-```
+``` -->

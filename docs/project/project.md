@@ -13,7 +13,7 @@ During the last hour of every second practical session, you are allowed to start
 I really recommend you to do so, but I also encourage you to finish the corresponding practical session before starting the project.  
 I will provide you with a solution for the practical session that you can use as a reference.
 
-# Project part 1: Development tools for Data Scientist
+### Part 1: Development tools for Data Scientist
 
 You should now have completed practical sessions associated to the project.
 If not I would recommend to do them before continuing.
@@ -27,12 +27,88 @@ Then use gradio to create a web interface that calls this API and allows users t
 Once all this is done, you will have to create a docker file to package your API and web interface and push it to a github repository that you will have to share with me.   
 Please do not store the models weights in your repository, but rather on a cloud like Google drive and make your docker file download them at runtime.
 ![](../img/project/Project1.png)
-### Dataset:
+#### Dataset:
 I created a dataset of movie posters and their corresponding genres.  
 Posters are stored in their corresponding genre folder in such a way that it is easy for you to load with the `torchvision.datasets.ImageFolder` class. 
 You can download it [here](https://github.com/DavidBert/AIF/blob/main/project/project_part1_dataset.zip).  
 Do not store it in your Github repository!
 
+#### Additional help:
+An easy way to run both the web app and the REST API in a single  container would consist to create a bash script that runs both the web app and the API service.  
+This is not the best practice, but it might be easier for you to do so. Thus you can start with this solution and then try to run the web app and the annoy index in two different containers.
 
+Here is an example of a bash script that runs both the web app and the annoy index:  
+```bash
+#!/bin/bash
+python python api.py &  gradio_app.py 
+```
 
+The ``&`` operator is used to put jobs in the background.  
+Here the API service is run in the background and the web app is run in the foreground.  
+Call this script in your docker file to run the application.
+
+The good practice consists in runnnig the web app in a docker container and the API in another container.  
+To do so you can use docker-compose. 
+Look at the [docker-compose documentation](https://docs.docker.com/compose/gettingstarted/) to learn how to use it. 
+
+Here are the theroritical steps to follow to run the web app and the annoy index in two different containers using docker-compose.  
+First, you need to create Dockerfiles for both the Gradio web app and the Annoy database.  
+Then create a docker-compose.yml file to define and run the multi-container Docker applications. For exemple something like:  
+
+```yaml	
+version: '3.8'
+services:
+  gradio-app:
+    build:
+      context: .
+      dockerfile: Dockerfile-gradio
+    ports:
+      - "7860:7860"
+    depends_on:
+      - model_api
+
+  model_api:
+    build:
+      context: .
+      dockerfile: Dockerfile-annoy
+    ports:
+      - "5000:5000"
+```
+Make sure in your gradion app to call the annoy database through the url `http://model_api:5000/` as the base URL for API requests.
+
+To run the application, run the following command in the same directory as the docker-compose.yml file:
+
+```bash
+docker-compose up
+```
+
+The Gradio web app should be accessible at http://localhost:7860.  
+The Annoy database API, if it has endpoints exposed, will be accessible at http://localhost:5000.
+
+To stop and remove the containers, networks, and volumes created by docker-compose up, run:
+    
+```bash
+docker-compose down
+```
+
+You can find a small example of how to create and orchestrate both the API and the web interface using docker compose [here](Docker_compose.md).
+Try to understand how it works and then modify it to fit the project.
+
+### Part 2: Recommendation systems
+
+During the practical session, you saw how to build a recommender system based on content using the movie posters.  
+Use `Gradio` to build a web app that takes as input a movie poster and returns the images of the 5 most similar movies according to their poster.  
+I would like you to mimic a real recommender system using a vector database.  
+To do so I want the database to be requested by the web app through a REST API. 
+The web app should be light and fast.  
+Use a pre-trained network only to extract the vector representation of the input image and call through the REST API the annoy index you built during the practical session to find the 5 most similar movies.
+![](schema.png)    
+
+For the sake of simplicity, I would recommend you to use the same network you used in the previous part and just adding a new route to the API to return the 5 most similar movies.  
+#### Dataset:
+Use the same dataset as in the practical session.  
+
+#### Additional help:
+You can find a small example of how to create and orchestrate both the API and the web interface using docker compose [here](Docker_compose.md).
+Try to understand how it works and then modify it to fit the project.
 
