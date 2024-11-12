@@ -27,21 +27,21 @@ nav:
       - Course and practical session: rec_sys/rec_sys.md
       - Quizz: rec_sys/quizz.md
   #   #   - Project: rec_sys/rec_sys.md
-  #   - Introduction to Reinforcement Learning:
-  #     -  Course and practical session: rl/rl.md
+    - Introduction to Reinforcement Learning:
+      -  Course and practical session: rl/rl.md
   #     -  Quizz: rl/quizz.md
   #   #   -  Project: rl.md
-  #   - Interpretability:
-  #     - Course and practical session: xai/interpretability.md
+    - Interpretability:
+      - Course and practical session: xai/interpretability.md
   #     - Quizz: xai/quizz.md
   #     - Project: xai/project.md
-  #   - Introduction to Natural Language Processing (NLP):
-  #     - Course and practical session: nlp/nlp.md
+    - Introduction to Natural Language Processing (NLP):
+      - Course and practical session: nlp/nlp.md
   #     - Quizz: nlp/quizz.md
   #   #   - Project: nlp.md
   - Project:
     - Project presentation: project/project.md
-    - Help on project: project/Docker_compose.md
+    # - Help on project: project/Docker_compose.md
   #   - Project evaluation: project/Assignment.md
   # - Schedule: schedule.md
   #- Evaluation: evaluation.md
