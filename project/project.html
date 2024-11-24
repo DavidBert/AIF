@@ -208,7 +208,7 @@ Do not store it in your Github repository!</p>
 <h4 id="additional-help">Additional help:</h4>
 <p>An easy way to run both the web app and the REST API in a single  container would consist to create a bash script that runs both the web app and the API service.<br />
 This is not the best practice, but it might be easier for you to do so. Thus you can start with this solution and then try to run the web app and the annoy index in two different containers.</p>
-<p>Here is an example of a bash script that runs both the web app and the annoy index:  </p>
+<p>Here is an example of a bash script that runs both the web app and the rest API:  </p>
 <pre><code class="language-bash">#!/bin/bash
 python python api.py &amp;  gradio_app.py 
 </code></pre>
@@ -218,8 +218,8 @@ Call this script in your docker file to run the application.</p>
 <p>The good practice consists in runnnig the web app in a docker container and the API in another container.<br />
 To do so you can use docker-compose. 
 Look at the <a href="https://docs.docker.com/compose/gettingstarted/">docker-compose documentation</a> to learn how to use it. </p>
-<p>Here are the theroritical steps to follow to run the web app and the annoy index in two different containers using docker-compose.<br />
-First, you need to create Dockerfiles for both the Gradio web app and the Annoy database.<br />
+<p>Here are the theroritical steps to follow to run the web app and the API in two different containers using docker-compose.<br />
+First, you need to create Dockerfiles for both the Gradio web app and the API.<br />
 Then create a docker-compose.yml file to define and run the multi-container Docker applications. For exemple something like:  </p>
 <pre><code class="language-yaml">version: '3.8'
 services:
@@ -235,16 +235,16 @@ services:
   model_api:
     build:
       context: .
-      dockerfile: Dockerfile-annoy
+      dockerfile: Dockerfile-api
     ports:
       - &quot;5000:5000&quot;
 </code></pre>
-<p>Make sure in your gradion app to call the annoy database through the url <code>http://model_api:5000/</code> as the base URL for API requests.</p>
+<p>Make sure in your gradio app to call the API through the url <code>http://model_api:5000/</code> as the base URL for API requests.</p>
 <p>To run the application, run the following command in the same directory as the docker-compose.yml file:</p>
 <pre><code class="language-bash">docker-compose up
 </code></pre>
 <p>The Gradio web app should be accessible at http://localhost:7860.<br />
-The Annoy database API, if it has endpoints exposed, will be accessible at http://localhost:5000.</p>
+The REST API, if it has endpoints exposed, will be accessible at http://localhost:5000.</p>
 <p>To stop and remove the containers, networks, and volumes created by docker-compose up, run:</p>
 <pre><code class="language-bash">docker-compose down
 </code></pre>
