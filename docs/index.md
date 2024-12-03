@@ -29,10 +29,10 @@ While the aforementioned courses delved into the theory and methods of machine l
     - Word embeddings
     - Introduction to Transformers
 
-4. **Session 4: Conformal Prediction**
+4. **Session 4: Out-of-Distribution and Anomaly Detection**
     
 
-5. **Session 5: Anomaly Detection**
+5. **Session 5: Conformal Prediction**
     
 
 Each session consists of three components:  

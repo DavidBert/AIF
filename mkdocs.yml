@@ -39,6 +39,8 @@ nav:
       - Course and practical session: nlp/nlp.md
   #     - Quizz: nlp/quizz.md
   #   #   - Project: nlp.md
+    - Out-of-Distribution and Anomaly Detection:
+      - Course and practical session: ood/ood.md
   - Project:
     - Project presentation: project/project.md
     # - Help on project: project/Docker_compose.md
