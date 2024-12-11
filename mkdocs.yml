@@ -41,6 +41,9 @@ nav:
   #   #   - Project: nlp.md
     - Out-of-Distribution and Anomaly Detection:
       - Course and practical session: ood/ood.md
+
+    - Conformal Prediction:
+      - Course and practical session: conformal/conformal.md
   - Project:
     - Project presentation: project/project.md
     # - Help on project: project/Docker_compose.md
