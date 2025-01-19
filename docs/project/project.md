@@ -106,7 +106,7 @@ For the sake of simplicity, I would recommend you to use the same network you us
 #### Dataset:
 Use the same dataset as in the practical session.  
 
-# Part 3: Recommendation systems based on plots
+### Part 3: Recommendation systems based on plots
 
 During the practical session, you saw how to compute embeddings of documents using three techniques: Bag_of_words, Word2Vec and BERT.  
 You will now build a recommender system based on content using the movie plots.  
@@ -116,12 +116,12 @@ Once this is done, build an annoy index for each embedding.
 Similarly to the recommender system project, I want you to build a web app that takes a movie description as input and returns the 5 most similar movies according to their plot.
 The web app should be light and fast and provide the possibility to choose the embedding technique to use.
 
-# Part 4 OOD: 
+### Part 4 OOD: 
 Modify the part 1 to whether the image uploaded by the user is a movie poster or not.  
 If it is a movie poster, predict the genre of the movie.  
 If it is not a movie poster, display a message to the user.
 
-# What you are going to submit:
+### What you are going to submit:
 Make a __private__ repository on github and share it with me.  
 In this repository, you will have to store the following:
 - The code for the 4 parts of the project
@@ -130,19 +130,19 @@ In this repository, you will have to store the following:
 - Do not store the models weights in your repository, but rather on a cloud like Google drive and make your docker file download them at runtime.
 - Same for the dataset, not stored on a drive if it is not necessary but also downloaded at runtime.
 
-# Evaluation criteria:
+### Evaluation criteria:
 - The project is working and runs without errors
 - The readme file is well written and explains how to run the project
 - Clarity of the code
 - The project is well organized
 - No unecessary libraries are installed in each container
 
-# Deadline:
+### Deadline:
 The project is due on the 16th of February at 11:59 PM.  
 Invite me to the repository.
 Please send me an email to confirm that you have completed the project containing the name of all the members of the group and the link to the repository. 
 
-#### Additional help:
+### Additional help:
 You can find a small example of how to create and orchestrate both the API and the web interface using docker compose [here](Docker_compose_annoy.md).
 Try to understand how it works and then modify it to fit the project.
 
