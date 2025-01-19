@@ -192,31 +192,6 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            
-            <li class="nav-item" data-bs-level="1"><a href="#part-3-recommendation-systems-based-on-plots" class="nav-link">Part 3: Recommendation systems based on plots</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-bs-level="1"><a href="#part-4-ood" class="nav-link">Part 4 OOD:</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-bs-level="1"><a href="#what-you-are-going-to-submit" class="nav-link">What you are going to submit:</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-bs-level="1"><a href="#evaluation-criteria" class="nav-link">Evaluation criteria:</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-bs-level="1"><a href="#deadline" class="nav-link">Deadline:</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
         </ul>
     </div>
 </div></div>
@@ -304,7 +279,7 @@ Use a pre-trained network only to extract the vector representation of the input
 <p>For the sake of simplicity, I would recommend you to use the same network you used in the previous part and just adding a new route to the API to return the 5 most similar movies.  </p>
 <h4 id="dataset_1">Dataset:</h4>
 <p>Use the same dataset as in the practical session.  </p>
-<h1 id="part-3-recommendation-systems-based-on-plots">Part 3: Recommendation systems based on plots</h1>
+<h3 id="part-3-recommendation-systems-based-on-plots">Part 3: Recommendation systems based on plots</h3>
 <p>During the practical session, you saw how to compute embeddings of documents using three techniques: Bag_of_words, Word2Vec and BERT.<br />
 You will now build a recommender system based on content using the movie plots.<br />
 To do so get the movies_metadata.csv file from <a href="https://www.kaggle.com/rounakbanik/the-movies-dataset">here</a> and compute the embeddings of each movie plot (the <em>overview</em> column) using at least a bag-of_word technique and a pre-trained model (Glove or DistillBert).
@@ -312,11 +287,11 @@ You sould create one new column for each embedding technique.  <br />
 Once this is done, build an annoy index for each embedding.<br />
 Similarly to the recommender system project, I want you to build a web app that takes a movie description as input and returns the 5 most similar movies according to their plot.
 The web app should be light and fast and provide the possibility to choose the embedding technique to use.</p>
-<h1 id="part-4-ood">Part 4 OOD:</h1>
+<h3 id="part-4-ood">Part 4 OOD:</h3>
 <p>Modify the part 1 to whether the image uploaded by the user is a movie poster or not.<br />
 If it is a movie poster, predict the genre of the movie.<br />
 If it is not a movie poster, display a message to the user.</p>
-<h1 id="what-you-are-going-to-submit">What you are going to submit:</h1>
+<h3 id="what-you-are-going-to-submit">What you are going to submit:</h3>
 <p>Make a <strong>private</strong> repository on github and share it with me.<br />
 In this repository, you will have to store the following:
 - The code for the 4 parts of the project
@@ -324,7 +299,7 @@ In this repository, you will have to store the following:
 - A readme file explaining how to run the project. I will make nothing more than running the commands written in the readme file.  I suggest you to try to run the entire project from a clean environment to make sure that it works.
 - Do not store the models weights in your repository, but rather on a cloud like Google drive and make your docker file download them at runtime.
 - Same for the dataset, not stored on a drive if it is not necessary but also downloaded at runtime.</p>
-<h1 id="evaluation-criteria">Evaluation criteria:</h1>
+<h3 id="evaluation-criteria">Evaluation criteria:</h3>
 <ul>
 <li>The project is working and runs without errors</li>
 <li>The readme file is well written and explains how to run the project</li>
@@ -332,11 +307,11 @@ In this repository, you will have to store the following:
 <li>The project is well organized</li>
 <li>No unecessary libraries are installed in each container</li>
 </ul>
-<h1 id="deadline">Deadline:</h1>
+<h3 id="deadline">Deadline:</h3>
 <p>The project is due on the 16th of February at 11:59 PM.<br />
 Invite me to the repository.
 Please send me an email to confirm that you have completed the project containing the name of all the members of the group and the link to the repository. </p>
-<h4 id="additional-help_1">Additional help:</h4>
+<h3 id="additional-help_1">Additional help:</h3>
 <p>You can find a small example of how to create and orchestrate both the API and the web interface using docker compose <a href="Docker_compose_annoy.html">here</a>.
 Try to understand how it works and then modify it to fit the project.</p></div>
             </div>
