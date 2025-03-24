@@ -37,7 +37,7 @@ nav:
   #     - Project: xai/project.md
     - Introduction to Natural Language Processing (NLP):
       - Course and practical session: nlp/nlp.md
-  #     - Quizz: nlp/quizz.md
+      - Quizz: nlp/quizz.md
   #   #   - Project: nlp.md
     - Out-of-Distribution and Anomaly Detection:
       - Course and practical session: ood/ood.md
