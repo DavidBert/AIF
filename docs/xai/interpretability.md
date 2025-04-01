@@ -8,9 +8,9 @@
 
 ## Practical session
 
-[Practical session](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/DavidBert/AIF2024/blob/main/xai/xai.ipynb)
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DavidBert/AIF2024/blob/main/xai/xai.ipynb)
+[Practical session](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/DavidBert/AIF/blob/main/xai/xai.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DavidBert/AIF/blob/main/xai/xai.ipynb)
 
-[Solution](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/DavidBert/AIF2024/blob/solutions/xai/xai_solution.ipynb)
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DavidBert/AIF2024/blob/solutions/xai/xai_solution.ipynb)
+[Solution](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/DavidBert/AIF/blob/solutions/xai/xai_solution.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DavidBert/AIF/blob/solutions/xai/xai_solution.ipynb)
 
