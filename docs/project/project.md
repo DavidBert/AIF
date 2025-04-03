@@ -116,10 +116,13 @@ Once this is done, build an annoy index for each embedding.
 Similarly to the recommender system project, I want you to build a web app that takes a movie description as input and returns the 5 most similar movies according to their plot.
 The web app should be light and fast and provide the possibility to choose the embedding technique to use.
 
-### Part 4 OOD: 
+<!-- ### Part 4 OOD: 
 Modify the part 1 to whether the image uploaded by the user is a movie poster or not.  
 If it is a movie poster, predict the genre of the movie.  
-If it is not a movie poster, display a message to the user.
+If it is not a movie poster, display a message to the user. -->
+### Part 4 XAI:
+Modify the part 1 to show the user the explanation of the prediction.  
+Provide 3 different explanations using 3 different XAI methods of your choice.  
 
 ### What you are going to submit:
 Make a __private__ repository on github and share it with me.  
