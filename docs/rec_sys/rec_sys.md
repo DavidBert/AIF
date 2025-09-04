@@ -5,7 +5,7 @@
 *   [Slides recommender systems](https://docs.google.com/presentation/d/1xUMmOn3vUXv8YgPmvTeXMLXDcSyOB9Sa8lLL2N2AXqk/edit?usp=sharing)  
 
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/5TYgk0jZApc?si=NXGtORCgbxbQLJkj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/5TYgk0jZApc?si=NXGtORCgbxbQLJkj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Z5Vyx5AMnns?si=3Y7KOsqaoCSQRRjP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
@@ -15,7 +15,7 @@
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/eZHGfpP-FKQ?si=rTxfohLS737b1Bxq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/fiSHiAKxuNo?si=wfZVN3ZT75reBP_U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/fiSHiAKxuNo?si=wfZVN3ZT75reBP_U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
 
 ## Practical session:
 *   IMDB recommender system: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DavidBert/AIF/blob/main/rec_sys/recommender_systems/INSA_Reco.ipynb)

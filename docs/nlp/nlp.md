@@ -2,7 +2,7 @@
 
 [Slides](https://docs.google.com/presentation/d/1cQA_sqzP3VEisP3mClnzmdFw1YzA9u39qLNvdBORKyg/edit?usp=sharing)
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/xA4xadv-Ki4?si=qCbzB0NrfAd_hQ_g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/xA4xadv-Ki4?si=qCbzB0NrfAd_hQ_g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/vKVQ2VtHlIw?si=-FCtCBNRXxiE8XTv" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
@@ -16,7 +16,7 @@
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ZUWkkfR7raA?si=ZO72B5Hbq27vdsM0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/FxKSQXQ_BEg?si=dV0ege-qyGcNYN5M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/FxKSQXQ_BEg?si=dV0ege-qyGcNYN5M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
 
 
 

@@ -1,13 +1,13 @@
 # Introduction to git 
 <img src="../img/Git-logo.svg.png" alt="drawing" width="200"/>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/3M5XLw_tuxg?si=oJ8psg_3Udeeon_8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/3M5XLw_tuxg?si=oJ8psg_3Udeeon_8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/1S0EFq44Po4?si=Mb-X9T9KOqFywfub" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/vGro-4gce0A?si=y6wqDapQCLg6edmo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/5t3VSnR9Nd0?si=NaMqAYlgCtqFbNWC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/5t3VSnR9Nd0?si=NaMqAYlgCtqFbNWC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> -->
 
 *   [Slides](https://docs.google.com/presentation/d/1KSNI4OVEsT2bhDDgmZkKUWUlnU7-rGA6Rq90ThpwCe8/edit?usp=sharing)
 
