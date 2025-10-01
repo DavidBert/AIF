@@ -16,9 +16,10 @@ nav:
   - Courses:
     # - Course Introduction: introduction.md
     - Development tools for Data Scientist: 
-      - Introduction to Git: developpement/git_intro.md
+      - Course slides: developpement/course.md
+      # - Introduction to Git: developpement/git_intro.md
       - Introduction to Pytorch: developpement/pytorch.md
-      - Introduction to Docker: developpement/docker.md
+      # - Introduction to Docker: developpement/docker.md
       - Introduction to REST APIs: developpement/api.md
       - Practical session 1: developpement/mnist.md
       - Practical session 2: developpement/colorize.md
