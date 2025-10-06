@@ -263,7 +263,7 @@ import torch.nn.functional as F
 
 class MNISTNet(nn.Module):
     def __init__(self):
-        super(MNNISTNet, self).__init__()
+        super(MNISTNet, self).__init__()
         self.conv1 = nn.Conv2d(...)
         self.conv2 = nn.Conv2d(...)
         self.pool = nn.MaxPool2d(...)
@@ -465,7 +465,7 @@ You should see something similar to this:
 <p>Now that your model is trained, you will deploy it using a simple Flask application.<br />
 Flask is a micro web framework written in Python. It is classified as a microframework because it does not require particular tools or libraries. 
 The following code is a simple Flask application that will load your model and given an image, it will return the predicted class.
-The application will listen on port 5000 and will have a single route <code>/predict</code> that will accept a POST request with an image as payload.
+The application will listen on port 5075 and will have a single route <code>/predict</code> that will accept a POST request with an image as payload.
 The image will be received as a byte stream and will first be converted to a PIL image, then will be transformed using the same transformation as during training to be fed to the model.<br />
 The model will return a tensor containing the probabilities for each class. The class with the highest probability will be returned as a JSON object.  </p>
 <p>Complete the following code to take the path of your model as an argument and load it in the <code>model</code> variable. </p>
@@ -513,7 +513,7 @@ The model will return a tensor containing the probabilities for each class. The 
       return jsonify({&quot;prediction&quot;: int(predicted[0])})
 
       if __name__ == &quot;__main__&quot;:
-        app.run(debug=True)
+        app.run(host='0.0.0.0', port=5075, debug=True)
 </code></pre>
 <p>Save the code in a file named <code>mnist_api.py</code> and run it with:</p>
 <pre><code class="language-bash">python mnist_api.py --model_path [PATH_TO_YOUR_MODEL]
@@ -573,7 +573,7 @@ The core Interface class is initialized with three required parameters:</p>
             description=&quot;Draw a number on the sketchpad to see the model's prediction.&quot;,
             ).launch(debug=True, share=True);
 </code></pre>
-<p>Complete the <code>mnist_webapp.py</code> to either load your model weights or use your api to perform the predictions and run your app with the following command:</p>
+<p>Complete the <code>mnist_gradio.py</code> to either load your model weights or use your api to perform the predictions and run your app with the following command:</p>
 <pre><code class="language-bash">python mnist_app.py --weights_path [path_to_the weights]
 </code></pre>
 <p>Is your model accurate with your drawings?
