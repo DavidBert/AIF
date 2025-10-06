@@ -29,6 +29,18 @@ Let's start by creating the Dockerfile corresponding to the API.
 
 ## API container
 
+### Requirements
+Our API just need the following packages: ```torch```, ```torchvision```, ```flask```, ```pillow```, ```numpy```.
+Create a new file named `requirements-api.txt` containing the following code:
+```python
+torch==2.0.1
+torchvision==0.15.2
+flask==2.3.2
+pillow==10.0.0
+numpy==1.24.4
+```
+It is a good practice to specify the version of the packages you are using to make sure to get the same environment eveytime you build the image.
+
 #### Dockerfile
 We will first create the Dockerfile corresponding to our environment.  
 
@@ -128,6 +140,16 @@ Check that everything is working is OK.
 
 
 ## Gradio container
+
+### Requirements
+Our Gradio application just need the following packages: ```pillow```, ```gradio```, ```numpy```.
+Create a new file named `requirements-gradio.txt` containing the following code:
+```python
+pillow==10.3.0
+gradio==5.49
+numpy==1.26.4
+```
+
 
 #### Dockerfile
 We will now create the Dockerfile corresponding to our environment.  
