@@ -420,12 +420,12 @@ Do you know why it is less accurate than on MNIST?
 ## Git
 Commit all the modifications you have made to the repository as well as the weights and push them to your remote repository.
 
-## Docker
+<!-- ## Docker
 Dockers are a way to package your application and all its dependencies in a single image that can be run on any machine.
-The file `Dockerfile` contains the instructions to build a docker image that will run your application.  
+The file `DockerfileMNIST` contains the instructions to build a docker image that will run your application.  
 Build the image with the following command:
 ```bash
-sudo docker build -t mnist-flask-app .
+sudo docker build -f DockerfileMNIST -t mnist-flask-app .
 ```
 This will create a docker image named `mnist-flask-app`.
 A docker image is a read-only template that contains a set of instructions for creating a container that can run on the Docker platform.
@@ -438,9 +438,15 @@ sudo docker images
 A docker container is a runnable instance of an image. You can create, start, stop, move, or delete a container using the Docker API or CLI.
 Run the container with the following command:
 ```bash
-sudo docker run -p 5000:5000 mnist-flask-app
+sudo docker run --rm -p 5075:5075 --name mnist mnist-flask-app
 ```
-You can now access your application by going to `http://localhost:5000` in your browser. 
+
+```bash
+sudo docker run --rm -p 7860:7860 --name mnist mnist-gradio-app
+```
+Notice the ```--rm``` flag. It will remove the container when it stops. This is useful to avoid leaving orphaned containers behind.  
+
+You can now access your application by going to `http://localhost:5075` in your browser. 
 
 By defult the container will run the command `python mnist_app.py --weights_path weights/mnist_net.pth` when it starts.
 
@@ -474,10 +480,10 @@ sudo docker rmi [IMAGE_ID]
 <!-- You can override this command by passing it as an argument to the `docker run` command for instance to run the gradio app you can use the following command:
 ```bash
 docker run mnist-flask-app python mnist_gradio.py --weights_path weights/mnist_net.pth
-``` -->
+``` 
 
 
-DO NOT FORGET TO DELETE YOUR DOCKER IMAGE AND CONTAINER WHEN YOU ARE DONE.
+DO NOT FORGET TO DELETE YOUR DOCKER IMAGE AND CONTAINER WHEN YOU ARE DONE. -->
 
 # Solutions:
 
@@ -491,5 +497,5 @@ DO NOT FORGET TO DELETE YOUR DOCKER IMAGE AND CONTAINER WHEN YOU ARE DONE.
 ### mnist_api.py
 <script src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2FDavidBert%2FAIF%2Fblob%2Fsolutions%2Fdeveloppement%2FMNIST%2Fmnist_api.py&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on"></script>
 
-### mnist_webapp.py
+### mnist_gradio.py
 <script src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2FDavidBert%2FAIF%2Fblob%2Fsolutions%2Fdeveloppement%2FMNIST%2Fmnist_gradio.py&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on"></script>
