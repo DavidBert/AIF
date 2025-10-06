@@ -38,7 +38,7 @@ import torch.nn.functional as F
 
 class MNISTNet(nn.Module):
     def __init__(self):
-        super(MNNISTNet, self).__init__()
+        super(MNISTNet, self).__init__()
         self.conv1 = nn.Conv2d(...)
         self.conv2 = nn.Conv2d(...)
         self.pool = nn.MaxPool2d(...)
@@ -281,7 +281,7 @@ Click on the __inactive__ button and choose __projector__ to look at the embeddi
 Now that your model is trained, you will deploy it using a simple Flask application.  
 Flask is a micro web framework written in Python. It is classified as a microframework because it does not require particular tools or libraries. 
 The following code is a simple Flask application that will load your model and given an image, it will return the predicted class.
-The application will listen on port 5000 and will have a single route ```/predict``` that will accept a POST request with an image as payload.
+The application will listen on port 5075 and will have a single route ```/predict``` that will accept a POST request with an image as payload.
 The image will be received as a byte stream and will first be converted to a PIL image, then will be transformed using the same transformation as during training to be fed to the model.  
 The model will return a tensor containing the probabilities for each class. The class with the highest probability will be returned as a JSON object.  
 
@@ -332,7 +332,7 @@ Complete the following code to take the path of your model as an argument and lo
       return jsonify({"prediction": int(predicted[0])})
 
       if __name__ == "__main__":
-        app.run(debug=True)
+        app.run(host='0.0.0.0', port=5075, debug=True)
 ```
 
 Save the code in a file named ```mnist_api.py``` and run it with:
@@ -408,7 +408,7 @@ gr.Interface(fn=recognize_digit,
             ).launch(debug=True, share=True);
 ```
 
-Complete the ```mnist_webapp.py``` to either load your model weights or use your api to perform the predictions and run your app with the following command:
+Complete the ```mnist_gradio.py``` to either load your model weights or use your api to perform the predictions and run your app with the following command:
 
 ```bash
 python mnist_app.py --weights_path [path_to_the weights]
