@@ -24,7 +24,7 @@ def load_and_predict():
     img.save(img_binary, format="PNG")
 
     # Send request to the API
-    response = requests.post("http://127.0.0.1:5000/predict", data=img_binary.getvalue())
+    response = requests.post("http://127.0.0.1:5075/predict", data=img_binary.getvalue())
     predicted_label = response.json()["prediction"]
 
     # Display predicted label
