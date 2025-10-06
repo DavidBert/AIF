@@ -66,7 +66,7 @@
 </li>
             
 <li>
-    <a href="colorize.html" class="dropdown-item">Practical session 2</a>
+    <a href="docker.html" class="dropdown-item">Practical session 2</a>
 </li>
             
 <li>
@@ -165,7 +165,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="colorize.html" class="nav-link">
+                                <a rel="next" href="docker.html" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -218,10 +218,6 @@
               </ul>
             </li>
             <li class="nav-item" data-bs-level="2"><a href="#git" class="nav-link">Git</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#docker" class="nav-link">Docker</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -584,47 +580,81 @@ The core Interface class is initialized with three required parameters:</p>
 Do you know why it is less accurate than on MNIST?</p>
 <h2 id="git">Git</h2>
 <p>Commit all the modifications you have made to the repository as well as the weights and push them to your remote repository.</p>
-<h2 id="docker">Docker</h2>
-<p>Dockers are a way to package your application and all its dependencies in a single image that can be run on any machine.
-The file <code>Dockerfile</code> contains the instructions to build a docker image that will run your application.<br />
-Build the image with the following command:</p>
-<pre><code class="language-bash">sudo docker build -t mnist-flask-app .
+<!-- ## Docker
+Dockers are a way to package your application and all its dependencies in a single image that can be run on any machine.
+The file `DockerfileMNIST` contains the instructions to build a docker image that will run your application.  
+Build the image with the following command:
+
+<pre><code class="language-bash">sudo docker build -f DockerfileMNIST -t mnist-flask-app .
 </code></pre>
-<p>This will create a docker image named <code>mnist-flask-app</code>.
-A docker image is a read-only template that contains a set of instructions for creating a container that can run on the Docker platform.</p>
-<p>You can list all the images on your machine with the following command:</p>
+
+This will create a docker image named `mnist-flask-app`.
+A docker image is a read-only template that contains a set of instructions for creating a container that can run on the Docker platform.
+
+You can list all the images on your machine with the following command:
+
 <pre><code class="language-bash">sudo docker images
 </code></pre>
-<p>A docker container is a runnable instance of an image. You can create, start, stop, move, or delete a container using the Docker API or CLI.
-Run the container with the following command:</p>
-<pre><code class="language-bash">sudo docker run -p 5000:5000 mnist-flask-app
+
+
+A docker container is a runnable instance of an image. You can create, start, stop, move, or delete a container using the Docker API or CLI.
+Run the container with the following command:
+
+<pre><code class="language-bash">sudo docker run --rm -p 5075:5075 --name mnist mnist-flask-app
 </code></pre>
-<p>You can now access your application by going to <code>http://localhost:5000</code> in your browser. </p>
-<p>By defult the container will run the command <code>python mnist_app.py --weights_path weights/mnist_net.pth</code> when it starts.</p>
-<p>That's it! You have created a docker image that can be run on any machine that has docker installed.
+
+
+
+<pre><code class="language-bash">sudo docker run --rm -p 7860:7860 --name mnist mnist-gradio-app
+</code></pre>
+
+Notice the ```--rm``` flag. It will remove the container when it stops. This is useful to avoid leaving orphaned containers behind.  
+
+You can now access your application by going to `http://localhost:5075` in your browser. 
+
+By defult the container will run the command `python mnist_app.py --weights_path weights/mnist_net.pth` when it starts.
+
+That's it! You have created a docker image that can be run on any machine that has docker installed.
 By doing so, you have created a reproducible environment for your application that can be run on any machine.
-This is very useful when you want to deploy your application on a server or in the cloud.</p>
-<p>To list all the running containers use the following command:</p>
+This is very useful when you want to deploy your application on a server or in the cloud.
+
+
+
+To list all the running containers use the following command:
+
 <pre><code class="language-bash">sudo docker ps
 </code></pre>
-<p>To list all the containers (running and stopped) use the following command:</p>
+
+To list all the containers (running and stopped) use the following command:
+
 <pre><code class="language-bash">sudo docker ps -a
 </code></pre>
-<p>To stop a container use the following command:</p>
+
+To stop a container use the following command:
+
 <pre><code class="language-bash">sudo docker stop [CONTAINER_ID]
 </code></pre>
-<p>To remove a container use the following command:</p>
+
+To remove a container use the following command:
+
 <pre><code class="language-bash">sudo docker rm [CONTAINER_ID]
 </code></pre>
-<p>To remove an image use the following command:</p>
+
+To remove an image use the following command:
+
 <pre><code class="language-bash">sudo docker rmi [IMAGE_ID]
 </code></pre>
-<!-- You can override this command by passing it as an argument to the `docker run` command for instance to run the gradio app you can use the following command:
-```bash
-docker run mnist-flask-app python mnist_gradio.py --weights_path weights/mnist_net.pth
-``` -->
 
-<p>DO NOT FORGET TO DELETE YOUR DOCKER IMAGE AND CONTAINER WHEN YOU ARE DONE.</p>
+
+<!-- You can override this command by passing it as an argument to the `docker run` command for instance to run the gradio app you can use the following command:
+
+<pre><code class="language-bash">docker run mnist-flask-app python mnist_gradio.py --weights_path weights/mnist_net.pth
+</code></pre>
+
+
+
+DO NOT FORGET TO DELETE YOUR DOCKER IMAGE AND CONTAINER WHEN YOU ARE DONE. -->
+
 <h1 id="solutions">Solutions:</h1>
 <h3 id="modelpy">model.py</h3>
 <script src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2FDavidBert%2FAIF%2Fblob%2Fsolutions%2Fdeveloppement%2FMNIST%2Fmodel.py&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on"></script>
@@ -635,7 +665,7 @@ docker run mnist-flask-app python mnist_gradio.py --weights_path weights/mnist_n
 <h3 id="mnist_apipy">mnist_api.py</h3>
 <script src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2FDavidBert%2FAIF%2Fblob%2Fsolutions%2Fdeveloppement%2FMNIST%2Fmnist_api.py&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on"></script>
 
-<h3 id="mnist_webapppy">mnist_webapp.py</h3>
+<h3 id="mnist_gradiopy">mnist_gradio.py</h3>
 <script src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2FDavidBert%2FAIF%2Fblob%2Fsolutions%2Fdeveloppement%2FMNIST%2Fmnist_gradio.py&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on"></script></div>
             </div>
         </div>
