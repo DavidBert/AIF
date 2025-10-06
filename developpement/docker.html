@@ -237,6 +237,16 @@ We will then use docker-compose to run both the API and the Gradio application i
 We will then create independent containers for each application and test them separately and then we will use docker-compose to run them together.<br />
 Let's start by creating the Dockerfile corresponding to the API.  </p>
 <h2 id="api-container">API container</h2>
+<h3 id="requirements">Requirements</h3>
+<p>Our API just need the following packages: <code>torch</code>, <code>torchvision</code>, <code>flask</code>, <code>pillow</code>, <code>numpy</code>.
+Create a new file named <code>requirements-api.txt</code> containing the following code:</p>
+<pre><code class="language-python">torch==2.0.1
+torchvision==0.15.2
+flask==2.3.2
+pillow==10.0.0
+numpy==1.24.4
+</code></pre>
+<p>It is a good practice to specify the version of the packages you are using to make sure to get the same environment eveytime you build the image.</p>
 <h4 id="dockerfile">Dockerfile</h4>
 <p>We will first create the Dockerfile corresponding to our environment.  </p>
 <p>On your local machine, create a new file named <code>Dockerfile-api</code> containing the following code (update the path to the model file if needed):</p>
@@ -309,6 +319,13 @@ Since a container is an instance of an image, we can instantiate several contain
 If everything is working, you should be able to request your API using the notebook <code>test_api.ipynb</code>.
 Check that everything is working is OK.</p>
 <h2 id="gradio-container">Gradio container</h2>
+<h3 id="requirements_1">Requirements</h3>
+<p>Our Gradio application just need the following packages: <code>pillow</code>, <code>gradio</code>, <code>numpy</code>.
+Create a new file named <code>requirements-gradio.txt</code> containing the following code:</p>
+<pre><code class="language-python">pillow==10.3.0
+gradio==5.49
+numpy==1.26.4
+</code></pre>
 <h4 id="dockerfile_1">Dockerfile</h4>
 <p>We will now create the Dockerfile corresponding to our environment.  </p>
 <p>On your local machine, create a new file named <code>Dockerfile-gradio</code> containing the following code:</p>
