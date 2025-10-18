@@ -366,8 +366,11 @@ Change the following line:</p>
 <pre><code class="language-bash">sudo docker build -f Dockerfile-gradio -t mnist-gradio-app .
 </code></pre>
 <h4 id="gradio-container_1">Gradio Container</h4>
-<p>Once the image is built, you can run the container using the following command:</p>
+<p>Once the image is built, you can run the container using the following command (windows and macos):</p>
 <pre><code class="language-bash">sudo docker run --rm -p 7860:7860 --name mnist mnist-gradio-app
+</code></pre>
+<p>For Linux users:</p>
+<pre><code class="language-bash">sudo docker run --rm --add-host=host.docker.internal:host-gateway -p 7860:7860 --name mnist mnist-gradio-app
 </code></pre>
 <p>On another terminal, run the API locally and check that the Gradio application is working (<code>http://localhost:7860</code>):</p>
 <pre><code class="language-bash">python mnist_api.py
