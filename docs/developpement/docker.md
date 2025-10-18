@@ -199,9 +199,14 @@ sudo docker build -f Dockerfile-gradio -t mnist-gradio-app .
 ```
 
 #### Gradio Container
-Once the image is built, you can run the container using the following command:
+Once the image is built, you can run the container using the following command (windows and macos):
 ```bash
 sudo docker run --rm -p 7860:7860 --name mnist mnist-gradio-app
+```
+
+For Linux users:
+```bash
+sudo docker run --rm --add-host=host.docker.internal:host-gateway -p 7860:7860 --name mnist mnist-gradio-app
 ```
 
 On another terminal, run the API locally and check that the Gradio application is working (`http://localhost:7860`):
