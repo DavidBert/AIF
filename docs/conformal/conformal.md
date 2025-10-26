@@ -5,9 +5,8 @@
 
 <object data="ood.pdf" width="1000" height="1000" type='application/pdf'></object> -->
 
-## Practical session:
-*   Notebook: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DavidBert/AIF/blob/main/conformal/conformal_unsolved.ipynb)
+## Quiz
 
-*   Solution: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DavidBert/AIF/blob/solutions/conformal/conformal.ipynb)
+https://docs.google.com/forms/d/e/1FAIpQLSfzZWcft_OoKyz6RCCOtPattYQeMoFpS2cogKgQhn7Muot7Hw/viewform?usp=header
 
 
