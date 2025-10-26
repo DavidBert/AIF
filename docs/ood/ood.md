@@ -3,7 +3,7 @@
 
 ### Course slides:
 
-<object data="ood.pdf" width="1000" height="1000" type='application/pdf'></object>
+<object data="%5BLecture%5D%20OOD%20and%20Anomaly%20Detection.pdf" width="1000" height="1000" type='application/pdf'></object>
 
 ### Quiz: 
 
