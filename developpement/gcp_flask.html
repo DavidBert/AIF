@@ -309,9 +309,8 @@ Now on a separate terminal on your local machine run the following command to se
 </code></pre>
 <p>Now go to the Google Cloud Platform console to get the external IP address of your instance.
 <img alt="" src="../img/gcloud_flask/external_ip.png" />  </p>
-<p>You should now be able to access your web app at <code>http://your_instance_ip:5000</code>.
-If everything is working, you should see your web app displaying "Hello, World!".
-<img alt="" src="../img/gcloud_flask/webapp.png" /></p>
+<p>You should now be able to access your web app at <code>http://your_instance_ip:5000</code>.<br />
+If everything is working, you should see your web app displaying "Hello, World!".</p>
 <p><strong>Important:</strong> Before moving to the next section, stop the Flask app running on the instance by pressing <code>Ctrl+C</code> in the instance terminal. This will free up port 5000 for the automated deployment process.</p>
 <h2 id="7-continuous-deployment">7. Continuous deployment</h2>
 <p>We will now deploy our web app on Google Cloud Platform using a continuous integration pipeline.
@@ -643,7 +642,8 @@ git commit -m &quot;Add beautiful HTML template&quot;
 git push origin main
 </code></pre>
 <p>Go to your GitHub repository and check the Actions tab. You should see the deployment workflow running.
-Once it's done, refresh your web app at <code>http://your_instance_ip:5000</code> and you should see the new beautiful interface!</p>
+Once it's done, refresh your web app at <code>http://your_instance_ip:5000</code> and you should see the new beautiful interface!
+<img alt="" src="../img/gcloud_flask/webapp.png" /></p>
 <p>This demonstrates that your continuous deployment pipeline is working correctly - any changes you push to the main branch will automatically be deployed to your GCP instance.</p>
 <h2 id="9-troubleshooting">9. Troubleshooting</h2>
 <p>Here are common issues you might encounter and their solutions:</p>
