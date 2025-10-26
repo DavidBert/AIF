@@ -110,9 +110,9 @@ python app.py
 Now go to the Google Cloud Platform console to get the external IP address of your instance.
 ![](../img/gcloud_flask/external_ip.png)  
 
-You should now be able to access your web app at `http://your_instance_ip:5000`.
+You should now be able to access your web app at `http://your_instance_ip:5000`.  
 If everything is working, you should see your web app displaying "Hello, World!".
-![](../img/gcloud_flask/webapp.png)
+
 
 **Important:** Before moving to the next section, stop the Flask app running on the instance by pressing `Ctrl+C` in the instance terminal. This will free up port 5000 for the automated deployment process.
 
@@ -474,6 +474,7 @@ git push origin main
 
 Go to your GitHub repository and check the Actions tab. You should see the deployment workflow running.
 Once it's done, refresh your web app at `http://your_instance_ip:5000` and you should see the new beautiful interface!
+![](../img/gcloud_flask/webapp.png)
 
 This demonstrates that your continuous deployment pipeline is working correctly - any changes you push to the main branch will automatically be deployed to your GCP instance.
 
