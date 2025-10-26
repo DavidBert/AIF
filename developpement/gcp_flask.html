@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Deploy a web app on Google Cloud Platform - AI Frameworks</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/docco.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../index.html">AI Frameworks</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../index.html" class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Courses</a>
+                                <ul class="dropdown-menu">
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Development tools for Data Scientist</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="course.html" class="dropdown-item">Course slides</a>
+</li>
+            
+<li>
+    <a href="git_intro.html" class="dropdown-item">Introduction to Git</a>
+</li>
+            
+<li>
+    <a href="pytorch.html" class="dropdown-item">Introduction to Pytorch</a>
+</li>
+            
+<li>
+    <a href="api.html" class="dropdown-item">Introduction to REST APIs</a>
+</li>
+            
+<li>
+    <a href="mnist.html" class="dropdown-item">Practical session 1</a>
+</li>
+            
+<li>
+    <a href="docker.html" class="dropdown-item">Practical session 2</a>
+</li>
+            
+<li>
+    <a href="quizz.html" class="dropdown-item">Quizz</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Recommender systems</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../rec_sys/rec_sys.html" class="dropdown-item">Course and practical session</a>
+</li>
+            
+<li>
+    <a href="../rec_sys/quizz.html" class="dropdown-item">Quizz</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Introduction to Reinforcement Learning</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../rl/rl.html" class="dropdown-item">Course and practical session</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Interpretability</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../xai/interpretability.html" class="dropdown-item">Course and practical session</a>
+</li>
+            
+<li>
+    <a href="../xai/quizz.html" class="dropdown-item">Quizz</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Introduction to Natural Language Processing (NLP)</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../nlp/nlp.html" class="dropdown-item">Course and practical session</a>
+</li>
+            
+<li>
+    <a href="../nlp/quizz.html" class="dropdown-item">Quizz</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Out-of-Distribution and Anomaly Detection</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../ood/ood.html" class="dropdown-item">Course and practical session</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Conformal Prediction</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../conformal/conformal.html" class="dropdown-item">Course and practical session</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/DavidBert/AIF" class="nav-link">Github repository</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#deploy-a-web-app-on-google-cloud-platform" class="nav-link">Deploy a web app on Google Cloud Platform</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#1-google-cloud-account-and-free-coupon-code" class="nav-link">1. Google cloud account and free coupon code</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#2-create-a-new-instance" class="nav-link">2. Create a new instance</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#3-install-the-gcloud-sdk-on-your-local-machine" class="nav-link">3. Install the GCloud SDK on your local machine</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#4-connect-to-your-instance" class="nav-link">4. Connect to your instance</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#5-make-a-simple-web-app" class="nav-link">5. Make a simple web app</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#6-deploy-the-web-app-on-google-cloud-platform" class="nav-link">6. Deploy the web app on Google Cloud Platform</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#7-continuous-deployment" class="nav-link">7. Continuous deployment</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#8-make-the-app-nicer-to-demonstrate-continuous-deployment" class="nav-link">8. Make the app nicer to demonstrate continuous deployment</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#9-troubleshooting" class="nav-link">9. Troubleshooting</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#10-cleanup" class="nav-link">10. Cleanup</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="deploy-a-web-app-on-google-cloud-platform">Deploy a web app on Google Cloud Platform</h1>
+<h2 id="1-google-cloud-account-and-free-coupon-code">1. Google cloud account and free coupon code</h2>
+<p>Click on the link sent by email to redeem your free coupon code (you must use your INSA mail address to redeem it).<br />
+Once you have your coupon code, go to <a href="https://console.cloud.google.com/education?pli=1">this link</a> to get your credits (you will need a Google account, if needed, you can create one using your INSA mail address).<br />
+<img alt="" src="../img/gcloud_flask/coupon.png" />  </p>
+<h2 id="2-create-a-new-instance">2. Create a new instance</h2>
+<p>On the GCloud homepage, click on the side bar menu on the left and select "Compute Engine" -&gt; "VM instances".<br />
+<img alt="" src="../img/gcloud_flask/vm_instances.png" /><br />
+Then click on the "Create project button", and create a project named <em>Twinsa</em>. No need to fill in the other fields.
+<img alt="" src="../img/gcloud_flask/create_project.png" /><br />
+You should arrive at the following page, click on "Enable API"
+<img alt="" src="../img/gcloud_flask/enable_api.png" /><br />
+You should now see a page proposing to create a new instance. Click on "Create instance".
+Fill in the following fields in <strong>Machine configuration</strong> section:
+<img alt="" src="../img/gcloud_flask/instance_config.png" /><br />
+Then in the <strong>OS and Storage</strong> section, click on the "Change" button and select "Deep Learning in Linux" and select the first option.
+<img alt="" src="../img/gcloud_flask/disk_image.png" /><br />
+Then in the <strong>Networking</strong> section, set the following fields:
+<img alt="" src="../img/gcloud_flask/networking_1.png" /><br />
+In this same Networking section under <strong>Network interfaces</strong>, click the ▾ arrow next to
+<strong>default default IPv4 (10.128.0.0/20)</strong>.</p>
+<p>Find <strong>External IPv4 address dropdown</strong>  and select  <strong>Reserve static address</strong>.
+Give it a name like flask-static-ip and click on <strong>Reserve</strong>.
+<img alt="" src="../img/gcloud_flask/networking_2.png" /><br />
+Then click on the "Create" button to create the instance.</p>
+<h2 id="3-install-the-gcloud-sdk-on-your-local-machine">3. Install the GCloud SDK on your local machine</h2>
+<p>Now install the GCloud SDK on your local machine. Follow the instructions <a href="https://cloud.google.com/sdk/docs/install">here</a>.</p>
+<p>Once the GCloud SDK is installed, run the following command to initialize it:</p>
+<pre><code class="language-console">gcloud init
+</code></pre>
+<p>This will guide you through the process of setting up your GCloud SDK. You will need to authenticate with your Google account and set a default project (Twinsa in our case). No need to set a default region.</p>
+<h2 id="4-connect-to-your-instance">4. Connect to your instance</h2>
+<p>Once your instance is created, you can find its name in the VM instances list on the Google Cloud Platform console.
+You can connect to it using the following command (replace <code>your_instance_name</code> with the actual instance name):</p>
+<pre><code class="language-console">gcloud compute ssh --zone &quot;us-central1-c&quot; &quot;your_instance_name&quot;
+</code></pre>
+<p>You should now be connected to your instance and see its terminal.</p>
+<h2 id="5-make-a-simple-web-app">5. Make a simple web app</h2>
+<p>On your local machine, create a new directory named <code>hello-world-flask-app</code>. Inside this directory, create a new file named <code>app.py</code> containing the following code:</p>
+<pre><code class="language-python">from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+    return 'Hello, World!'
+
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0', port=5000)
+</code></pre>
+<p>Let's create a file for the required dependencies. Create a new file named <code>requirements.txt</code> containing the following code:</p>
+<pre><code>flask
+</code></pre>
+<p>Now run the following command to start the web app:</p>
+<pre><code class="language-console">python app.py
+</code></pre>
+<p>Now you can access your web app at <code>http://localhost:5000</code>.</p>
+<h2 id="6-deploy-the-web-app-on-google-cloud-platform">6. Deploy the web app on Google Cloud Platform</h2>
+<p>We will now deploy our web app on Google Cloud Platform.
+To do so we will use the GCloud SDK to send the files to the instance and then start the web app.</p>
+<p>Before that we will allow incoming traffic to the instance on port 5000.
+To do so, run the following command on your local machine terminal (not on the instance):</p>
+<pre><code class="language-console">gcloud compute firewall-rules create allow-flask --allow tcp:5000
+</code></pre>
+<p>On the instance terminal (connect with <code>gcloud compute ssh --zone "us-central1-c" "your_instance_name"</code> in case you disconnected from the instance), run the following command to get your current working directory:</p>
+<pre><code class="language-console">pwd
+</code></pre>
+<p>This gives you the path to the home directory of the user on the instance.  </p>
+<p>You should see something like <code>/home/your_username</code>.
+Now on a separate terminal on your local machine run the following command to send the folder to the instance:</p>
+<pre><code class="language-console">gcloud compute scp --recurse --zone &quot;us-central1-c&quot; &quot;path_to_your_folder/hello-world-flask-app&quot; &quot;your_instance_name&quot;:/home/your_username/
+</code></pre>
+<p>Then on the instance terminal, go to the folder:</p>
+<pre><code class="language-console">cd hello-world-flask-app
+</code></pre>
+<p>and run the following command to install the dependencies:</p>
+<pre><code class="language-console">pip install -r requirements.txt
+</code></pre>
+<p>Then start the web app:</p>
+<pre><code class="language-console">python app.py
+</code></pre>
+<p>Now go to the Google Cloud Platform console to get the external IP address of your instance.
+<img alt="" src="../img/gcloud_flask/external_ip.png" />  </p>
+<p>You should now be able to access your web app at <code>http://your_instance_ip:5000</code>.
+If everything is working, you should see your web app displaying "Hello, World!".
+<img alt="" src="../img/gcloud_flask/webapp.png" /></p>
+<p><strong>Important:</strong> Before moving to the next section, stop the Flask app running on the instance by pressing <code>Ctrl+C</code> in the instance terminal. This will free up port 5000 for the automated deployment process.</p>
+<h2 id="7-continuous-deployment">7. Continuous deployment</h2>
+<p>We will now deploy our web app on Google Cloud Platform using a continuous integration pipeline.
+To do so we will use the GCloud SDK to send the files to the instance and then start the web app.</p>
+<p>First, we will create a new repository on GitHub.
+You can make this repository either public or private - it doesn't matter for our setup since GitHub Actions will handle the deployment via SSH, not by cloning the repository on the VM.
+Go to <a href="https://github.com/">GitHub</a> and create a new repository named <code>hello-world-flask-app</code> (choose either public or private visibility).</p>
+<p>On the local folder <code>hello-world-flask-app</code>, first create a <code>.gitignore</code> file to prevent committing sensitive files:</p>
+<pre><code class="language-console">echo &quot;github_action_key&quot; &gt; .gitignore
+echo &quot;github_action_key.pub&quot; &gt;&gt; .gitignore
+</code></pre>
+<p>Now initialize a new git repository with <code>main</code> as the default branch:</p>
+<pre><code class="language-console">git init -b main
+</code></pre>
+<p>Add all the files to the repository:</p>
+<pre><code class="language-console">git add .
+</code></pre>
+<p>Commit the changes:</p>
+<pre><code class="language-console">git commit -m &quot;Initial commit&quot;
+</code></pre>
+<p>Add a remote repository:</p>
+<pre><code class="language-console">git remote add origin https://github.com/your_username/hello-world-flask-app.git
+</code></pre>
+<p>Push the changes to the repository:</p>
+<pre><code class="language-console">git push -u origin main
+</code></pre>
+<p>We will now create a new SSH key for the remote instance.
+Run the following command on your local machine to create a new SSH key:</p>
+<pre><code class="language-console">ssh-keygen -t rsa -b 4096 -C &quot;github-action&quot; -f ./github_action_key
+</code></pre>
+<p>Do not enter a passphrase and press enter twice.
+This should create a new file named <code>github_action_key</code> and <code>github_action_key.pub</code> in the local folder <code>hello-world-flask-app</code>.</p>
+<p>You can now put the contents of github_action_key.pub inside the VM’s ~/.ssh/authorized_keys file:
+1. Copy the contents of github_action_key.pub to the clipboard.
+2. Run the following command on the instance terminal:</p>
+<pre><code class="language-console">mkdir -p ~/.ssh
+echo &quot;PASTE_YOUR_PUBLIC_KEY_HERE&quot; &gt;&gt; ~/.ssh/authorized_keys
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys
+</code></pre>
+<ol>
+<li>On your local machine, inside the folder containing the github_action_key.pub file, run the following command (replace your_username and your_instance_external_ip with the correct values.):</li>
+</ol>
+<pre><code class="language-console">ssh -i github_action_key your_username@your_instance_external_ip
+</code></pre>
+<p>Your instance external IP is the one you got from the Google Cloud Platform console. <img alt="" src="../img/gcloud_flask/external_ip.png" />  and you can find your username in the instance terminal by running the following command:</p>
+<pre><code class="language-console">whoami
+</code></pre>
+<p>If everything is working, you should see your remote instance terminal and you can go to the next step.</p>
+<ol>
+<li>We will now add the SSH key to the GitHub repository as a secret.
+Go to your GitHub repository → Settings → Secrets and variables → Actions → New repository secret.
+Add these secrets (one by one):</li>
+<li><strong>GCP_SSH_PRIVATE_KEY</strong>: The contents of the github_action_key file.</li>
+<li><strong>GCP_VM_IP</strong>: The external IP of your instance.</li>
+<li>
+<p><strong>GCP_VM_USER</strong>: The username of the user on the instance.
+<img alt="" src="../img/gcloud_flask/secrets.png" />  </p>
+</li>
+<li>
+<p>We will now create the deployment workflow.</p>
+</li>
+</ol>
+<p>First we will make a small script to start the web app.
+Create a new file named <code>start_app.sh</code> containing the following code:</p>
+<pre><code class="language-bash">#!/bin/bash
+set -e
+
+# Navigate to app directory
+cd &quot;$(dirname &quot;$0&quot;)&quot;
+
+# Kill any existing instance
+pkill -f 'python app.py' || true
+sleep 1
+
+# Start the app in background
+nohup python app.py &gt; app.log 2&gt;&amp;1 &amp;
+PID=$!
+
+# Save PID
+echo $PID &gt; app.pid
+echo &quot;Started Flask app with PID: $PID&quot;
+
+# Wait a moment and verify it's still running
+sleep 2
+if kill -0 $PID 2&gt;/dev/null; then
+    echo &quot;App is running successfully!&quot;
+    exit 0
+else
+    echo &quot;App failed to start. Check app.log for details.&quot;
+    exit 1
+fi
+</code></pre>
+<p>This script will start the web app in a background process and save the PID to a file.
+It will also verify that the app is running successfully.</p>
+<p>We will now create the deployment workflow.
+On the local folder <code>hello-world-flask-app</code>, create a new folder named <code>.github</code> and inside it create a new folder named <code>workflows</code> and inside it create a new file named <code>deploy.yml</code> containing the following code:</p>
+<pre><code class="language-yaml">name: Deploy to GCP VM
+
+on:
+  push:
+    branches: [&quot;main&quot;]
+  workflow_dispatch:
+
+env:
+  APP_DIR: /home/${{ secrets.GCP_VM_USER }}/apps/hello_world_flask_gcp
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup SSH
+      uses: webfactory/ssh-agent@v0.9.0
+      with:
+        ssh-private-key: ${{ secrets.GCP_SSH_PRIVATE_KEY }}
+
+    - name: Add VM to known_hosts
+      run: ssh-keyscan -H ${{ secrets.GCP_VM_IP }} &gt;&gt; ~/.ssh/known_hosts
+
+    - name: Deploy code to VM
+      run: |
+        ssh ${{ secrets.GCP_VM_USER }}@${{ secrets.GCP_VM_IP }} &quot;mkdir -p ${{ env.APP_DIR }}&quot;
+        rsync -az --exclude &quot;.git&quot; --exclude &quot;.github&quot; ./ ${{ secrets.GCP_VM_USER }}@${{ secrets.GCP_VM_IP }}:${{ env.APP_DIR }}/
+
+    - name: Install dependencies
+      run: |
+        ssh ${{ secrets.GCP_VM_USER }}@${{ secrets.GCP_VM_IP }} &quot;
+          cd ${{ env.APP_DIR }}
+          sudo apt-get install -y python3 python3-pip
+          sudo pip install -r requirements.txt
+        &quot;
+
+    - name: Start application
+      run: |
+        ssh ${{ secrets.GCP_VM_USER }}@${{ secrets.GCP_VM_IP }} &quot;
+          cd ${{ env.APP_DIR }}
+          chmod +x start_app.sh
+          ./start_app.sh
+        &quot;
+
+    - name: Verify deployment
+      run: |
+        ssh ${{ secrets.GCP_VM_USER }}@${{ secrets.GCP_VM_IP }} &quot;
+          curl -f http://localhost:5000/
+          echo 'Deployment successful!'
+        &quot;
+</code></pre>
+<p>Commit and push to main:</p>
+<pre><code class="language-console">git add .
+git commit -m &quot;Add deployment workflow&quot;
+git push origin main
+</code></pre>
+<h2 id="8-make-the-app-nicer-to-demonstrate-continuous-deployment">8. Make the app nicer to demonstrate continuous deployment</h2>
+<p>Now let's improve the look of our application to demonstrate that continuous deployment is working properly.</p>
+<p>Create a new folder named <code>templates</code> in the <code>hello-world-flask-app</code> directory and inside it create a new file named <code>index.html</code> containing the following code:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Hello World - Flask App&lt;/title&gt;
+    &lt;style&gt;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            max-width: 500px;
+            width: 90%;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, #f0f0f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .feature {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-text {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .welcome-message {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease-out 0.1s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem 1rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=&quot;container&quot;&gt;
+        &lt;h1 class=&quot;pulse&quot;&gt;Hello, World! 🌍&lt;/h1&gt;
+        &lt;p class=&quot;welcome-message&quot;&gt;Welcome to your beautiful Flask application!&lt;/p&gt;
+        &lt;p class=&quot;subtitle&quot;&gt;Built with Flask and deployed on Google Cloud Platform&lt;/p&gt;
+
+        &lt;div class=&quot;features&quot;&gt;
+            &lt;div class=&quot;feature&quot;&gt;
+                &lt;div class=&quot;feature-icon&quot;&gt;🚀&lt;/div&gt;
+                &lt;div class=&quot;feature-text&quot;&gt;Fast &amp; Lightweight&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;feature&quot;&gt;
+                &lt;div class=&quot;feature-icon&quot;&gt;☁️&lt;/div&gt;
+                &lt;div class=&quot;feature-text&quot;&gt;Cloud Ready&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;feature&quot;&gt;
+                &lt;div class=&quot;feature-icon&quot;&gt;📱&lt;/div&gt;
+                &lt;div class=&quot;feature-text&quot;&gt;Responsive&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;feature&quot;&gt;
+                &lt;div class=&quot;feature-icon&quot;&gt;✨&lt;/div&gt;
+                &lt;div class=&quot;feature-text&quot;&gt;Modern Design&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>Now modify the <code>app.py</code> file to use the template:</p>
+<pre><code class="language-python">from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+    return render_template('index.html')
+
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0', port=5000)
+</code></pre>
+<p>Commit and push these changes to trigger the continuous deployment:</p>
+<pre><code class="language-console">git add .
+git commit -m &quot;Add beautiful HTML template&quot;
+git push origin main
+</code></pre>
+<p>Go to your GitHub repository and check the Actions tab. You should see the deployment workflow running.
+Once it's done, refresh your web app at <code>http://your_instance_ip:5000</code> and you should see the new beautiful interface!</p>
+<p>This demonstrates that your continuous deployment pipeline is working correctly - any changes you push to the main branch will automatically be deployed to your GCP instance.</p>
+<h2 id="9-troubleshooting">9. Troubleshooting</h2>
+<p>Here are common issues you might encounter and their solutions:</p>
+<h3 id="firewall-issues">Firewall Issues</h3>
+<p><strong>Problem:</strong> Cannot access the web app via external IP.
+<strong>Solution:</strong>
+- Verify the firewall rule was created: <code>gcloud compute firewall-rules list</code>
+- Make sure the rule allows tcp:5000
+- Check if the app is actually running on the instance: <code>curl http://localhost:5000</code> from the instance terminal</p>
+<h3 id="ssh-connection-problems">SSH Connection Problems</h3>
+<p><strong>Problem:</strong> Cannot SSH into the instance.
+<strong>Solution:</strong>
+- Verify the instance is running in the GCP console
+- Check your zone is correct (should be <code>us-central1-c</code>)
+- Try adding <code>--verbosity=debug</code> to the SSH command to see detailed error messages
+- Make sure your gcloud SDK is authenticated: <code>gcloud auth list</code></p>
+<h3 id="port-already-in-use">Port Already in Use</h3>
+<p><strong>Problem:</strong> Error message "Address already in use" when starting the app.
+<strong>Solution:</strong>
+- Find the process using port 5000: <code>sudo lsof -i :5000</code>
+- Kill the process: <code>kill -9 &lt;PID&gt;</code> (replace <code>&lt;PID&gt;</code> with the actual process ID)
+- Or use: <code>pkill -f 'python app.py'</code></p>
+<h3 id="github-actions-workflow-failures">GitHub Actions Workflow Failures</h3>
+<p><strong>Problem:</strong> The deployment workflow fails.
+<strong>Solution:</strong>
+- Check the Actions tab on GitHub for detailed error logs
+- Verify all three secrets (GCP_SSH_PRIVATE_KEY, GCP_VM_IP, GCP_VM_USER) are correctly set
+- Make sure the SSH key authentication works: test manually with <code>ssh -i github_action_key your_username@your_instance_ip</code>
+- Verify the app directory path in the workflow matches your setup</p>
+<h3 id="app-fails-to-start">App Fails to Start</h3>
+<p><strong>Problem:</strong> The app starts but immediately crashes.
+<strong>Solution:</strong>
+- Check the app.log file: <code>cat ~/apps/hello_world_flask_gcp/app.log</code>
+- Verify all dependencies are installed: <code>pip list | grep -i flask</code>
+- Make sure the templates folder exists and contains index.html (for Section 8)
+- Check for Python syntax errors in app.py</p>
+<h3 id="template-not-found-error">Template Not Found Error</h3>
+<p><strong>Problem:</strong> "TemplateNotFound: index.html" error.
+<strong>Solution:</strong>
+- Verify the templates folder exists in the same directory as app.py
+- Check the folder name is exactly <code>templates</code> (plural, lowercase)
+- Make sure index.html is inside the templates folder
+- Restart the app after adding the template</p>
+<h2 id="10-cleanup">10. Cleanup</h2>
+<p>To cleanup, you can stop the instance from the Google Cloud Platform console.
+You can delete it if you want to completely remove it but you might want to keep it for future your project since it is configured now. If you choose to keep it, you can start it again later. Always remember to stop the instance when you are not using it to avoid unnecessary charges. You have a limited 50$ credit so be careful with your usage.
+You can also delete the repository from GitHub or keep it if it can help you in the future and the same for the SSH key and the local folder <code>hello-world-flask-app</code>.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../javascripts/mathjax.js"></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
