@@ -21,7 +21,7 @@ Make sure to have finished the [previous practical session](../developpement/mni
 
 To make our full application work, we want to package both the Gradio application and the API into a two containers.  
 To do so, we will create two Dockerfiles, one for the API and one for the Gradio application.  
-We will then use docker-compose to run both the API and the Gradio application in a single container.
+We will then use docker-compose to run both the API and the Gradio application with a single command and two different containers.
 
 This is the plan, but it's easier to make and test both containers separately when debugging.
 We will then create independent containers for each application and test them separately and then we will use docker-compose to run them together.  
@@ -160,8 +160,8 @@ FROM python:3.10-slim
 
 WORKDIR /app
 
-COPY requirements_gradio.txt .
-RUN pip install --no-cache-dir -r requirements_gradio.txt
+COPY requirements-gradio.txt .
+RUN pip install --no-cache-dir -r requirements-gradio.txt
 
 # App code
 COPY . /app
@@ -246,14 +246,15 @@ The `depends_on` directive is used to specify that the Gradio application servic
 This means that the Gradio application service will not start until the API service is running.  
 
 Both containers are exposed on the host machine on the ports 5075 and 7860 and will be able to communicate with each other.
-Thus let's revert the change we made in the `mnist_gradio.py` file to use the API from the localhost.
+
+We need to change the API URL in the `mnist_gradio.py` file to use the API from the docker-compose service name.
 Change the following line:
 ```python
 response = requests.post("http://host.docker.internal:5075/predict", data=img_binary.getvalue())
 ```
 to
 ```python
-response = requests.post("http://0.0.0.0:5075/predict", data=img_binary.getvalue())
+response = requests.post("http://api:5075/predict", data=img_binary.getvalue())
 ```
 
 To run the application, run the following command:
