@@ -19,7 +19,7 @@ def recognize_digit(image):
     img_binary = io.BytesIO()
     image.save(img_binary, format="PNG")
     # Send request to the API
-    response = requests.post("http://0.0.0.0:5075/predict", data=img_binary.getvalue())
+    response = requests.post("http://api:5075/predict", data=img_binary.getvalue())
     return response.json()["prediction"]
 
 if __name__=='__main__':
