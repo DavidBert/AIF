@@ -3,6 +3,15 @@
 This tutorial is a follow-up to the [Docker tutorial](docker.md). Make sure you have completed it before starting this one.
 We will deploy the dockerized MNIST application (API + Gradio interface) to Google Cloud Platform.
 
+## 0. Prerequisites
+Make sure you have completed the [Docker tutorial](docker.md) and have the MNIST project ready.
+You can download the full solution [here](https://github.com/DavidBert/AIF/blob/website/docs/other/MNIST.zip) to be sure to have something working before starting this tutorial.  
+Make sure that you can run the application locally before starting this tutorial.
+```console
+docker-compose up
+```
+You should be able to access the Gradio interface at `http://localhost:7860` and the API at `http://localhost:5075`.
+
 ## 1. Google cloud account and free coupon code
 Click on the link sent by email to redeem your free coupon code (you must use your INSA mail address to redeem it).
 Once you have your coupon code, go to [this link](https://console.cloud.google.com/education?pli=1) to get your credits (you will need a Google account, if needed, you can create one using your INSA mail address).
@@ -11,19 +20,24 @@ Once you have your coupon code, go to [this link](https://console.cloud.google.c
 ## 2. Create a new instance
 On the GCloud homepage, click on the side bar menu on the left and select "Compute Engine" -> "VM instances".
 ![](../img/gcloud_flask/vm_instances.png)  
-Then click on the "Create project button", and create a project named _Twinsa_. No need to fill in the other fields.
+Then click on the "Create project button", and create a project named _AIF_. No need to fill in the other fields.
 ![](../img/gcloud_flask/create_project.png)  
 You should arrive at the following page, click on "Enable API"
 ![](../img/gcloud_flask/enable_api.png)  
 You should now see a page proposing to create a new instance. Click on "Create instance".
 Fill in the following fields in __Machine configuration__ section:
-![](../img/gcloud_docker/instance_config.png)  
-Then in the __OS and Storage__ section, click on the "Change" button and select "Deep Learning in Linux" and select the first option.
+![](../img/gcloud_docker/vm_config.png)  
+Then in the __OS and Storage__ section,  
+![](../img/gcloud_docker/os_storage.png)  
+ click on the "Change" button and select "Deep Learning in Linux" and select the first option.
 ![](../img/gcloud_flask/disk_image.png)  
 Then in the __Networking__ section, set the following fields:
 ![](../img/gcloud_flask/networking_1.png)  
 In this same Networking section under __Network interfaces__, click the ▾ arrow next to
 __default default IPv4 (10.128.0.0/20)__.
+We will also use spot instances to save money. Spot instances are instances that are available at a lower price than on-demand instances, but are not guaranteed to be available. They are a good way to save money, but you should be aware that they can be interrupted at any time.  
+On the __Advanced__ section, set the following fields to use spot instances and automatically stop the instance when it is not in use:
+![](../img/gcloud_docker/spot.png)  
 
 Find __External IPv4 address dropdown__  and select  __Reserve static address__.
 Give it a name like docker-mnist-static-ip and click on __Reserve__.  
@@ -42,10 +56,15 @@ This will guide you through the process of setting up your GCloud SDK. You will 
 ## 4. Connect to your instance
 Once your instance is created, you can find its name in the VM instances list on the Google Cloud Platform console.
 ![](../img/gcloud_docker/instance_created.png)  
-You can connect to it using the following command (replace `your_instance_name` with the actual instance name and `us-central1-f` with the actual region):
+You can connect to it using the following command:
 ```console
-gcloud compute ssh --zone "us-central1-f" "your_instance_name"
+gcloud compute ssh --zone "us-central1-f" "aif-project"
 ```
+or if your instance name or/and region are different:
+```console
+gcloud compute ssh --zone "region" "your_instance_name"
+```
+(replace `your_instance_name` and `region` with the actual instance name and region)
 You can also directly get the command to connect to your instance by clicking on the arrow next to the __"SSH"__ button in the Google Cloud Platform console and then __"view gcloud command"__.
 You should now be connected to your instance and see its terminal.
 
@@ -101,13 +120,9 @@ This gives you the path to the home directory of the user on the instance. You s
 
 Now on a separate terminal on your local machine, navigate to your MNIST project directory and run the following command to send the folder to the instance:
 ```console
-gcloud compute scp --recurse --zone "us-central1-f" "." "your_instance_name":/home/your_username/mnist-docker-app
+gcloud compute scp --recurse --zone "us-central1-f" "." "aif-project":/home/your_username/mnist-docker-app
 ```
-Remember to replace `us-central1-f` with the actual region.
-For exemple for my instance it would be:
-```console
-gcloud compute scp --recurse --zone "us-central1-f" "." aif-project:/home/david/mnist-docker-app
-```
+Remember to replace `us-central1-f` with the actual region and `aif-project` with the actual instance name if it is different.
 Then on the instance terminal, go to the folder:
 ```console
 cd mnist-docker-app
@@ -139,10 +154,10 @@ sudo docker-compose up -d
 Instead of copying all the source files and building on the instance, we can build Docker images locally and transfer them to the instance. This approach is more efficient, especially for larger applications.
 
 ### Step 1: Build images locally
-On your local machine, navigate to your MNIST project directory and build the Docker images:
+On your local machine, navigate to your MNIST project directory and build the Docker images (we will use the --platform=linux/amd64 flag to build the images for the amd64 architecture. This is mostly useful for Macos users that are using an M chips and are by default building for the arm64 architecture):
 ```console
-sudo docker build -f Dockerfile-api -t mnist-flask-app:latest .
-sudo docker build -f Dockerfile-gradio -t mnist-gradio-app:latest .
+sudo docker build --platform=linux/amd64 -f Dockerfile-api -t mnist-flask-app:latest .
+sudo docker build --platform=linux/amd64 -f Dockerfile-gradio -t mnist-gradio-app:latest .
 ```
 
 Verify the images were created:
@@ -153,7 +168,7 @@ sudo docker image ls
 You should see both `mnist-flask-app` and `mnist-gradio-app` in the list.
 
 ### Step 2: Save images to tar files
-Save the Docker images as tar files that can be transferred:
+Save the Docker images as tar files that can be transferred (for Windows users, you might need to use PowerShell or Git Bash to run these commands):
 ```console
 sudo docker save mnist-flask-app:latest | gzip > mnist-flask-app.tar.gz
 sudo docker save mnist-gradio-app:latest | gzip > mnist-gradio-app.tar.gz
@@ -164,19 +179,35 @@ These compressed tar files contain everything needed to run the containers, incl
 ### Step 3: Transfer images to the instance
 Use `gcloud compute scp` to transfer the image files to your instance:
 ```console
-gcloud compute scp --zone "us-central1-c" mnist-flask-app.tar.gz "your_instance_name":/home/your_username/
-gcloud compute scp --zone "us-central1-c" mnist-gradio-app.tar.gz "your_instance_name":/home/your_username/
+gcloud compute scp --zone "us-central-f" mnist-flask-app.tar.gz aif-project:/home/your_username/
+gcloud compute scp --zone "us-central-f" mnist-gradio-app.tar.gz aif-project:/home/your_username/
 ```
-
-Also transfer the docker-compose.yml file:
+We can now update the docker-compose.yml file to use the images instead of building them on the instance.  
+Replace the build section with the image section:
+```yaml
+version: '3.8' # specify docker-compose version
+services: # services to run
+  api: # name of the first service
+    image: mnist-flask-app:latest
+    ports:
+      - "5075:5075" # specify port mapping
+      
+  gradio-app:
+    image: mnist-gradio-app:latest
+    ports:
+      - "7860:7860" # specify port mapping
+    depends_on:
+      - api # specify service dependencies
+```
+Now transfer the docker-compose.yml file:
 ```console
-gcloud compute scp --zone "us-central1-c" docker-compose.yml "your_instance_name":/home/your_username/
+gcloud compute scp --zone "us-central-f" docker-compose.yml aif-project:/home/your_username/
 ```
 
 ### Step 4: Load images on the instance
 Connect to your instance:
 ```console
-gcloud compute ssh --zone "us-central1-c" "your_instance_name"
+gcloud compute ssh --zone "us-central-f" "aif-project"
 ```
 
 Load the Docker images from the tar files:
@@ -212,8 +243,8 @@ When you make changes to your application, follow these steps:
 
 1. On your local machine, rebuild the images:
 ```console
-sudo docker build -f Dockerfile-api -t mnist-flask-app:latest .
-sudo docker build -f Dockerfile-gradio -t mnist-gradio-app:latest .
+sudo docker build --platform=linux/amd64 -f Dockerfile-api -t mnist-flask-app:latest .
+sudo docker build --platform=linux/amd64 -f Dockerfile-gradio -t mnist-gradio-app:latest .
 ```
 
 2. Save the updated images:
@@ -224,8 +255,8 @@ sudo docker save mnist-gradio-app:latest | gzip > mnist-gradio-app.tar.gz
 
 3. Transfer to the instance:
 ```console
-gcloud compute scp --zone "us-central1-c" mnist-flask-app.tar.gz "your_instance_name":/home/your_username/
-gcloud compute scp --zone "us-central1-c" mnist-gradio-app.tar.gz "your_instance_name":/home/your_username/
+gcloud compute scp --zone "us-central-f" mnist-flask-app.tar.gz aif-project:/home/your_username/
+gcloud compute scp --zone "us-central-f" mnist-gradio-app.tar.gz aif-project:/home/your_username/
 ```
 
 4. On the instance, stop the containers, load the new images, and restart:
@@ -235,12 +266,6 @@ sudo docker load < mnist-flask-app.tar.gz
 sudo docker load < mnist-gradio-app.tar.gz
 sudo docker-compose up -d
 ```
-
-### Advantages of this approach
-- **Faster deployment**: No need to rebuild on the instance
-- **Consistent builds**: The exact same image that works on your local machine runs on the instance
-- **Easier troubleshooting**: If it works locally, it will work on the instance
-- **Better resource usage**: The instance doesn't need to download and compile dependencies
 
 ### Cleanup local tar files
 After successful deployment, you can delete the tar files to save disk space:
@@ -255,28 +280,14 @@ On the instance:
 rm mnist-flask-app.tar.gz mnist-gradio-app.tar.gz
 ```
 
-## 10. Monitoring your application
-You can monitor your Docker containers by connecting to the instance and running:
+### Why using Docker images instead of copying files?
+Building Docker images and transferring them to the instance provides several advantages:
+- **Faster deployment**: No need to rebuild on the instance and the instance doesn't need to download and compile dependencies (the image is already built and ready to run)
+- **Consistent builds**: The exact same image that works on your local machine runs on the instance
+- **Easier troubleshooting**: If it works locally, it will work on the instance
 
-```console
-# Connect to instance
-gcloud compute ssh --zone "us-central1-c" "your_instance_name"
 
-# Check running containers
-sudo docker-compose ps
-
-# View logs
-sudo docker-compose logs
-
-# View logs for specific service
-sudo docker-compose logs api
-sudo docker-compose logs gradio-app
-
-# Follow logs in real-time
-sudo docker-compose logs -f
-```
-
-## 11. Troubleshooting
+## 10. Troubleshooting
 
 Here are common issues you might encounter and their solutions:
 
@@ -291,7 +302,7 @@ Here are common issues you might encounter and their solutions:
 **Problem:** Cannot SSH into the instance.
 **Solution:**
 - Verify the instance is running in the GCP console
-- Check your zone is correct (should be `us-central1-c`)
+- Check your zone is correct (should be `us-central-f`)
 - Try adding `--verbosity=debug` to the SSH command to see detailed error messages
 - Make sure your gcloud SDK is authenticated: `gcloud auth list`
 
@@ -352,7 +363,7 @@ Here are common issues you might encounter and their solutions:
 - Try decompressing first: `gunzip mnist-flask-app.tar.gz` then `docker load < mnist-flask-app.tar`
 - Check Docker service is running: `sudo systemctl status docker`
 
-## 12. Cleanup
+## 11. Cleanup
 To cleanup, you can stop the Docker containers and the instance:
 
 On the instance terminal:
@@ -368,11 +379,10 @@ rm mnist-flask-app.tar.gz mnist-gradio-app.tar.gz
 ```
 
 You can stop the instance from the Google Cloud Platform console.
-You can delete it if you want to completely remove it, but you might want to keep it for your project since it is configured now. If you choose to keep it, you can start it again later.
+You can delete it if you want to completely remove it, but you might want to keep it for your project since it is configured now.
+If you choose to keep it, you can start it again later.
 
+## 12. Do not forget to stop the instance!!!
 **Always remember to stop the instance when you are not using it to avoid unnecessary charges.** You have a limited $50 credit so be careful with your usage.
 
-You can also:
-- Delete the firewall rules: `gcloud compute firewall-rules delete allow-mnist-api` and `gcloud compute firewall-rules delete allow-mnist-gradio`
-- Delete local tar files: `rm mnist-flask-app.tar.gz mnist-gradio-app.tar.gz`
-- Keep your local Docker images for future deployments or remove them: `sudo docker image rm mnist-flask-app:latest mnist-gradio-app:latest`
+
