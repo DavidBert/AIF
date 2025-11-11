@@ -41,10 +41,12 @@ This will guide you through the process of setting up your GCloud SDK. You will 
 
 ## 4. Connect to your instance
 Once your instance is created, you can find its name in the VM instances list on the Google Cloud Platform console.
-You can connect to it using the following command (replace `your_instance_name` with the actual instance name):
+![](../img/gcloud_docker/instance_created.png)  
+You can connect to it using the following command (replace `your_instance_name` with the actual instance name and `us-central1-f` with the actual region):
 ```console
-gcloud compute ssh --zone "us-central1-c" "your_instance_name"
+gcloud compute ssh --zone "us-central1-f" "your_instance_name"
 ```
+You can also directly get the command to connect to your instance by clicking on the arrow next to the __"SSH"__ button in the Google Cloud Platform console and then __"view gcloud command"__.
 You should now be connected to your instance and see its terminal.
 
 ## 5. Install Docker on the instance
@@ -99,9 +101,13 @@ This gives you the path to the home directory of the user on the instance. You s
 
 Now on a separate terminal on your local machine, navigate to your MNIST project directory and run the following command to send the folder to the instance:
 ```console
-gcloud compute scp --recurse --zone "us-central1-c" "." "your_instance_name":/home/your_username/mnist-docker-app/
+gcloud compute scp --recurse --zone "us-central1-f" "." "your_instance_name":/home/your_username/mnist-docker-app
 ```
-
+Remember to replace `us-central1-f` with the actual region.
+For exemple for my instance it would be:
+```console
+gcloud compute scp --recurse --zone "us-central1-f" "." aif-project:/home/david/mnist-docker-app
+```
 Then on the instance terminal, go to the folder:
 ```console
 cd mnist-docker-app
@@ -117,8 +123,8 @@ The `-d` flag runs the containers in detached mode (in the background).
 Now go to the Google Cloud Platform console to get the external IP address of your instance.
 ![](../img/gcloud_flask/external_ip.png)
 
-You should now be able to access:
-- The Gradio interface at `http://your_instance_ip:7860`
+You should now be able to access:   
+- The Gradio interface at `http://your_instance_ip:7860`  
 - The API at `http://your_instance_ip:5075`
 
 Test the Gradio interface by drawing a digit and checking if it gets predicted correctly.
