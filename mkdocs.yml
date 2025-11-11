@@ -46,8 +46,8 @@ nav:
 
     - Conformal Prediction:
       - Course and practical session: conformal/conformal.md
-  # - Project:
-  #   - Project presentation: project/project.md
+  - Project:
+    - Project presentation: project/project.md
     # - Help on project: project/Docker_compose.md
   #   - Project evaluation: project/Assignment.md
   # - Schedule: schedule.md
