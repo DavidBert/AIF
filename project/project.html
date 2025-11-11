@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Project: - AI Frameworks</title>
+        <title>Project presentation - AI Frameworks</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -67,6 +67,10 @@
             
 <li>
     <a href="../developpement/docker.html" class="dropdown-item">Practical session 2</a>
+</li>
+            
+<li>
+    <a href="../developpement/gcp_docker.html" class="dropdown-item">Practical session 3</a>
 </li>
             
 <li>
@@ -148,6 +152,15 @@
   </li>
                                 </ul>
                             </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Project</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="project.html" class="dropdown-item active" aria-current="page">Project presentation</a>
+</li>
+                                </ul>
+                            </li>
                             <li class="nav-item">
                                 <a href="https://github.com/DavidBert/AIF" class="nav-link">Github repository</a>
                             </li>
@@ -159,6 +172,16 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../conformal/conformal.html" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" class="nav-link disabled">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
                     </ul>
                 </div>
             </div>
@@ -177,8 +200,36 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="1"><a href="#project" class="nav-link">Project:</a>
+            <li class="nav-item" data-bs-level="1"><a href="#final-project-ai-tools-for-a-movie-streaming-platform" class="nav-link">🎬 Final Project — AI Tools for a Movie Streaming Platform</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#project-overview" class="nav-link">Project Overview</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#part-1-predicting-movie-genre-from-posters" class="nav-link">Part 1 — Predicting Movie Genre from Posters</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#part-2-validating-movie-posters" class="nav-link">Part 2 — Validating Movie Posters</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#part-3-predicting-genre-and-recommending-movies-from-plots" class="nav-link">Part 3 — Predicting Genre and Recommending Movies from Plots</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#part-4-natural-language-movie-discovery" class="nav-link">Part 4 — Natural Language Movie Discovery</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#general-instructions" class="nav-link">⚙️ General Instructions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#evaluation-criteria" class="nav-link">Evaluation Criteria</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -186,126 +237,146 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="project">Project:</h1>
-<p>Welcome to the final project presentation page!<br />
-In the following, you will find the instructions for the project that you will have to complete during the course.<br />
-This project will be composed of 4 parts.<br />
-I tried to build it in a way that would make you use all the tools and frameworks that we will see in class and that would let you start working each individual part once you have completed the corresponding practical session.  </p>
-<p>We will build a web application that will help users to perform many operations about movies like:
-- predicting the genre of a movie according to its plot or its poster
-- recommending movies according to the posters or their plots
-- detect wether an image is a poster of a movie</p>
-<p>During the last hour of every second practical session, you are allowed to start working on the project.<br />
-I really recommend you to do so, but I also encourage you to finish the corresponding practical session before starting the project.<br />
-I will provide you with a solution for the practical session that you can use as a reference.</p>
-<h3 id="part-1-development-tools-for-data-scientist">Part 1: Development tools for Data Scientist</h3>
-<p>You should now have completed practical sessions associated to the project.
-If not I would recommend to do them before continuing.</p>
-<p>In the practical sessions, you should have learned how to use docker and how to create a rest API using flask.<br />
-In parallel, you should have learned in HDDL how to use a pre-trained model and how to fine-tune it to perform a new task.  </p>
-<p>For this first part of the project, I would like you to train a pretrained model to predict the genre of a movie according to its poster.<br />
-Then you will have to create a rest API to predict the genre of a movie according to its poster. 
-Then use gradio to create a web interface that calls this API and allows users to upload a movie poster and get the predicted genre.<br />
-Once all this is done, you will have to create a docker file to package your API and web interface and push it to a github repository that you will have to share with me. <br />
-Please do not store the models weights in your repository, but rather on a cloud like Google drive and make your docker file download them at runtime.
-<img alt="" src="../img/project/Project1.png" /></p>
-<h4 id="dataset">Dataset:</h4>
-<p>I created a dataset of movie posters and their corresponding genres.<br />
-Posters are stored in their corresponding genre folder in such a way that it is easy for you to load with the <code>torchvision.datasets.ImageFolder</code> class. 
-You can download it <a href="https://drive.google.com/file/d/1-1OSGlN2EOqyZuehBgpgI8FNOtK-caYf/view?usp=sharing">here</a>.<br />
-Do not store it in your Github repository!</p>
-<h4 id="additional-help">Additional help:</h4>
-<p>An easy way to run both the web app and the REST API in a single  container would consist to create a bash script that runs both the web app and the API service.<br />
-This is not the best practice, but it might be easier for you to do so. Thus you can start with this solution and then try to run the web app and the annoy index in two different containers.</p>
-<p>Here is an example of a bash script that runs both the web app and the rest API:  </p>
-<pre><code class="language-bash">#!/bin/bash
-python python api.py &amp;  gradio_app.py 
-</code></pre>
-<p>The <code>&amp;</code> operator is used to put jobs in the background.<br />
-Here the API service is run in the background and the web app is run in the foreground.<br />
-Call this script in your docker file to run the application.</p>
-<p>The good practice consists in runnnig the web app in a docker container and the API in another container.<br />
-To do so you can use docker-compose. 
-Look at the <a href="https://docs.docker.com/compose/gettingstarted/">docker-compose documentation</a> to learn how to use it. </p>
-<p>Here are the theroritical steps to follow to run the web app and the API in two different containers using docker-compose.<br />
-First, you need to create Dockerfiles for both the Gradio web app and the API.<br />
-Then create a docker-compose.yml file to define and run the multi-container Docker applications. For exemple something like:  </p>
-<pre><code class="language-yaml">version: '3.8'
-services:
-  gradio-app:
-    build:
-      context: .
-      dockerfile: Dockerfile-gradio
-    ports:
-      - &quot;7860:7860&quot;
-    depends_on:
-      - model_api
-
-  model_api:
-    build:
-      context: .
-      dockerfile: Dockerfile-api
-    ports:
-      - &quot;5000:5000&quot;
-</code></pre>
-<p>Make sure in your gradio app to call the API through the url <code>http://model_api:5000/</code> as the base URL for API requests.</p>
-<p>To run the application, run the following command in the same directory as the docker-compose.yml file:</p>
-<pre><code class="language-bash">docker-compose up
-</code></pre>
-<p>The Gradio web app should be accessible at http://localhost:7860.<br />
-The REST API, if it has endpoints exposed, will be accessible at http://localhost:5000.</p>
-<p>To stop and remove the containers, networks, and volumes created by docker-compose up, run:</p>
-<pre><code class="language-bash">docker-compose down
-</code></pre>
-<h3 id="part-2-recommendation-systems-based-on-posters">Part 2: Recommendation systems based on posters</h3>
-<p>During the practical session, you saw how to build a recommender system based on content using the movie posters.<br />
-Use <code>Gradio</code> to build a web app that takes as input a movie poster and returns the images of the 5 most similar movies according to their poster.<br />
-I would like you to mimic a real recommender system using a vector database.<br />
-To do so I want the database to be requested by the web app through a REST API. 
-The web app should be light and fast.<br />
-Use a pre-trained network only to extract the vector representation of the input image and call through the REST API the annoy index you built during the practical session to find the 5 most similar movies.
-<img alt="" src="../img/project/Project2.png" />    </p>
-<p>For the sake of simplicity, I would recommend you to use the same network you used in the previous part and just adding a new route to the API to return the 5 most similar movies.  </p>
-<h4 id="dataset_1">Dataset:</h4>
-<p>Use the same dataset as in the practical session.  </p>
-<h3 id="part-3-recommendation-systems-based-on-plots">Part 3: Recommendation systems based on plots</h3>
-<p>During the practical session, you saw how to compute embeddings of documents using three techniques: Bag_of_words, Word2Vec and BERT.<br />
-You will now build a recommender system based on content using the movie plots.<br />
-To do so get the movies_metadata.csv file from <a href="https://www.kaggle.com/rounakbanik/the-movies-dataset">here</a> and compute the embeddings of each movie plot (the <em>overview</em> column) using at least a bag-of_word technique and a pre-trained model (Glove or DistillBert).
-You sould create one new column for each embedding technique.  <br />
-Once this is done, build an annoy index for each embedding.<br />
-Similarly to the recommender system project, I want you to build a web app that takes a movie description as input and returns the 5 most similar movies according to their plot.
-The web app should be light and fast and provide the possibility to choose the embedding technique to use.</p>
-<!-- ### Part 4 OOD: 
-Modify the part 1 to whether the image uploaded by the user is a movie poster or not.  
-If it is a movie poster, predict the genre of the movie.  
-If it is not a movie poster, display a message to the user. -->
-<h3 id="part-4-xai">Part 4 XAI:</h3>
-<p>Modify the part 1 to show the user the explanation of the prediction.<br />
-Provide 3 different explanations using 3 different XAI methods of your choice.  </p>
-<h3 id="what-you-are-going-to-submit">What you are going to submit:</h3>
-<p>Make a <strong>private</strong> repository on github and share it with me.<br />
-In this repository, you will have to store the following:
-- The code for the 4 parts of the project
-- The corresponding docker files and docker-compose file if any
-- A readme file explaining how to run the project. I will make nothing more than running the commands written in the readme file.  I suggest you to try to run the entire project from a clean environment to make sure that it works.
-- Do not store the models weights in your repository, but rather on a cloud like Google drive and make your docker file download them at runtime.
-- Same for the dataset, not stored on a drive if it is not necessary but also downloaded at runtime.</p>
-<h3 id="evaluation-criteria">Evaluation criteria:</h3>
+<h1 id="final-project-ai-tools-for-a-movie-streaming-platform">🎬 Final Project — AI Tools for a Movie Streaming Platform</h1>
+<p>Welcome to the <strong>Final Project Presentation Page</strong>!  </p>
+<p>In this document, you’ll find the complete instructions for the final project you’ll complete during the course.  </p>
+<p>The goal of this project is to apply the knowledge you’ve gained to a <strong>real-world problem</strong>:  </p>
+<blockquote>
+<p>Integrating AI tools into a movie streaming platform.</p>
+</blockquote>
+<hr />
+<h2 id="project-overview">Project Overview</h2>
+<p>You are a <strong>data scientist</strong> working for a movie streaming platform.<br />
+Your task is to automate catalog management and enhance the overall user experience using AI.</p>
+<p>You will be responsible for:</p>
 <ul>
-<li>The project is working and runs without errors</li>
-<li>The readme file is well written and explains how to run the project</li>
-<li>Clarity of the code</li>
-<li>The project is well organized</li>
-<li>No unecessary libraries are installed in each container</li>
+<li><strong>Automating genre classification</strong> of movies based on their posters or plots.  </li>
+<li><strong>Validating uploaded posters</strong> to ensure they are actual movie posters.  </li>
+<li><strong>Recommending similar movies</strong> based on their plots.  </li>
+<li><strong>Helping users discover movies</strong> they might like through natural language interaction.  </li>
 </ul>
-<h3 id="deadline">Deadline:</h3>
-<p>The project is due on the 16th of February at 11:59 PM.<br />
-Invite me to the repository.
-Please send me an email to confirm that you have completed the project containing the name of all the members of the group and the link to the repository. </p>
-<h3 id="additional-help_1">Additional help:</h3>
-<p>You can find a small example of how to create and orchestrate both the API and the web interface using docker compose <a href="Docker_compose_annoy.html">here</a>.
-Try to understand how it works and then modify it to fit the project.</p></div>
+<p>You will:</p>
+<ul>
+<li>Deploy your tools as a <strong>REST API</strong>.  </li>
+<li>Create a <strong>web interface</strong> for user interaction.  </li>
+<li><strong>Containerize</strong> both components using Docker.  </li>
+<li><strong>Deploy them to a cloud provider</strong> for public access.  </li>
+</ul>
+<hr />
+<h2 id="part-1-predicting-movie-genre-from-posters">Part 1 — Predicting Movie Genre from Posters</h2>
+<p>You will be provided with a dataset of movie posters and their genres.<br />
+Download it here: <a href="https://drive.google.com/file/d/1-1OSGlN2EOqyZuehBgpgI8FNOtK-caYf/view?usp=sharing">Movie Posters Dataset</a></p>
+<p>Your goal: <strong>Train a model</strong> that predicts a movie’s genre from its poster.</p>
+<blockquote>
+<p>⚠️ Note: Do not worry too much about your model performance, the goal is to make it work and be able to deploy it as an API. Each movie is assigned only one genre for simplicity. This makes the task easier to implement, but possibly more confusing for the model.</p>
+</blockquote>
+<p>By this point, you should know how to:
+- Use <strong>Docker</strong>
+- Create a <strong>Flask REST API</strong>
+- Deploy a docker image on a cloud provider</p>
+<h3 id="steps">✅ Steps</h3>
+<ol>
+<li>Train your model using the dataset.  </li>
+<li>Save the model weights (ensure CPU compatibility).  </li>
+<li>Create a <strong>Flask REST API</strong> that predicts movie genres from posters.  </li>
+<li>Build a <strong>Gradio web interface</strong> to interact with the API.  </li>
+<li>Test everything locally.  </li>
+<li>Create a <strong>Docker image</strong> for the API and web interface.  </li>
+<li>Test the image locally.  </li>
+<li>Deploy it to a <strong>cloud provider</strong> and verify functionality.  </li>
+<li>Push all code and Docker files to <strong>GitHub</strong>.  </li>
+</ol>
+<hr />
+<h2 id="part-2-validating-movie-posters">Part 2 — Validating Movie Posters</h2>
+<p>Sometimes, uploaded images are <strong>not real movie posters</strong> and must be rejected.<br />
+You will extend your application to detect whether an image is a valid movie poster.</p>
+<h3 id="steps_1">✅ Steps</h3>
+<ol>
+<li>Choose and implement a method to verify that an image is a movie poster.  </li>
+<li>Add a <strong>new API route</strong> for this validation.  </li>
+<li>Add a <strong>new button</strong> in the web interface for poster validation.  </li>
+<li>Update the Docker configuration and rebuild the image.  </li>
+<li>Test locally.  </li>
+<li>Deploy to the cloud and verify it works.  </li>
+<li>Push all code and Docker files to <strong>GitHub</strong>.  </li>
+</ol>
+<hr />
+<h2 id="part-3-predicting-genre-and-recommending-movies-from-plots">Part 3 — Predicting Genre and Recommending Movies from Plots</h2>
+<p>If a poster is unavailable or invalid, you can use the <strong>movie plot</strong> to predict its genre and recommend similar movies.</p>
+<p>You’ll use <strong>NLP techniques</strong> learned in the course to build this functionality.</p>
+<h3 id="steps_2">✅ Steps</h3>
+<ol>
+<li>Train a model to predict movie genres from plots.  </li>
+<li>Compute and store plot embeddings in an <strong>Annoy index</strong>.  </li>
+<li>Add API routes to:</li>
+<li>Predict genre from a plot.  </li>
+<li>Recommend similar movies based on plot similarity.  </li>
+<li>Add buttons to the web interface for:</li>
+<li>Genre prediction from plot.  </li>
+<li>Movie recommendations.  </li>
+<li>Update the Docker configuration, rebuild the image, and test locally.  </li>
+<li>Deploy to the cloud and verify everything works.  </li>
+<li>Push all code and Docker files to <strong>GitHub</strong>.  </li>
+</ol>
+<blockquote>
+<p>💡 Optional: You may deploy the Annoy index in a <strong>separate container</strong> for scalability.<br />
+This is good practice but <strong>not required</strong> — you won’t be penalized for keeping it in a single container.</p>
+</blockquote>
+<hr />
+<h2 id="part-4-natural-language-movie-discovery">Part 4 — Natural Language Movie Discovery</h2>
+<p>In this final part, users will be able to <strong>find movies they might like</strong> by chatting with the platform in <strong>natural language</strong>.</p>
+<h3 id="steps_3">✅ Steps</h3>
+<ol>
+<li>Implement a <strong>Retrieval-Augmented Generation (RAG)</strong> pipeline that allows conversational movie search.  </li>
+<li>More implementation details will be provided later.  </li>
+</ol>
+<hr />
+<h2 id="general-instructions">⚙️ General Instructions</h2>
+<ul>
+<li>👥 Work in <strong>groups of 4–5 students</strong>.  </li>
+<li>🗂️ Use a <strong>single GitHub repository</strong> for the project.  </li>
+<li>🧾 Include a <strong>clear README</strong> explaining how to run the project locally.  </li>
+<li>🌱 Use <strong>Git throughout the project</strong> — create at least one branch per part.  </li>
+<li>💻 The web application must be <strong>fully functional</strong> for project validation.  </li>
+<li>☁️ Do <strong>not store model weights or datasets</strong> in the repository.  </li>
+<li>Host them on a cloud service (e.g., Google Drive).  </li>
+<li>Your Dockerfile should <strong>download them at runtime</strong> if needed.  </li>
+</ul>
+<hr />
+<h2 id="evaluation-criteria">Evaluation Criteria</h2>
+<p>Each part of the project is worth <strong>5 points</strong>, distributed as follows:</p>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Working API deployed on a cloud provider</td>
+<td>2 pts</td>
+</tr>
+<tr>
+<td>Working web interface deployed on a cloud provider</td>
+<td>1 pt</td>
+</tr>
+<tr>
+<td>Clean and well-documented code</td>
+<td>1 pt</td>
+</tr>
+<tr>
+<td>Proper Git usage (branches, commits, etc.)</td>
+<td>1 pt</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ Every group member must actively contribute to the project and be able to explain their work.<br />
+Commit history and code contributions will be reviewed to verify participation.</p>
+</blockquote>
+<hr />
+<h3 id="good-luck-and-have-fun-building-your-ai-augmented-movie-platform">Good luck, and have fun building your AI augmented movie platform!</h3></div>
             </div>
         </div>
 

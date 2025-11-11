@@ -70,6 +70,10 @@
 </li>
             
 <li>
+    <a href="gcp_docker.html" class="dropdown-item">Practical session 3</a>
+</li>
+            
+<li>
     <a href="quizz.html" class="dropdown-item">Quizz</a>
 </li>
     </ul>
@@ -148,6 +152,15 @@
   </li>
                                 </ul>
                             </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Project</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../project/project.html" class="dropdown-item">Project presentation</a>
+</li>
+                                </ul>
+                            </li>
                             <li class="nav-item">
                                 <a href="https://github.com/DavidBert/AIF" class="nav-link">Github repository</a>
                             </li>
@@ -165,7 +178,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="quizz.html" class="nav-link">
+                                <a rel="next" href="gcp_docker.html" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -232,7 +245,7 @@ We will then use this image to instantiate a container that could be hosted on a
 Make sure to have finished the <a href="mnist.html">previous practical session</a> before starting this one.</p>
 <p>To make our full application work, we want to package both the Gradio application and the API into a two containers.<br />
 To do so, we will create two Dockerfiles, one for the API and one for the Gradio application.<br />
-We will then use docker-compose to run both the API and the Gradio application in a single container.</p>
+We will then use docker-compose to run both the API and the Gradio application with a single command and two different containers.</p>
 <p>This is the plan, but it's easier to make and test both containers separately when debugging.
 We will then create independent containers for each application and test them separately and then we will use docker-compose to run them together.<br />
 Let's start by creating the Dockerfile corresponding to the API.  </p>
@@ -333,8 +346,8 @@ numpy==1.26.4
 
 WORKDIR /app
 
-COPY requirements_gradio.txt .
-RUN pip install --no-cache-dir -r requirements_gradio.txt
+COPY requirements-gradio.txt .
+RUN pip install --no-cache-dir -r requirements-gradio.txt
 
 # App code
 COPY . /app
@@ -403,13 +416,13 @@ services: # services to run
 - <code>gradio-app</code>: the Gradio application service
 The <code>depends_on</code> directive is used to specify that the Gradio application service depends on the API service.<br />
 This means that the Gradio application service will not start until the API service is running.  </p>
-<p>Both containers are exposed on the host machine on the ports 5075 and 7860 and will be able to communicate with each other.
-Thus let's revert the change we made in the <code>mnist_gradio.py</code> file to use the API from the localhost.
+<p>Both containers are exposed on the host machine on the ports 5075 and 7860 and will be able to communicate with each other.</p>
+<p>We need to change the API URL in the <code>mnist_gradio.py</code> file to use the API from the docker-compose service name.
 Change the following line:</p>
 <pre><code class="language-python">response = requests.post(&quot;http://host.docker.internal:5075/predict&quot;, data=img_binary.getvalue())
 </code></pre>
 <p>to</p>
-<pre><code class="language-python">response = requests.post(&quot;http://0.0.0.0:5075/predict&quot;, data=img_binary.getvalue())
+<pre><code class="language-python">response = requests.post(&quot;http://api:5075/predict&quot;, data=img_binary.getvalue())
 </code></pre>
 <p>To run the application, run the following command:</p>
 <pre><code class="language-bash">sudo docker-compose up

@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Practical session 3 - AI Frameworks</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/docco.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../index.html">AI Frameworks</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../index.html" class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Courses</a>
+                                <ul class="dropdown-menu">
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Development tools for Data Scientist</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="course.html" class="dropdown-item">Course slides</a>
+</li>
+            
+<li>
+    <a href="git_intro.html" class="dropdown-item">Introduction to Git</a>
+</li>
+            
+<li>
+    <a href="pytorch.html" class="dropdown-item">Introduction to Pytorch</a>
+</li>
+            
+<li>
+    <a href="api.html" class="dropdown-item">Introduction to REST APIs</a>
+</li>
+            
+<li>
+    <a href="mnist.html" class="dropdown-item">Practical session 1</a>
+</li>
+            
+<li>
+    <a href="docker.html" class="dropdown-item">Practical session 2</a>
+</li>
+            
+<li>
+    <a href="gcp_docker.html" class="dropdown-item active" aria-current="page">Practical session 3</a>
+</li>
+            
+<li>
+    <a href="quizz.html" class="dropdown-item">Quizz</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Recommender systems</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../rec_sys/rec_sys.html" class="dropdown-item">Course and practical session</a>
+</li>
+            
+<li>
+    <a href="../rec_sys/quizz.html" class="dropdown-item">Quizz</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Introduction to Reinforcement Learning</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../rl/rl.html" class="dropdown-item">Course and practical session</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Interpretability</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../xai/interpretability.html" class="dropdown-item">Course and practical session</a>
+</li>
+            
+<li>
+    <a href="../xai/quizz.html" class="dropdown-item">Quizz</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Introduction to Natural Language Processing (NLP)</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../nlp/nlp.html" class="dropdown-item">Course and practical session</a>
+</li>
+            
+<li>
+    <a href="../nlp/quizz.html" class="dropdown-item">Quizz</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Out-of-Distribution and Anomaly Detection</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../ood/ood.html" class="dropdown-item">Course and practical session</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Conformal Prediction</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../conformal/conformal.html" class="dropdown-item">Course and practical session</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Project</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../project/project.html" class="dropdown-item">Project presentation</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/DavidBert/AIF" class="nav-link">Github repository</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="docker.html" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="quizz.html" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#deploy-a-docker-application-on-google-cloud-platform" class="nav-link">Deploy a Docker application on Google Cloud Platform</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#0-prerequisites" class="nav-link">0. Prerequisites</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#1-google-cloud-account-and-free-coupon-code" class="nav-link">1. Google cloud account and free coupon code</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#2-create-a-new-instance" class="nav-link">2. Create a new instance</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#3-install-the-gcloud-sdk-on-your-local-machine" class="nav-link">3. Install the GCloud SDK on your local machine</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#4-connect-to-your-instance" class="nav-link">4. Connect to your instance</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#5-install-docker-on-the-instance" class="nav-link">5. Install Docker on the instance</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#6-prepare-your-local-project" class="nav-link">6. Prepare your local project</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#7-configure-firewall-rules" class="nav-link">7. Configure firewall rules</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#8-deploy-by-copying-files-directly" class="nav-link">8. Deploy by copying files directly</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#9-deploy-using-docker-images" class="nav-link">9. Deploy using Docker images</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#10-troubleshooting" class="nav-link">10. Troubleshooting</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#11-cleanup" class="nav-link">11. Cleanup</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#12-do-not-forget-to-stop-the-instance" class="nav-link">12. Do not forget to stop the instance!!!</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="deploy-a-docker-application-on-google-cloud-platform">Deploy a Docker application on Google Cloud Platform</h1>
+<p>This tutorial is a follow-up to the <a href="docker.html">Docker tutorial</a>. Make sure you have completed it before starting this one.
+We will deploy the dockerized MNIST application (API + Gradio interface) to Google Cloud Platform.</p>
+<h2 id="0-prerequisites">0. Prerequisites</h2>
+<p>Make sure you have completed the <a href="docker.html">Docker tutorial</a> and have the MNIST project ready.
+You can download the full solution <a href="https://github.com/DavidBert/AIF/blob/website/docs/other/MNIST.zip">here</a> to be sure to have something working before starting this tutorial.<br />
+Make sure that you can run the application locally before starting this tutorial.</p>
+<pre><code class="language-console">docker-compose up
+</code></pre>
+<p>You should be able to access the Gradio interface at <code>http://localhost:7860</code> and the API at <code>http://localhost:5075</code>.</p>
+<h2 id="1-google-cloud-account-and-free-coupon-code">1. Google cloud account and free coupon code</h2>
+<p>Click on the link sent by email to redeem your free coupon code (you must use your INSA mail address to redeem it).
+Once you have your coupon code, go to <a href="https://console.cloud.google.com/education?pli=1">this link</a> to get your credits (you will need a Google account, if needed, you can create one using your INSA mail address).
+<img alt="" src="../img/gcloud_flask/coupon.png" /></p>
+<h2 id="2-create-a-new-instance">2. Create a new instance</h2>
+<p>On the GCloud homepage, click on the side bar menu on the left and select "Compute Engine" -&gt; "VM instances".
+<img alt="" src="../img/gcloud_flask/vm_instances.png" /><br />
+Then click on the "Create project button", and create a project named <em>AIF</em>. No need to fill in the other fields.
+<img alt="" src="../img/gcloud_flask/create_project.png" /><br />
+You should arrive at the following page, click on "Enable API"
+<img alt="" src="../img/gcloud_flask/enable_api.png" /><br />
+You should now see a page proposing to create a new instance. Click on "Create instance".
+Fill in the following fields in <strong>Machine configuration</strong> section:
+<img alt="" src="../img/gcloud_docker/vm_config.png" /><br />
+Then in the <strong>OS and Storage</strong> section,<br />
+<img alt="" src="../img/gcloud_docker/os_storage.png" /><br />
+ click on the "Change" button and select "Deep Learning in Linux" and select the first option.
+<img alt="" src="../img/gcloud_flask/disk_image.png" /><br />
+Then in the <strong>Networking</strong> section, set the following fields:
+<img alt="" src="../img/gcloud_flask/networking_1.png" /><br />
+In this same Networking section under <strong>Network interfaces</strong>, click the ▾ arrow next to
+<strong>default default IPv4 (10.128.0.0/20)</strong>.
+We will also use spot instances to save money. Spot instances are instances that are available at a lower price than on-demand instances, but are not guaranteed to be available. They are a good way to save money, but you should be aware that they can be interrupted at any time.<br />
+On the <strong>Advanced</strong> section, set the following fields to use spot instances and automatically stop the instance when it is not in use:
+<img alt="" src="../img/gcloud_docker/spot.png" />  </p>
+<p>Find <strong>External IPv4 address dropdown</strong>  and select  <strong>Reserve static address</strong>.
+Give it a name like docker-mnist-static-ip and click on <strong>Reserve</strong>.<br />
+<img alt="" src="../img/gcloud_flask/networking_2.png" /><br />
+Then click on the "Create" button to create the instance.</p>
+<h2 id="3-install-the-gcloud-sdk-on-your-local-machine">3. Install the GCloud SDK on your local machine</h2>
+<p>Now install the GCloud SDK on your local machine. Follow the instructions <a href="https://cloud.google.com/sdk/docs/install">here</a>.</p>
+<p>Once the GCloud SDK is installed, run the following command to initialize it:</p>
+<pre><code class="language-console">gcloud init
+</code></pre>
+<p>This will guide you through the process of setting up your GCloud SDK. You will need to authenticate with your Google account and set a default project (Twinsa in our case). No need to set a default region.</p>
+<h2 id="4-connect-to-your-instance">4. Connect to your instance</h2>
+<p>Once your instance is created, you can find its name in the VM instances list on the Google Cloud Platform console.
+<img alt="" src="../img/gcloud_docker/instance_created.png" /><br />
+You can connect to it using the following command:</p>
+<pre><code class="language-console">gcloud compute ssh --zone &quot;us-central1-f&quot; &quot;aif-project&quot;
+</code></pre>
+<p>or if your instance name or/and region are different:</p>
+<pre><code class="language-console">gcloud compute ssh --zone &quot;region&quot; &quot;your_instance_name&quot;
+</code></pre>
+<p>(replace <code>your_instance_name</code> and <code>region</code> with the actual instance name and region)
+You can also directly get the command to connect to your instance by clicking on the arrow next to the <strong>"SSH"</strong> button in the Google Cloud Platform console and then <strong>"view gcloud command"</strong>.
+You should now be connected to your instance and see its terminal.</p>
+<h2 id="5-install-docker-on-the-instance">5. Install Docker on the instance</h2>
+<p>On the instance terminal, run the following commands to install Docker:</p>
+<pre><code class="language-console">sudo apt-get update
+sudo curl -SL https://github.com/docker/compose/releases/download/v2.40.3/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+sudo systemctl start docker
+sudo systemctl enable docker
+</code></pre>
+<p>Verify Docker is installed correctly:</p>
+<pre><code class="language-console">sudo docker --version
+sudo docker-compose --version
+</code></pre>
+<h2 id="6-prepare-your-local-project">6. Prepare your local project</h2>
+<p>Make sure your local MNIST project (from the Docker tutorial) has the following structure:</p>
+<pre><code>mnist-docker-app/
+├── Dockerfile-api
+├── Dockerfile-gradio
+├── docker-compose.yml
+├── requirements-api.txt
+├── requirements-gradio.txt
+├── mnist_api.py
+├── mnist_gradio.py
+├── weights/
+│   └── mnist_net.pth
+└── (other files from your MNIST project)
+</code></pre>
+<p>Before deploying, we need to configure the firewall to allow traffic on the ports used by our application.</p>
+<h2 id="7-configure-firewall-rules">7. Configure firewall rules</h2>
+<p>On your local machine terminal (not on the instance), run the following commands to allow incoming traffic on ports 5075 (API) and 7860 (Gradio):</p>
+<pre><code class="language-console">gcloud compute firewall-rules create allow-mnist-api --allow tcp:5075
+gcloud compute firewall-rules create allow-mnist-gradio --allow tcp:7860
+</code></pre>
+<h2 id="8-deploy-by-copying-files-directly">8. Deploy by copying files directly</h2>
+<p>We will now deploy our application by copying the files to the instance.</p>
+<p>On the instance terminal, run the following command to get your current working directory:</p>
+<pre><code class="language-console">pwd
+</code></pre>
+<p>This gives you the path to the home directory of the user on the instance. You should see something like <code>/home/your_username</code>.</p>
+<p>Now on a separate terminal on your local machine, navigate to your MNIST project directory and run the following command to send the folder to the instance:</p>
+<pre><code class="language-console">gcloud compute scp --recurse --zone &quot;us-central1-f&quot; &quot;.&quot; &quot;aif-project&quot;:/home/your_username/mnist-docker-app
+</code></pre>
+<p>Remember to replace <code>us-central1-f</code> with the actual region and <code>aif-project</code> with the actual instance name if it is different.
+Then on the instance terminal, go to the folder:</p>
+<pre><code class="language-console">cd mnist-docker-app
+</code></pre>
+<p>Now start the application using docker-compose:</p>
+<pre><code class="language-console">sudo docker-compose up -d
+</code></pre>
+<p>The <code>-d</code> flag runs the containers in detached mode (in the background).</p>
+<p>Now go to the Google Cloud Platform console to get the external IP address of your instance.
+<img alt="" src="../img/gcloud_flask/external_ip.png" /></p>
+<p>You should now be able to access: <br />
+- The Gradio interface at <code>http://your_instance_ip:7860</code><br />
+- The API at <code>http://your_instance_ip:5075</code></p>
+<p>Test the Gradio interface by drawing a digit and checking if it gets predicted correctly.</p>
+<p>If you want to make changes to your application, simply modify the files on your local machine and repeat the <code>gcloud compute scp</code> command to copy the updated files to the instance. Then restart the containers:</p>
+<pre><code class="language-console">sudo docker-compose down
+sudo docker-compose up -d
+</code></pre>
+<h2 id="9-deploy-using-docker-images">9. Deploy using Docker images</h2>
+<p>Instead of copying all the source files and building on the instance, we can build Docker images locally and transfer them to the instance. This approach is more efficient, especially for larger applications.</p>
+<h3 id="step-1-build-images-locally">Step 1: Build images locally</h3>
+<p>On your local machine, navigate to your MNIST project directory and build the Docker images (we will use the --platform=linux/amd64 flag to build the images for the amd64 architecture. This is mostly useful for Macos users that are using an M chips and are by default building for the arm64 architecture):</p>
+<pre><code class="language-console">sudo docker build --platform=linux/amd64 -f Dockerfile-api -t mnist-flask-app:latest .
+sudo docker build --platform=linux/amd64 -f Dockerfile-gradio -t mnist-gradio-app:latest .
+</code></pre>
+<p>Verify the images were created:</p>
+<pre><code class="language-console">sudo docker image ls
+</code></pre>
+<p>You should see both <code>mnist-flask-app</code> and <code>mnist-gradio-app</code> in the list.</p>
+<h3 id="step-2-save-images-to-tar-files">Step 2: Save images to tar files</h3>
+<p>Save the Docker images as tar files that can be transferred (for Windows users, you might need to use PowerShell or Git Bash to run these commands):</p>
+<pre><code class="language-console">sudo docker save mnist-flask-app:latest | gzip &gt; mnist-flask-app.tar.gz
+sudo docker save mnist-gradio-app:latest | gzip &gt; mnist-gradio-app.tar.gz
+</code></pre>
+<p>These compressed tar files contain everything needed to run the containers, including all dependencies and your code.</p>
+<h3 id="step-3-transfer-images-to-the-instance">Step 3: Transfer images to the instance</h3>
+<p>Use <code>gcloud compute scp</code> to transfer the image files to your instance:</p>
+<pre><code class="language-console">gcloud compute scp --zone &quot;us-central-f&quot; mnist-flask-app.tar.gz aif-project:/home/your_username/
+gcloud compute scp --zone &quot;us-central-f&quot; mnist-gradio-app.tar.gz aif-project:/home/your_username/
+</code></pre>
+<p>We can now update the docker-compose.yml file to use the images instead of building them on the instance.<br />
+Replace the build section with the image section:</p>
+<pre><code class="language-yaml">version: '3.8' # specify docker-compose version
+services: # services to run
+  api: # name of the first service
+    image: mnist-flask-app:latest
+    ports:
+      - &quot;5075:5075&quot; # specify port mapping
+
+  gradio-app:
+    image: mnist-gradio-app:latest
+    ports:
+      - &quot;7860:7860&quot; # specify port mapping
+    depends_on:
+      - api # specify service dependencies
+</code></pre>
+<p>Now transfer the docker-compose.yml file:</p>
+<pre><code class="language-console">gcloud compute scp --zone &quot;us-central-f&quot; docker-compose.yml aif-project:/home/your_username/
+</code></pre>
+<h3 id="step-4-load-images-on-the-instance">Step 4: Load images on the instance</h3>
+<p>Connect to your instance:</p>
+<pre><code class="language-console">gcloud compute ssh --zone &quot;us-central-f&quot; &quot;aif-project&quot;
+</code></pre>
+<p>Load the Docker images from the tar files:</p>
+<pre><code class="language-console">sudo docker load &lt; mnist-flask-app.tar.gz
+sudo docker load &lt; mnist-gradio-app.tar.gz
+</code></pre>
+<p>Verify the images are loaded:</p>
+<pre><code class="language-console">sudo docker image ls
+</code></pre>
+<p>You should see both images listed.</p>
+<h3 id="step-5-run-the-application">Step 5: Run the application</h3>
+<p>Start the application using docker-compose:</p>
+<pre><code class="language-console">sudo docker-compose up -d
+</code></pre>
+<p>Check that the containers are running:</p>
+<pre><code class="language-console">sudo docker-compose ps
+</code></pre>
+<p>Your application should now be accessible at:
+- The Gradio interface at <code>http://your_instance_ip:7860</code>
+- The API at <code>http://your_instance_ip:5075</code></p>
+<h3 id="step-6-updating-the-application">Step 6: Updating the application</h3>
+<p>When you make changes to your application, follow these steps:</p>
+<ol>
+<li>On your local machine, rebuild the images:</li>
+</ol>
+<pre><code class="language-console">sudo docker build --platform=linux/amd64 -f Dockerfile-api -t mnist-flask-app:latest .
+sudo docker build --platform=linux/amd64 -f Dockerfile-gradio -t mnist-gradio-app:latest .
+</code></pre>
+<ol>
+<li>Save the updated images:</li>
+</ol>
+<pre><code class="language-console">sudo docker save mnist-flask-app:latest | gzip &gt; mnist-flask-app.tar.gz
+sudo docker save mnist-gradio-app:latest | gzip &gt; mnist-gradio-app.tar.gz
+</code></pre>
+<ol>
+<li>Transfer to the instance:</li>
+</ol>
+<pre><code class="language-console">gcloud compute scp --zone &quot;us-central-f&quot; mnist-flask-app.tar.gz aif-project:/home/your_username/
+gcloud compute scp --zone &quot;us-central-f&quot; mnist-gradio-app.tar.gz aif-project:/home/your_username/
+</code></pre>
+<ol>
+<li>On the instance, stop the containers, load the new images, and restart:</li>
+</ol>
+<pre><code class="language-console">sudo docker-compose down
+sudo docker load &lt; mnist-flask-app.tar.gz
+sudo docker load &lt; mnist-gradio-app.tar.gz
+sudo docker-compose up -d
+</code></pre>
+<h3 id="cleanup-local-tar-files">Cleanup local tar files</h3>
+<p>After successful deployment, you can delete the tar files to save disk space:</p>
+<p>On your local machine:</p>
+<pre><code class="language-console">rm mnist-flask-app.tar.gz mnist-gradio-app.tar.gz
+</code></pre>
+<p>On the instance:</p>
+<pre><code class="language-console">rm mnist-flask-app.tar.gz mnist-gradio-app.tar.gz
+</code></pre>
+<h3 id="why-using-docker-images-instead-of-copying-files">Why using Docker images instead of copying files?</h3>
+<p>Building Docker images and transferring them to the instance provides several advantages:
+- <strong>Faster deployment</strong>: No need to rebuild on the instance and the instance doesn't need to download and compile dependencies (the image is already built and ready to run)
+- <strong>Consistent builds</strong>: The exact same image that works on your local machine runs on the instance
+- <strong>Easier troubleshooting</strong>: If it works locally, it will work on the instance</p>
+<h2 id="10-troubleshooting">10. Troubleshooting</h2>
+<p>Here are common issues you might encounter and their solutions:</p>
+<h3 id="firewall-issues">Firewall Issues</h3>
+<p><strong>Problem:</strong> Cannot access the application via external IP.
+<strong>Solution:</strong>
+- Verify the firewall rules were created: <code>gcloud compute firewall-rules list</code>
+- Make sure the rules allow tcp:5075 and tcp:7860
+- Check if the containers are running on the instance: <code>sudo docker-compose ps</code></p>
+<h3 id="ssh-connection-problems">SSH Connection Problems</h3>
+<p><strong>Problem:</strong> Cannot SSH into the instance.
+<strong>Solution:</strong>
+- Verify the instance is running in the GCP console
+- Check your zone is correct (should be <code>us-central-f</code>)
+- Try adding <code>--verbosity=debug</code> to the SSH command to see detailed error messages
+- Make sure your gcloud SDK is authenticated: <code>gcloud auth list</code></p>
+<h3 id="docker-issues">Docker Issues</h3>
+<p><strong>Problem:</strong> Docker commands fail or containers don't start.
+<strong>Solution:</strong>
+- Verify Docker is installed: <code>sudo docker --version</code>
+- Check Docker service status: <code>sudo systemctl status docker</code>
+- View container logs: <code>sudo docker-compose logs</code>
+- Restart Docker service: <code>sudo systemctl restart docker</code>
+- Check disk space: <code>df -h</code> (Docker images can take a lot of space)</p>
+<h3 id="port-already-in-use">Port Already in Use</h3>
+<p><strong>Problem:</strong> Error message "Address already in use" when starting containers.
+<strong>Solution:</strong>
+- Stop all running containers: <code>sudo docker-compose down</code>
+- Check if processes are using the ports: <code>sudo lsof -i :5075</code> and <code>sudo lsof -i :7860</code>
+- Kill the processes if needed: <code>sudo kill -9 &lt;PID&gt;</code></p>
+<h3 id="file-transfer-issues">File Transfer Issues</h3>
+<p><strong>Problem:</strong> <code>gcloud compute scp</code> fails or is very slow.
+<strong>Solution:</strong>
+- Check your internet connection
+- Verify the instance name and zone are correct
+- For large files, consider using compression: <code>tar -czf</code> before transfer
+- Check disk space on both local machine and instance: <code>df -h</code></p>
+<h3 id="missing-model-weights">Missing Model Weights</h3>
+<p><strong>Problem:</strong> API fails with "model file not found" error.
+<strong>Solution:</strong>
+- Make sure the <code>weights/</code> directory and <code>mnist_net.pth</code> file exist in your local project
+- Verify the model path in <code>Dockerfile-api</code> matches your actual file location
+- When using the file copy method (Section 8), ensure the weights folder is copied: check with <code>ls -la mnist-docker-app/weights/</code> on the instance
+- When using Docker images (Section 9), the weights are included in the image. Verify the image was built correctly and loaded on the instance</p>
+<h3 id="containers-build-but-dont-communicate">Containers Build but Don't Communicate</h3>
+<p><strong>Problem:</strong> Gradio interface cannot connect to the API.
+<strong>Solution:</strong>
+- Verify both containers are running: <code>sudo docker-compose ps</code>
+- Check the API URL in <code>mnist_gradio.py</code> is set to <code>http://api:5075/predict</code>
+- Make sure the <code>depends_on</code> directive is in the <code>docker-compose.yml</code>
+- Check logs for both services: <code>sudo docker-compose logs</code></p>
+<h3 id="out-of-disk-space">Out of Disk Space</h3>
+<p><strong>Problem:</strong> Cannot build images or load images due to insufficient disk space.
+<strong>Solution:</strong>
+- Remove unused Docker resources: <code>sudo docker system prune -a</code>
+- Check disk usage: <code>df -h</code>
+- Remove old images: <code>sudo docker image prune -a</code>
+- Delete the tar.gz files after loading images: <code>rm *.tar.gz</code>
+- Consider increasing the instance's disk size in GCP console</p>
+<h3 id="docker-images-not-loading">Docker Images Not Loading</h3>
+<p><strong>Problem:</strong> <code>docker load</code> command fails or doesn't show the image.
+<strong>Solution:</strong>
+- Verify the tar.gz file is not corrupted: check file size with <code>ls -lh</code>
+- Make sure you used <code>gzip</code> when saving: <code>docker save ... | gzip &gt; file.tar.gz</code>
+- Try decompressing first: <code>gunzip mnist-flask-app.tar.gz</code> then <code>docker load &lt; mnist-flask-app.tar</code>
+- Check Docker service is running: <code>sudo systemctl status docker</code></p>
+<h2 id="11-cleanup">11. Cleanup</h2>
+<p>To cleanup, you can stop the Docker containers and the instance:</p>
+<p>On the instance terminal:</p>
+<pre><code class="language-console"># Stop containers
+sudo docker-compose down
+
+# Remove Docker images (optional)
+sudo docker image rm mnist-flask-app:latest mnist-gradio-app:latest
+
+# Remove tar files
+rm mnist-flask-app.tar.gz mnist-gradio-app.tar.gz
+</code></pre>
+<p>You can stop the instance from the Google Cloud Platform console.
+You can delete it if you want to completely remove it, but you might want to keep it for your project since it is configured now.
+If you choose to keep it, you can start it again later.</p>
+<h2 id="12-do-not-forget-to-stop-the-instance">12. Do not forget to stop the instance!!!</h2>
+<p><strong>Always remember to stop the instance when you are not using it to avoid unnecessary charges.</strong> You have a limited $50 credit so be careful with your usage.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../javascripts/mathjax.js"></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
