@@ -291,14 +291,14 @@ Then in the <strong>OS and Storage</strong> section,<br />
 <img alt="" src="../img/gcloud_flask/disk_image.png" /><br />
 Then in the <strong>Networking</strong> section, set the following fields:
 <img alt="" src="../img/gcloud_flask/networking_1.png" /><br />
-In this same Networking section under <strong>Network interfaces</strong>, click the ▾ arrow next to
-<strong>default default IPv4 (10.128.0.0/20)</strong>.
-We will also use spot instances to save money. Spot instances are instances that are available at a lower price than on-demand instances, but are not guaranteed to be available. They are a good way to save money, but you should be aware that they can be interrupted at any time.<br />
-On the <strong>Advanced</strong> section, set the following fields to use spot instances and automatically stop the instance when it is not in use:
-<img alt="" src="../img/gcloud_docker/spot.png" />  </p>
+In this same section under <strong>Network interfaces</strong>, click the ▾ arrow next to
+<strong>default default IPv4 (10.128.0.0/20)</strong>.</p>
 <p>Find <strong>External IPv4 address dropdown</strong>  and select  <strong>Reserve static address</strong>.
 Give it a name like docker-mnist-static-ip and click on <strong>Reserve</strong>.<br />
-<img alt="" src="../img/gcloud_flask/networking_2.png" /><br />
+<img alt="" src="../img/gcloud_flask/networking_2.png" />  </p>
+<p>We will also use spot instances to save money. Spot instances are instances that are available at a lower price than on-demand instances, but are not guaranteed to be available. They are a good way to save money, but you should be aware that they can be interrupted at any time.<br />
+On the <strong>Advanced</strong> section, set the following fields to use spot instances and automatically stop the instance when it is not in use:
+<img alt="" src="../img/gcloud_docker/spot.png" /><br />
 Then click on the "Create" button to create the instance.</p>
 <h2 id="3-install-the-gcloud-sdk-on-your-local-machine">3. Install the GCloud SDK on your local machine</h2>
 <p>Now install the GCloud SDK on your local machine. Follow the instructions <a href="https://cloud.google.com/sdk/docs/install">here</a>.</p>
