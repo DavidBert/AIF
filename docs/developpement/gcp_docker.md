@@ -33,15 +33,16 @@ Then in the __OS and Storage__ section,
 ![](../img/gcloud_flask/disk_image.png)  
 Then in the __Networking__ section, set the following fields:
 ![](../img/gcloud_flask/networking_1.png)  
-In this same Networking section under __Network interfaces__, click the ▾ arrow next to
+In this same section under __Network interfaces__, click the ▾ arrow next to
 __default default IPv4 (10.128.0.0/20)__.
-We will also use spot instances to save money. Spot instances are instances that are available at a lower price than on-demand instances, but are not guaranteed to be available. They are a good way to save money, but you should be aware that they can be interrupted at any time.  
-On the __Advanced__ section, set the following fields to use spot instances and automatically stop the instance when it is not in use:
-![](../img/gcloud_docker/spot.png)  
 
 Find __External IPv4 address dropdown__  and select  __Reserve static address__.
 Give it a name like docker-mnist-static-ip and click on __Reserve__.  
 ![](../img/gcloud_flask/networking_2.png)  
+
+We will also use spot instances to save money. Spot instances are instances that are available at a lower price than on-demand instances, but are not guaranteed to be available. They are a good way to save money, but you should be aware that they can be interrupted at any time.  
+On the __Advanced__ section, set the following fields to use spot instances and automatically stop the instance when it is not in use:
+![](../img/gcloud_docker/spot.png)  
 Then click on the "Create" button to create the instance.
 
 ## 3. Install the GCloud SDK on your local machine
