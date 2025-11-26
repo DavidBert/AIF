@@ -22,11 +22,11 @@
 
 ## Practical session
 
-[Practical session](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/DavidBert/AIF/blob/main/nlp/AIF_nlp.ipynb)
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DavidBert/AIF/blob/main/nlp/AIF_nlp.ipynb)
+[Practical session](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/DavidBert/AIF/blob/main/nlp/AIF_nlp_1.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DavidBert/AIF/blob/main/nlp/AIF_nlp_1.ipynb)
 
-[Solution](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/DavidBert/AIF/blob/solutions/nlp/AIF_nlp_solution.ipynb)
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DavidBert/AIF/blob/solutions/nlp/AIF_nlp_solution.ipynb)
+[Solution](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/DavidBert/AIF/blob/solutions/nlp/AIF_nlp_1_solution.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DavidBert/AIF/blob/solutions/nlp/AIF_nlp_1_solution.ipynb)
 
 <!-- Additional resource: TP on neural translation with PyTorch (taken from Supaero SDD NLP course) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wikistat/AI-Frameworks/blob/website/code/nlp/Natural_Language_Generation_pyTorch.ipynb) -->
 
