@@ -1,6 +1,6 @@
 # Introduction to natural language processing
 
-[Slides](https://docs.google.com/presentation/d/1cQA_sqzP3VEisP3mClnzmdFw1YzA9u39qLNvdBORKyg/edit?usp=sharing)
+[Slides](https://docs.google.com/presentation/d/1_0g1rSVp6pKkbgnW1oMqj7kdo9KWkqEDiPlZq24IueY/edit?usp=sharing)
 
 <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/xA4xadv-Ki4?si=qCbzB0NrfAd_hQ_g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
@@ -30,7 +30,7 @@
 
 <!-- Additional resource: TP on neural translation with PyTorch (taken from Supaero SDD NLP course) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wikistat/AI-Frameworks/blob/website/code/nlp/Natural_Language_Generation_pyTorch.ipynb) -->
 
-## Project:
+<!-- ## Project:
 
 During the practical session, you saw how to compute embeddings of documents using three techniques: Bag_of_words, Word2Vec and BERT.  
 You will now build a recommender system based on content using the movie plots.  
@@ -39,4 +39,4 @@ You sould create one new column for each embedding technique.
 Once this is done, build an annoy index for each embedding.  
 Similarly to the recommender system project, I want you to build a web app that takes a movie description as input and returns the 5 most similar movies according to their plot.
 The web app should be light and fast and provide the possibility to choose the embedding technique to use.
-
+ -->
