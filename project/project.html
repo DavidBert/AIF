@@ -303,25 +303,34 @@ You will extend your application to detect whether an image is a valid movie pos
 <hr />
 <h2 id="part-3-predicting-genre-and-recommending-movies-from-plots">Part 3 — Predicting Genre and Recommending Movies from Plots</h2>
 <p>If a poster is unavailable or invalid, you can use the <strong>movie plot</strong> to predict its genre and recommend similar movies.</p>
-<p>You’ll use <strong>NLP techniques</strong> learned in the course to build this functionality.</p>
+<p>You’ll use <strong>NLP techniques</strong> learned in the course to build this functionality.
+You will be provided with a dataset of movie plots corresponding to the movie posters dataset.  (Beware these are AI generated plots, they are not very good, and it's quite likely that they do not really reflect the movie plot.)
+Download it here: <a href="https://drive.google.com/file/d/1YHwaHYHSqv11_vqQpa7z1CO892B3431p/view?usp=sharing">Movie plots Dataset</a></p>
 <h3 id="steps_2">✅ Steps</h3>
 <ol>
 <li>Train a model to predict movie genres from plots.  </li>
 <li>Compute and store plot embeddings in an <strong>Annoy index</strong>.  </li>
 <li>Add API routes to:</li>
-<li>Predict genre from a plot.  </li>
-<li>Recommend similar movies based on plot similarity.  </li>
-<li>Add buttons to the web interface for:</li>
-<li>Genre prediction from plot.  </li>
-<li>Movie recommendations.  </li>
-<li>Update the Docker configuration, rebuild the image, and test locally.  </li>
+<li>
+<p>Predict genre from a plot.<br />
+   <!-- - Recommend similar movies based on plot similarity.   --></p>
+</li>
+<li>
+<p>Add buttons to the web interface for:</p>
+</li>
+<li>
+<p>Genre prediction from plot.<br />
+   <!-- - Movie recommendations.   --></p>
+</li>
+<li>
+<p>Update the Docker configuration, rebuild the image, and test locally.  </p>
+</li>
 <li>Deploy to the cloud and verify everything works.  </li>
 <li>Push all code and Docker files to <strong>GitHub</strong>.  </li>
 </ol>
-<blockquote>
-<p>💡 Optional: You may deploy the Annoy index in a <strong>separate container</strong> for scalability.<br />
-This is good practice but <strong>not required</strong> — you won’t be penalized for keeping it in a single container.</p>
-</blockquote>
+<!-- > 💡 Optional: You may deploy the Annoy index in a **separate container** for scalability.  
+> This is good practice but **not required** — you won’t be penalized for keeping it in a single container. -->
+
 <hr />
 <h2 id="part-4-natural-language-movie-discovery">Part 4 — Natural Language Movie Discovery</h2>
 <p>In this final part, users will be able to <strong>find movies they might like</strong> by chatting with the platform in <strong>natural language</strong>.</p>
