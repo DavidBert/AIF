@@ -80,6 +80,8 @@ You will extend your application to detect whether an image is a valid movie pos
 If a poster is unavailable or invalid, you can use the **movie plot** to predict its genre and recommend similar movies.
 
 You’ll use **NLP techniques** learned in the course to build this functionality.
+You will be provided with a dataset of movie plots corresponding to the movie posters dataset.  (Beware these are AI generated plots, they are not very good, and it's quite likely that they do not really reflect the movie plot.)
+Download it here: [Movie plots Dataset](https://drive.google.com/file/d/1YHwaHYHSqv11_vqQpa7z1CO892B3431p/view?usp=sharing)
 
 ### ✅ Steps
 
@@ -87,16 +89,16 @@ You’ll use **NLP techniques** learned in the course to build this functionalit
 2. Compute and store plot embeddings in an **Annoy index**.  
 3. Add API routes to:
    - Predict genre from a plot.  
-   - Recommend similar movies based on plot similarity.  
+   <!-- - Recommend similar movies based on plot similarity.   -->
 4. Add buttons to the web interface for:
    - Genre prediction from plot.  
-   - Movie recommendations.  
+   <!-- - Movie recommendations.   -->
 5. Update the Docker configuration, rebuild the image, and test locally.  
 6. Deploy to the cloud and verify everything works.  
 7. Push all code and Docker files to **GitHub**.  
 
-> 💡 Optional: You may deploy the Annoy index in a **separate container** for scalability.  
-> This is good practice but **not required** — you won’t be penalized for keeping it in a single container.
+<!-- > 💡 Optional: You may deploy the Annoy index in a **separate container** for scalability.  
+> This is good practice but **not required** — you won’t be penalized for keeping it in a single container. -->
 
 ---
 
