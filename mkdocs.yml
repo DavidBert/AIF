@@ -46,6 +46,9 @@ nav:
 
     - Conformal Prediction:
       - Course and practical session: conformal/conformal.md
+
+    - Retrieval-Augmented Generation:
+      - Course and practical session: rag/rag.md
   - Project:
     - Project presentation: project/project.md
     # - Help on project: project/Docker_compose.md
