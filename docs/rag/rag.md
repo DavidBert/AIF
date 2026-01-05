@@ -1,5 +1,5 @@
 # Retrieval-Augmented Generation 
-### By [Anthony Reveillac](https://anthonyreveillac.github.io/)
+### By [Anthony Reveillac](https://anthonyreveillac.github.io/Web-Site/)
 
 ## Course :
 [Course](https://anthonyreveillac.github.io/Web-Site/Teaching/RAG%20in%20a%20nutshell/)
