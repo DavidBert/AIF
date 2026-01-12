@@ -77,7 +77,7 @@ You will extend your application to detect whether an image is a valid movie pos
 
 ## Part 3 — Predicting Genre and Recommending Movies from Plots
 
-If a poster is unavailable or invalid, you can use the **movie plot** to predict its genre and recommend similar movies.
+If a poster is unavailable or invalid, you can use the **movie plot** to predict its genre.
 
 You’ll use **NLP techniques** learned in the course to build this functionality.
 You will be provided with a dataset of movie plots corresponding to the movie posters dataset.  (Beware these are AI generated plots, they are not very good, and it's quite likely that they do not really reflect the movie plot.)
@@ -105,12 +105,9 @@ Download it here: [Movie plots Dataset](https://drive.google.com/file/d/1YHwaHYH
 ## Part 4 — Natural Language Movie Discovery
 
 In this final part, users will be able to **find movies they might like** by chatting with the platform in **natural language**.
-
-### ✅ Steps
-
-1. Implement a **Retrieval-Augmented Generation (RAG)** pipeline that allows conversational movie search.  
-2. More implementation details will be provided later.  
-
+Taking inspiration of what you did in the practical session on RAGs, build a single Annoy index that will be used to retrieve movies based on their plots and posters. How to do this?  
+Use CLIP to compute the embeddings of the movie plots and posters and store them in the Annoy index.  
+Do not store the annoy index on the github repository, instead host it on a cloud service or just directly add it to your docker image.
 ---
 
 ## ⚙️ General Instructions
