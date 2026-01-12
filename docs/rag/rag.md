@@ -16,4 +16,4 @@
 
 
 [Practical session  2 with solution](https://minhaskamal.github.io/DownGit/#/home?url=https://https://github.com/DavidBert/AIF/blob/solutions/rag/AIF_RAG1_correction.ipynb)
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DavidBert/AIF/blob/solutions/rag/AIF_RAG2_correction.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DavidBert/AIF/blob/solutions/rag/solutions/AIF_RAG2_correction.ipynb)
