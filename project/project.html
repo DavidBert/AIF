@@ -312,7 +312,7 @@ You will extend your application to detect whether an image is a valid movie pos
 </ol>
 <hr />
 <h2 id="part-3-predicting-genre-and-recommending-movies-from-plots">Part 3 — Predicting Genre and Recommending Movies from Plots</h2>
-<p>If a poster is unavailable or invalid, you can use the <strong>movie plot</strong> to predict its genre and recommend similar movies.</p>
+<p>If a poster is unavailable or invalid, you can use the <strong>movie plot</strong> to predict its genre.</p>
 <p>You’ll use <strong>NLP techniques</strong> learned in the course to build this functionality.
 You will be provided with a dataset of movie plots corresponding to the movie posters dataset.  (Beware these are AI generated plots, they are not very good, and it's quite likely that they do not really reflect the movie plot.)
 Download it here: <a href="https://drive.google.com/file/d/1YHwaHYHSqv11_vqQpa7z1CO892B3431p/view?usp=sharing">Movie plots Dataset</a></p>
@@ -343,12 +343,10 @@ Download it here: <a href="https://drive.google.com/file/d/1YHwaHYHSqv11_vqQpa7z
 
 <hr />
 <h2 id="part-4-natural-language-movie-discovery">Part 4 — Natural Language Movie Discovery</h2>
-<p>In this final part, users will be able to <strong>find movies they might like</strong> by chatting with the platform in <strong>natural language</strong>.</p>
-<h3 id="steps_3">✅ Steps</h3>
-<ol>
-<li>Implement a <strong>Retrieval-Augmented Generation (RAG)</strong> pipeline that allows conversational movie search.  </li>
-<li>More implementation details will be provided later.  </li>
-</ol>
+<p>In this final part, users will be able to <strong>find movies they might like</strong> by chatting with the platform in <strong>natural language</strong>.
+Taking inspiration of what you did in the practical session on RAGs, build a single Annoy index that will be used to retrieve movies based on their plots and posters. How to do this?<br />
+Use CLIP to compute the embeddings of the movie plots and posters and store them in the Annoy index.<br />
+Do not store the annoy index on the github repository, instead host it on a cloud service or just directly add it to your docker image.</p>
 <hr />
 <h2 id="general-instructions">⚙️ General Instructions</h2>
 <ul>
