@@ -49,6 +49,7 @@ nav:
 
     - Retrieval-Augmented Generation:
       - Course and practical session: rag/rag.md
+      - Quiz: rag/quizz.md
   - Project:
     - Project presentation: project/project.md
     # - Help on project: project/Docker_compose.md
