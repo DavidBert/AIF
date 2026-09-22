@@ -14,10 +14,10 @@ jobs:
     steps:
     # Checks out this repository at the commit that triggered the run.
     # docs/ and mkdocs.yml now live on main, so no cross-repo checkout is needed.
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
     - name: Setup Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
       with:
         python-version: '3.x' # Use the version of Python you need
 
@@ -42,6 +42,12 @@ jobs:
         git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/DavidBert/MODIA_AIF.git
         
         git add .
-        git commit -m "Sync files from Repo AIF2024"
-        git push
+        # Skip the commit/push when the sync produced no change, so an
+        # unrelated docs commit doesn't fail the run on an empty commit.
+        if git diff --staged --quiet; then
+          echo "No documentation changes to sync."
+        else
+          git commit -m "Sync files from Repo AIF"
+          git push
+        fi
         mkdocs gh-deploy --force
