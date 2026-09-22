@@ -90,10 +90,9 @@ if __name__=='__main__':
 	print(f'test accuracy: {test_acc}')
 
 	# save your model
-	if not os.path.exists('./models'):
-		os.mkdir('./models')
-		
-	torch.save(net.state_dict(), f'./weights/mnist_net.pth')
+	os.makedirs('./weights', exist_ok=True)
+
+	torch.save(net.state_dict(), './weights/mnist_net.pth')
 
 	# for experiment management
 	writer.add_hparams({'lr': lr, 'bsize': batch_size}, {'hparam/accuracy': test_acc}, run_name='MNIST')

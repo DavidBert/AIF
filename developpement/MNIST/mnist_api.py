@@ -11,7 +11,7 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 app = Flask(__name__)
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--model_path', type=str, default = 'models/MNIST.pth', help='model path')
+parser.add_argument('--model_path', type=str, default = 'weights/mnist_net.pth', help='model path')
 args = parser.parse_args()
 model_path = args.model_path
 
@@ -58,7 +58,7 @@ def batch_predict():
 
     # Make prediction
     with torch.no_grad():
-        outputs = model(batch_tensor)
+        outputs = model(batch_tensor.to(device))
         _, predictions = outputs.max(1)
 
     return jsonify({"predictions": predictions.tolist()})

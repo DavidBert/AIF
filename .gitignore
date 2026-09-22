@@ -1,0 +1,15 @@
+# downloaded datasets, wherever a script writes them
+data/
+
+# artefacts produced by running the solutions
+weights/
+runs/
+site/
+
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/

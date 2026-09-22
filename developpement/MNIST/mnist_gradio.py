@@ -10,7 +10,7 @@ def recognize_digit(image):
     # By default the image is a 4 channels image, we need to convert it to a 1 channel image since the API expects a 1 channel image
     image = image[:, :, 0]
     # invert the image
-    image = (image - 255)*-1
+    image = 255 - image
     # convert numpy to uint8
     image = image.astype(np.uint8)
     # Convert the image to a PIL Image
