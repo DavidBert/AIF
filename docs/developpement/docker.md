@@ -98,10 +98,10 @@ sudo docker image ls
 ```
 How many images can you see? What do they refer to?  
 
-If you remember, this is not the ideal way to build a dockerfile.  If we need to modify our code, we will have to rebuild the image and it will be re-downloaded all the dependencies.
+If you remember, this is not the ideal way to build a dockerfile.  If we need to modify our code, we will have to rebuild the image and it will re-download all the dependencies.
 Try to add a comment in the ```mnist_api.py``` file with an empty line and to rebuild the image.  
 This is probably quite long. 
-Try to solve this problem by moving the part where you install the dependencies to the Dockerfile.  
+Try to solve this problem by copying `requirements-api.txt` and installing the dependencies *before* copying the rest of the code, so that the dependency layer stays cached when only your code changes. The `Dockerfile-gradio` below is written that way, use it as a model.  
 
 #### API Container
 Now that our images are built, we can use them to instantiate containers.
@@ -142,12 +142,13 @@ Check that everything is working is OK.
 ## Gradio container
 
 ### Requirements
-Our Gradio application just need the following packages: ```pillow```, ```gradio```, ```numpy```.
+Our Gradio application just need the following packages: ```pillow```, ```gradio```, ```numpy```, ```requests```.
 Create a new file named `requirements-gradio.txt` containing the following code:
 ```python
 pillow==10.3.0
 gradio==5.49
 numpy==1.26.4
+requests==2.32.3
 ```
 
 
@@ -185,7 +186,7 @@ Let's modify a little bit the gradio application to use the API from the localho
 To do so, we need to change the base URL for API requests in the `mnist_gradio.py` file.
 Change the following line:
 ```python
-response = requests.post("http://:5075/predict", data=img_binary.getvalue())
+response = requests.post("http://127.0.0.1:5075/predict", data=img_binary.getvalue())
 ```
 to
 ```python
@@ -201,17 +202,19 @@ sudo docker build -f Dockerfile-gradio -t mnist-gradio-app .
 #### Gradio Container
 Once the image is built, you can run the container using the following command (windows and macos):
 ```bash
-sudo docker run --rm -p 7860:7860 --name mnist mnist-gradio-app
+sudo docker run --rm -p 7860:7860 --name mnist-gradio mnist-gradio-app
 ```
 
 For Linux users:
 ```bash
-sudo docker run --rm --add-host=host.docker.internal:host-gateway -p 7860:7860 --name mnist mnist-gradio-app
+sudo docker run --rm --add-host=host.docker.internal:host-gateway -p 7860:7860 --name mnist-gradio mnist-gradio-app
 ```
+
+The container is named `mnist-gradio` and not `mnist`: the API container already uses the name `mnist`, and Docker refuses to start two containers with the same name.
 
 On another terminal, run the API locally and check that the Gradio application is working (`http://localhost:7860`):
 ```bash
-python mnist_api.py
+python mnist_api.py --model_path weights/mnist_net.pth
 ```
 
 ## Docker compose
@@ -220,7 +223,6 @@ It's time to run them together.
 To do so, we will use docker-compose.
 Create a new file named `docker-compose.yml` containing the following code:
 ```yaml
-version: '3.8' # specify docker-compose version
 services: # services to run
   api: # name of the first service
     build: 

@@ -72,8 +72,8 @@ from tqdm import tqdm
 
 from model import MNISTNet
 
- # setting device on GPU if available, else CPU
-  device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+# setting device on GPU if available, else CPU
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 def train(net, optimizer, loader, epochs=10):
     criterion = nn.CrossEntropyLoss()
@@ -159,8 +159,8 @@ The following code instantiates two [data loaders](https://pytorch.org/tutorials
       transforms.Normalize((0.5,), (0.5,))])
 
   # datasets
-  trainset = torchvision.datasets.MNIST('./data', download=True, train=True, transform=transform)
-  testset = torchvision.datasets.MNIST('./data', download=True, train=False, transform=transform)
+  trainset = torchvision.datasets.MNIST('../data', download=True, train=True, transform=transform)
+  testset = torchvision.datasets.MNIST('../data', download=True, train=False, transform=transform)
 
   # dataloaders
   trainloader = torch.utils.data.DataLoader(trainset, batch_size=batch_size, shuffle=True, num_workers=2)
@@ -188,8 +188,10 @@ Here, you will save the model's state dictionary (``net.state_dict()``) in a fil
 The state dictionary is a Python dictionary containing all the weights and biases of the network.
 
 ```python
+  os.makedirs('weights', exist_ok=True)
   torch.save(net.state_dict(), 'weights/mnist_net.pth')
 ```
+The `weights` directory does not exist yet, so `os.makedirs` creates it before saving. Add `import os` at the top of the script.
 
 You should now be able to run your python script using the following command in your terminal:
 ```
@@ -288,51 +290,51 @@ The model will return a tensor containing the probabilities for each class. The 
 Complete the following code to take the path of your model as an argument and load it in the ```model``` variable. 
 
 ```python
-  import argparse
-  import torch
-  import torchvision.transforms as transforms
-  from flask import Flask, jsonify, request
-  from PIL import Image
-  import io
-  from models import MNISTNet
+import argparse
+import torch
+import torchvision.transforms as transforms
+from flask import Flask, jsonify, request
+from PIL import Image
+import io
+from model import MNISTNet
 
-  device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-  app = Flask(__name__)
+app = Flask(__name__)
 
-  parser = ...
-  ...
-  model_path = ...
+parser = ...
+...
+model_path = ...
 
-  model = MNISTNet().to(device)
-  # Load the model
-  model.load_state_dict(torch.load(model_path))
-  model.eval()
+model = MNISTNet().to(device)
+# Load the model
+model.load_state_dict(torch.load(model_path, map_location=device))
+model.eval()
 
-  transform = transforms.Compose([
-      transforms.Resize((28, 28)),
-      transforms.ToTensor(),
-      transforms.Normalize((0.5,), (0.5,))
-  ])
+transform = transforms.Compose([
+    transforms.Resize((28, 28)),
+    transforms.ToTensor(),
+    transforms.Normalize((0.5,), (0.5,))
+])
 
-  @app.route('/predict', methods=['POST'])
-  def predict():
-      img_binary = request.data
-      img_pil = Image.open(io.BytesIO(img_binary))
+@app.route('/predict', methods=['POST'])
+def predict():
+    img_binary = request.data
+    img_pil = Image.open(io.BytesIO(img_binary))
 
-      # Transform the PIL image
-      tensor = transform(img_pil).to(device)
-      tensor = tensor.unsqueeze(0)  # Add batch dimension
-      
-      # Make prediction
-      with torch.no_grad():
-          outputs = model(tensor)
-          _, predicted = outputs.max(1)
+    # Transform the PIL image
+    tensor = transform(img_pil).to(device)
+    tensor = tensor.unsqueeze(0)  # Add batch dimension
 
-      return jsonify({"prediction": int(predicted[0])})
+    # Make prediction
+    with torch.no_grad():
+        outputs = model(tensor)
+        _, predicted = outputs.max(1)
 
-      if __name__ == "__main__":
-        app.run(host='0.0.0.0', port=5075, debug=True)
+    return jsonify({"prediction": int(predicted[0])})
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=5075, debug=True)
 ```
 
 Save the code in a file named ```mnist_api.py``` and run it with:
@@ -371,12 +373,13 @@ def batch_predict():
   ```
 
 ## A simple GUI with tkinter
-The file `mnist_gui.py` contains a simple GUI that will allow you to draw a digit and send it to the API to get a prediction.
-Run the script with:
+The file `mnist_gui.py` contains a simple GUI that will allow you to load a digit image and send it to the API to get a prediction.
+It does not load the model itself, it only queries the API, so leave `mnist_api.py` running in another terminal and start the GUI with:
 ```bash 
-python mnist_gui.py --model_path [PATH_TO_YOUR_MODEL]
+python mnist_gui.py
 ```
 and provide some of the images in the `MNIST_sample` folder as input to your model.
+These files are named after their index in the MNIST test set, not after the digit they represent: `sample_0.png` is the first test image, which is a 7.
 
 ## Deploying your model with Gradio
 
@@ -411,7 +414,7 @@ gr.Interface(fn=recognize_digit,
 Complete the ```mnist_gradio.py``` to either load your model weights or use your api to perform the predictions and run your app with the following command:
 
 ```bash
-python mnist_app.py --weights_path [path_to_the weights]
+python mnist_gradio.py
 ```
 
 Is your model accurate with your drawings?
