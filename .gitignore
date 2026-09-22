@@ -1,9 +1,10 @@
 # --- existing project rules ---
 developpement/intro_pytorch.slides.html
 site
-# leading slash: root dataset dir only, so source dirs such as
-# conformal/solutions/data/ are not swallowed by this rule
-/data/
+# downloaded datasets, wherever a script writes them
+data/
+# but conformal/solutions/data/ holds source code, not data
+!conformal/solutions/data/
 /tmp/
 MNIST_
 
