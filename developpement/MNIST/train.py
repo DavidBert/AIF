@@ -11,8 +11,8 @@ from tqdm import tqdm
 
 from model import MNISTNet
 
- # setting device on GPU if available, else CPU
-  device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+# setting device on GPU if available, else CPU
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 def train(net, optimizer, loader, epochs=10):
     criterion = nn.CrossEntropyLoss()
@@ -40,4 +40,3 @@ def test(model, dataloader):
             test_corrects += y_hat.eq(y).sum().item()
             total += y.size(0)
     return test_corrects / total
-	
