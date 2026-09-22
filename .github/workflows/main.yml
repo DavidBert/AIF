@@ -3,17 +3,19 @@ name: Sync Files to Repo MODIA_AIF
 on:
   push:
     branches:
-      - website
+      - main
+    paths:
+      - 'docs/**'
+      - 'mkdocs.yml'
 
 jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
+    # Checks out this repository at the commit that triggered the run.
+    # docs/ and mkdocs.yml now live on main, so no cross-repo checkout is needed.
     - uses: actions/checkout@v2
-      with:
-        repository: 'DavidBert/AIF2024'
-        ref: 'website'
-        
+
     - name: Setup Python
       uses: actions/setup-python@v2
       with:
