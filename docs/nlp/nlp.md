@@ -1,6 +1,10 @@
 # Introduction to natural language processing
 
-[Slides](https://docs.google.com/presentation/d/1_0g1rSVp6pKkbgnW1oMqj7kdo9KWkqEDiPlZq24IueY/edit?usp=sharing)
+## Course slides
+
+<iframe src="slides/index.html" width="100%" style="aspect-ratio: 16 / 9; border: 1px solid #ddd;" allow="fullscreen" allowfullscreen></iframe>
+
+<a href="slides/index.html" target="_blank">Open the slides in a new tab</a>
 
 <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/xA4xadv-Ki4?si=qCbzB0NrfAd_hQ_g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
