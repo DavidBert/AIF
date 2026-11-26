@@ -1,0 +1,941 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Modern Computer Vision</title>
+<meta name="deck-footer" content="Modern computer vision · INSA Toulouse">
+<meta name="description" content="75-minute lecture: Vision Transformers, CLIP and vision-language models (David Bertoin, INSA Toulouse).">
+<link rel="stylesheet" href="assets/vendor/fonts/fonts.css">
+<link rel="stylesheet" href="assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="assets/css/anims.css">
+<link rel="stylesheet" href="assets/css/deck.css">
+<link rel="stylesheet" href="assets/css/cv.css">
+<div id="viewport"><div id="stage"><div class="deck">
+
+<!-- =====================================================================
+     MODERN COMPUTER VISION: from ViT to vision-language models (75 min)
+     Built from the Course Deck Template v1. Timing targets are in the notes of
+     every section divider. Real model outputs were produced on 2026-11-11 (CPU,
+     transformers 5.22.2) on CC0 / public-domain images from scikit-image.
+     ===================================================================== -->
+
+<!-- 0.1 Title -->
+<section class="slide title-slide" data-section="Introduction">
+  <div class="logos">
+    <span class="lg"><img src="assets/img/insa-logo.png" alt="INSA Toulouse" style="height:70px"></span>
+    <span class="lg"><img src="assets/img/wikistat-logo.png" alt="WikiStat" style="height:50px"></span>
+  </div>
+  <div class="tmain" style="grid-template-columns:1.15fr 1fr">
+    <div class="brackets">
+      <h1>Modern Computer Vision</h1>
+      <div class="who">From Vision Transformers to vision-language models</div>
+      <div class="who small" style="margin-top:14px">David Bertoin · INSA Toulouse · 2026</div>
+    </div>
+    <div class="stack" style="align-items:center;gap:12px">
+      <div class="ttl-img"><img src="assets/img/cat.jpg" alt="Close-up photo of a tabby cat"><i></i></div>
+      <div class="arrow" style="font-size:30px">↓ <span class="small muted">cut into patches = tokens</span></div>
+      <div style="white-space:nowrap;font-size:24px"><span class="chip a">p₁</span><span class="chip a">p₂</span><span class="chip a">p₃</span><span class="chip ghost">…</span><span class="chip a">p₁₉₆</span></div>
+      <div class="arrow" style="font-size:30px">↓ <span class="small muted">read by a language model</span></div>
+      <div class="small"><span class="chip p">“A close-up of a tabby cat.”</span></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>The story in one sentence: in 2012 a vision model output one of 1,000 labels; in 2026 you chat with images. Three steps: (1) ViT, an image is a sequence of patch tokens (≈ 22 min); (2) CLIP, learn from captions, not labels (≈ 23 min); (3) VLMs, an LLM that reads image tokens (≈ 20 min). The course map on each section divider shows where we are.</p>
+    <p>75-minute lecture. Assumes the Transformer from the NLP course (tokens, embeddings, self-attention, positional encoding).</p>
+    <p>Keys: → / Space next, ← back, P presentation mode (full screen, black letterbox, hidden cursor, click to advance; also the “Present” button top-right), O overview, N notes, F fullscreen, D dark mode, S short mode (skips the optional slide).</p>
+    <p>All numbers in grey “run 2026-11-11” boxes come from real models run on a CPU on CC0 / public-domain images.</p>
+  </aside>
+</section>
+
+<!-- 0.3 Recap -->
+<section class="slide">
+  <h2>Recap: the Transformer in one slide</h2>
+  <div class="body">
+    <div class="anim" data-anim="tf-recap"></div>
+  </div>
+  <aside class="notes">
+    <p>2–3 minutes max, six clicks, one piece each: token, embedding, position, self-attention, [CLS], then the question. Everything here is reused unchanged in ViT; the only new idea is how to make tokens out of an image. Token IDs are the real GPT-2 ones; embedding values and attention weights are illustrative.</p>
+    <p>Ask the room: what would you take as the token of an image? Common answers: a pixel, an object, a region. Keep them for the next slides.</p>
+  </aside>
+</section>
+
+<!-- =================================================================== 1. ViT -->
+<section class="slide divider" data-section="Vision Transformers">
+  <div class="dv-left">
+    <div class="dv-num">01</div>
+    <div class="dv-title">Vision Transformers</div>
+    <div class="dv-sub">“An image is worth 16 × 16 words” (Dosovitskiy et al., 2020)</div>
+    <ol class="course-map" data-auto></ol>
+  </div>
+  <div class="dv-right">
+    <div class="brackets"><img src="assets/img/retina.jpg" alt="Fundus photograph of a normal human retina" style="max-height:520px;border-radius:50%"></div>
+    <div class="credit">Fundus photograph of a normal left eye, Mikael Häggström, CC0, via scikit-image</div>
+  </div>
+  <aside class="notes"><p><b>Timing:</b> target start ≈ 0:05, end ≈ 0:27.</p></aside>
+</section>
+
+<!-- 1.1 Text vs image -->
+<section class="slide">
+  <h2>Same model, two very different inputs</h2>
+  <div class="body">
+    <div class="cols">
+      <div class="card tc">
+        <div class="tokrow"><span class="tk" style="--c:var(--q)"><b>The</b><i>464</i></span><span class="tk" style="--c:var(--k)"><b>␣cat</b><i>3797</i></span><span class="tk" style="--c:var(--v)"><b>␣sat</b><i>3332</i></span><span class="tk" style="--c:var(--pos)"><b>␣on</b><i>319</i></span><span class="tk" style="--c:var(--accent)"><b>␣the</b><i>262</i></span><span class="tk" style="--c:var(--neg)"><b>␣mat</b><i>2603</i></span></div>
+        <p class="lead"><b>6 tokens</b> · discrete · 1D</p>
+        <p class="small muted">each token is one ID in a fixed vocabulary (GPT-2 tokenizer, ␣ = space)</p>
+      </div>
+      <div class="card tc fragment">
+        <img src="assets/img/cat.jpg" alt="Close-up photo of a tabby cat" style="height:250px;border-radius:10px">
+        <p class="lead"><b>224 × 224 × 3 = 150,528 numbers</b> · continuous · 2D</p>
+        <p class="small muted">no vocabulary, neighbouring pixels are highly redundant</p>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>Text arrives already chunked into meaningful units. An image is a dense grid of continuous values; a single pixel means almost nothing on its own.</p>
+    <p>The cat photo (scikit-image “chelsea”, CC0) is the running example of the whole lecture.</p>
+  </aside>
+</section>
+
+<!-- 1.2 Why not pixels -->
+<section class="slide">
+  <h2>Why not just use pixels as tokens?</h2>
+  <div class="body">
+    <div class="anim" data-anim="pixel-options"></div>
+  </div>
+  <aside class="notes">
+    <p>Option A: attention is quadratic in sequence length. 50,176² = 2.52 × 10⁹ dot products for one head of one layer, before the softmax.</p>
+    <p>Option B: we lose all spatial structure and attention has nothing to work with.</p>
+    <p>Last click: with 16 × 16 patches, 196 tokens and 196² = 38,416 attention scores, drawn at the same scale as option A’s square: (50,176 / 196)² = 256² = 65,536× fewer. The fine grid on option A’s image is illustrative (one cell ≈ 4 × 4 pixels).</p>
+    <p>Option C was the state of the art before ViT (DETR for detection, Carion et al. 2020). It works, but the Transformer only sees CNN features.</p>
+  </aside>
+</section>
+
+<!-- 1.3 Patch embedding -->
+<section class="slide">
+  <h2>Patch embedding: from pixels to tokens</h2>
+  <div class="body">
+    <div class="anim" data-anim="vit-patchify"></div>
+  </div>
+  <aside class="notes">
+    <p>Nine clicks. The pixel values in the zoom and in the flattened strip are the real values of that patch (row 5, column 3: the cat's iris).</p>
+    <p>Key message: W plays the role of the embedding table in NLP. A word ID selects a row; a patch is multiplied by a matrix. Both give a d-dimensional vector.</p>
+    <p>Implementation detail: “cut into 16 × 16 patches, flatten, multiply by the same W” is exactly a convolution with kernel 16 and stride 16. That is how every library implements it.</p>
+    <p>Clicks 7–9 continue into the first Transformer block: the 197 × 197 attention matrix is the real one of layer 2 of google/vit-base-patch16-224 on this crop (mean of the 12 heads, square-root colour scale). The diagonals at ±1 and ±14 are the left/right and above/below neighbours. The last click shows the eye patch’s row on the image: its top weights go to the patch above (0.108), itself (0.100), left (0.088) and right (0.086); [CLS] gets 0.087. Early layers learn locality, a bit like a convolution.</p>
+    <p>ViT-B/16 means: Base size, patch size 16. Token count = (H / p) × (W / p): 196 at 224 px with p = 16, 576 at 336 px with p = 14 (we meet 576 again in VLMs), 4,096 at 1024 px, i.e. ≈ 437× more attention pairs than at 224 px.</p>
+  </aside>
+</section>
+
+<!-- 1.5 Position embeddings -->
+<section class="slide">
+  <h2>Where is each patch? Learned position embeddings</h2>
+  <div class="body">
+    <div class="anim" data-anim="pos-sim"></div>
+  </div>
+  <aside class="notes">
+    <p>Self-attention is permutation-equivariant: permute the inputs, the outputs are permuted the same way. So the model needs a position signal, as in NLP.</p>
+    <p>ViT uses a learned table of 197 × 768 vectors (196 patches + [CLS]), added to the patch embeddings. The paper tried 2D-aware variants and found no significant gain.</p>
+    <p>Three clicks: the problem (shuffling), the fix (add a learned position vector), what was learned. The maps on the last click are computed from the real google/vit-base-patch16-224 weights (run 2026-11-11): cosine similarity between position embeddings. Neighbours, same row and same column are similar: the model discovered the grid from data. This reproduces Fig. 7 of the ViT paper.</p>
+  </aside>
+</section>
+
+<!-- 1.6 CLS token -->
+<section class="slide">
+  <h2>One vector for the whole image: the [CLS] token</h2>
+  <div class="body">
+    <div class="anim" data-anim="cls-token"></div>
+  </div>
+  <aside class="notes">
+    <p>Analogy for the room: [CLS] is an empty seat added to a meeting of 196 people; it starts with no opinion, listens to everyone for 12 rounds, and is the only one we ask at the end. Because it carries no pixels, it is not biased towards any one region.</p>
+    <p>The [CLS] token is a learned vector prepended to the sequence. At every layer it attends to all patches; after the last layer its output is the image representation.</p>
+    <p>Real prediction on our crop: Egyptian cat 0.922, tiger cat 0.038, tabby 0.026. Our cat is arguably a tabby: ImageNet's fine-grained cat classes are notoriously confusable. Keep this in mind for CLIP.</p>
+    <p>Alternative used by many later models: average the 196 patch outputs, or use an attention-pooling head (SigLIP). Same idea, one vector out.</p>
+  </aside>
+</section>
+
+<!-- 1.7 Architecture -->
+<section class="slide">
+  <h2>The whole Vision Transformer</h2>
+  <div class="body">
+    <div class="cols c64">
+      <div class="vit-arch">
+        <div class="va-col">
+          <div class="va-in">image → 196 patches</div>
+          <div class="va-ar">↓</div>
+          <div class="va-in">linear projection (W)</div>
+          <div class="va-ar">↓</div>
+          <div class="va-in">+ [CLS] · + position</div>
+        </div>
+        <div class="va-ar side">→</div>
+        <div class="tblock" style="width:330px">
+          <div class="frame">
+            <div class="ly norm">LayerNorm</div>
+            <div class="ly attn">Multi-head self-attention</div>
+            <div class="ly norm">+ residual</div>
+            <div class="ly norm">LayerNorm</div>
+            <div class="ly ffn">MLP (768 → 3072 → 768)</div>
+            <div class="ly norm">+ residual</div>
+            <div class="nx">× 12</div>
+          </div>
+        </div>
+        <div class="va-ar side" style="margin-left:56px">→</div>
+        <div class="va-col">
+          <div class="va-in">[CLS] output</div>
+          <div class="va-ar">↓</div>
+          <div class="va-in">linear head</div>
+          <div class="va-ar">↓</div>
+          <div class="va-in acc">class</div>
+        </div>
+      </div>
+      <div>
+        <table class="t full compact fragment">
+          <thead><tr><th></th><th>layers</th><th>width</th><th>heads</th><th>params</th></tr></thead>
+          <tbody>
+            <tr><td>ViT-B</td><td>12</td><td>768</td><td>12</td><td>86M</td></tr>
+            <tr><td>ViT-L</td><td>24</td><td>1024</td><td>16</td><td>307M</td></tr>
+            <tr><td>ViT-H</td><td>32</td><td>1280</td><td>16</td><td>632M</td></tr>
+          </tbody>
+        </table>
+        <p class="lead fragment">Nothing new inside: it is <b>BERT’s encoder</b>. Only the input changed.</p>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>Pre-norm Transformer encoder (LayerNorm before attention and MLP), exactly the block students saw for BERT.</p>
+    <p>Sizes from Table 1 of the ViT paper. Our loaded ViT-B/16 checkpoint has 86.6M parameters (run 2026-11-11), of which only 0.6M are the patch projection.</p>
+  </aside>
+</section>
+
+<!-- 1.7b VGG receptive field -->
+<section class="slide">
+  <h2>Before ViT: in a CNN, context grows with depth</h2>
+  <div class="body">
+    <div class="anim" data-anim="vgg-rf"></div>
+  </div>
+  <aside class="notes">
+    <p>VGG-16 (Simonyan &amp; Zisserman, 2014) is the textbook CNN: only 3 × 3 convolutions (stride 1, padding 1) and 2 × 2 max-pools (stride 2), 13 conv layers in 5 blocks, then 3 fully connected layers (138M parameters).</p>
+    <p>Receptive field, computed layer by layer: r ← r + (k − 1) · j and j ← j · stride (j = distance in input pixels between two neighbouring neurons). Two 3 × 3 convs → 5 px, pool → 6; block 2 → 16; block 3 → 44; block 4 → 100; block 5 → 212 px. Each pool doubles j, so later convs widen the window faster.</p>
+    <p>The square follows one neuron above the cat's eye. Message: a CNN has to stack many layers (and downsample) before a single neuron can relate the two eyes. Next slide: a ViT does it in layer 1. (The effective receptive field is also smaller than the theoretical one: central pixels weigh most.)</p>
+  </aside>
+</section>
+
+<!-- 1.8 Receptive field -->
+<section class="slide">
+  <h2>Global context from the first layer</h2>
+  <div class="body">
+    <div class="anim" data-anim="receptive-field"></div>
+  </div>
+  <aside class="notes">
+    <p>A 3 × 3 convolution only sees its neighbours; context grows by one ring per layer, so a CNN needs depth (and pooling) to relate distant parts of the image.</p>
+    <p>In a ViT every patch can attend to every other patch from layer 1. Whether it does is learned: early heads in trained ViTs mix local and global ranges.</p>
+    <p>Last step: attention rollout (Abnar &amp; Zuidema 2020) of the [CLS] token through the 12 layers of the real ViT-B/16, on our cat (run 2026-11-11). The eyes and face light up; the background is ignored.</p>
+  </aside>
+</section>
+
+<!-- 1.9 Inductive bias & data -->
+<section class="slide">
+  <h2>No free lunch: fewer assumptions, more data</h2>
+  <div class="body">
+    <div class="cols">
+      <div>
+        <table class="t full">
+          <thead><tr><th></th><th>CNN</th><th>ViT</th></tr></thead>
+          <tbody>
+            <tr><td>locality, translation equivariance</td><td class="pos">built in</td><td class="neg">learned from data</td></tr>
+            <tr class="fragment"><td>pre-train on ImageNet-1k (1.3M)</td><td class="pos">better</td><td class="neg">worse (overfits)</td></tr>
+            <tr class="fragment"><td>pre-train on ImageNet-21k (14M)</td><td colspan="2" class="tc">similar</td></tr>
+            <tr class="fragment"><td>pre-train on JFT-300M (303M)</td><td>good</td><td class="pos"><b>better</b></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="fragment">
+        <p class="small muted" style="margin:0 0 10px">ImageNet top-1 after JFT-300M pre-training (ViT paper, Table 2)</p>
+        <div class="hbar">
+          <span>ViT-H/14</span><div class="tr"><div class="fl" style="width:88.55%">88.55</div></div>
+          <span>BiT-L (ResNet)</span><div class="tr"><div class="fl two" style="width:87.54%">87.54</div></div>
+        </div>
+        <p class="small" style="margin-top:14px">pre-training cost: <b>2.5k</b> vs <b>9.9k</b> TPUv3-core-days</p>
+        <p class="lead"><b>A stronger learner, a worse guesser:</b> it assumes nothing, so it must be shown everything.</p>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>Inductive bias: a CNN hard-codes that nearby pixels matter together and that a cat is a cat wherever it is. ViT only has the patch grid; everything else is learned.</p>
+    <p>ViT paper, Fig. 3–4 and Table 2: on ImageNet-1k alone, ResNets win and ViT-L is worse than ViT-B; with ImageNet-21k they are close; with JFT-300M ViT wins, and at a quarter of the compute.</p>
+    <p>Follow-ups made ViT data-efficient (DeiT, 2021: strong augmentation and distillation on ImageNet-1k only). Today the question is moot: ViTs are pre-trained on hundreds of millions to billions of images, often without labels (next slide and the CLIP section).</p>
+  </aside>
+</section>
+
+<!-- 1.10 ViTs today -->
+<section class="slide">
+  <h2>2026: ViTs are the backbone of computer vision</h2>
+  <div class="body">
+    <div class="cols four top">
+      <div class="card vcard"><div class="tag">self-supervised · Aug 2025</div><h3>DINOv3</h3>
+        <div class="vis"><img src="assets/img/cat.jpg" alt="Cat photo"><span class="vis-ar">→</span><img src="assets/img/dino-pca.png" alt="Patch features of the cat shown as colours" class="px"></div>
+        <p class="vis-cap">patch features, no labels: eyes, nose, fur get their own colours</p></div>
+      <div class="card vcard fragment"><div class="tag">segmentation · Nov 2025</div><h3>SAM 3</h3>
+        <div class="vis col"><span class="chip q">“the eyes”</span><img src="assets/img/seg-eyes.jpg" alt="Cat photo with both eyes highlighted by a mask"></div>
+        <p class="vis-cap">a phrase in, a mask out</p></div>
+      <div class="card vcard fragment acc-b"><div class="tag">image–text · Feb 2025</div><h3>SigLIP 2</h3>
+        <div class="vis col"><img src="assets/img/cat.jpg" alt="Cat photo" style="height:104px;width:104px">
+          <div class="mini-bars">
+            <span>a photo of a cat</span><i style="--w:100%"></i><b>0.20</b>
+            <span>a photo of a dog</span><i style="--w:1%"></i><b>0.0002</b>
+            <span>a cup of coffee</span><i style="--w:0%"></i><b>0.0000</b>
+          </div></div>
+        <p class="vis-cap">image ↔ caption scores (sigmoid)</p></div>
+      <div class="card vcard fragment"><div class="tag">generation · since 2023</div><h3>Diffusion Transformer</h3>
+        <div class="vis"><img src="assets/img/dit-0.jpg" alt="Noise" class="sm"><span class="vis-ar">→</span><img src="assets/img/dit-16.jpg" alt="Partly denoised cat" class="sm"><span class="vis-ar">→</span><img src="assets/img/dit-final.jpg" alt="Generated tabby cat" class="sm"></div>
+        <p class="vis-cap">noise → “tabby cat”, denoised patch by patch</p></div>
+    </div>
+    <p class="lead tc fragment">Patches as tokens won. The open question became: <b>what do we train them on?</b></p>
+    <p class="vis-src">All images computed 2026-11-12 on CPU: DINOv2-S (DINOv3 weights are gated) · CLIPSeg as an open stand-in for SAM 3 (gated) · google/siglip2-base-patch16-224 · facebook/DiT-XL-2-256 (class 281, 20 steps)</p>
+  </div>
+  <aside class="notes">
+    <p>Visuals are real runs, made with open stand-ins where the 2025 weights are gated: DINO patch features coloured by their 3 main PCA components (DINOv2-S); a text-prompted mask (CLIPSeg) to show what SAM 3 does; SigLIP 2 sigmoid scores; DiT-XL/2-256 generating ImageNet class 281 “tabby cat” (seed 1, 20 DPM-Solver steps, CFG 4) — frames at step 0, 16 and final.</p>
+    <p>DINOv3 (Meta, 14 Aug 2025): 7B params, 1.7B images, self-supervised; matches or beats SigLIP 2 and Perception Encoder on many classification benchmarks (ai.meta.com/blog/dinov3-self-supervised-vision-model).</p>
+    <p>SAM 3 (Meta, 19 Nov 2025): promptable concept segmentation from noun phrases or exemplars, open-sourced with the SA-Co benchmark.</p>
+    <p>SigLIP 2 (Feb 2025): Qwen3-VL uses a SigLIP-2 SO-400M encoder (Qwen3-VL tech report, arXiv:2511.21631).</p>
+    <p>DiT: Peebles &amp; Xie, arXiv:2212.09748.</p>
+    <p>Transition: ImageNet labels are expensive and poor. CLIP's answer: use the text that already sits next to images on the web.</p>
+  </aside>
+</section>
+
+<!-- =================================================================== 2. CLIP -->
+<section class="slide divider" data-section="CLIP">
+  <div class="dv-left">
+    <div class="dv-num">02</div>
+    <div class="dv-title">CLIP</div>
+    <div class="dv-sub">Learning vision from captions (Radford et al., 2021)</div>
+    <ol class="course-map" data-auto></ol>
+  </div>
+  <div class="dv-right">
+    <div class="brackets">
+      <div class="dv-pairs">
+        <figure><img src="assets/img/cat.jpg" alt="Tabby cat"><figcaption>a cat lying on a blanket</figcaption></figure>
+        <figure><img src="assets/img/coffee.jpg" alt="Cup of coffee"><figcaption>a cup of coffee on a table</figcaption></figure>
+        <figure><img src="assets/img/rocket.jpg" alt="Rocket launch"><figcaption>a rocket launching into the sky</figcaption></figure>
+        <figure><img src="assets/img/galaxies.jpg" alt="Hubble deep field"><figcaption>galaxies in deep space</figcaption></figure>
+      </div>
+    </div>
+    <div class="credit">Images: scikit-image sample data (CC0 / public domain)</div>
+  </div>
+  <aside class="notes"><p><b>Timing:</b> target start ≈ 0:27, end ≈ 0:50.</p></aside>
+</section>
+
+<!-- 2.1 Labels are poor -->
+<section class="slide">
+  <h2>A label is a very poor description</h2>
+  <div class="body">
+    <div class="cols c46">
+      <div class="tc">
+        <img src="assets/img/cat.jpg" alt="Close-up photo of a tabby cat" style="height:300px;border-radius:12px">
+      </div>
+      <div class="stack" style="gap:12px;align-items:flex-start">
+        <div><span class="chip n big">281</span> <span class="muted">← what an ImageNet classifier is trained on</span></div>
+        <div class="fragment"><span class="chip q">cat</span></div>
+        <div class="fragment"><span class="chip q">a photo of a tabby cat</span></div>
+        <div class="fragment"><span class="chip q" style="white-space:normal;display:inline-block;max-width:640px">a close-up of a tabby cat with green eyes, looking at the camera</span></div>
+      </div>
+    </div>
+    <div class="cols three fragment" style="flex:0 0 auto">
+      <div class="card tight neg-b"><b>Fixed vocabulary</b><p class="small">1,000 classes; class 1,001 means retraining</p></div>
+      <div class="card tight neg-b"><b>No structure</b><p class="small">281 “tabby” is as far from 282 “tiger cat” as from “rocket”</p></div>
+      <div class="card tight neg-b"><b>Costly</b><p class="small">every class needs human annotation</p></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>In ImageNet-1k, index 281 is “tabby cat”, 282 “tiger cat”, 283 “Persian cat”. With one-hot targets, all wrong classes are equally wrong.</p>
+    <p>A caption carries the object, attributes, pose, context and style, and the web already contains billions of images with nearby text (alt text, titles, captions).</p>
+    <p>Idea: train on (image, text) pairs directly. But we cannot ask a model to predict the exact caption (too many valid captions). CLIP asks an easier question: which caption goes with which image?</p>
+  </aside>
+</section>
+
+<!-- 2.2 Two encoders -->
+<section class="slide">
+  <h2>Two encoders, one shared space</h2>
+  <div class="body">
+    <div class="anim" data-anim="clip-space"></div>
+  </div>
+  <aside class="notes">
+    <p>Five clicks. The circle is a 2D sketch: in the real 512-d space a matching pair has cos ≈ 0.24–0.30 and a non-matching one ≈ 0.13–0.21 (next slide), so real angles are all close to 90°; what matters is the ranking.</p>
+    <p>Image side: a ViT gives the [CLS] output, then a linear projection to the shared dimension. Text side: a 12-layer Transformer; the output at the end-of-text token, projected.</p>
+    <p>The interface between the two is a single dot product of unit vectors. Nothing else. This is what makes CLIP fast for search: encode a billion images once, then compare.</p>
+  </aside>
+</section>
+
+<!-- 2.3 Similarity matrix -->
+<section class="slide">
+  <h2>Training signal: which caption is mine?</h2>
+  <div class="body">
+    <div class="anim" data-anim="clip-matrix"></div>
+  </div>
+  <aside class="notes">
+    <p>Real values: openai/clip-vit-base-patch16 on our 4 images and 4 captions (run 2026-11-11). This is the trained model, so the diagonal already wins; during training the loss pushes towards this.</p>
+    <p>Note the raw cosines: 0.13 to 0.30. Small, but the ranking is clean. Multiplying by 1/τ = 100 before the softmax turns a 0.05 gap into a confident decision (cat row: 0.98).</p>
+    <p>No labels anywhere: the “class” of an image is its own caption, and the other captions of the batch are the negatives. Bigger batch = more negatives = harder task.</p>
+  </aside>
+</section>
+
+<!-- 2.4 Loss + temperature -->
+<section class="slide">
+  <h2>The contrastive loss (InfoNCE) and its temperature</h2>
+  <div class="body">
+    <div class="formula">$$\mathcal{L}_{\text{img}\to\text{txt}} = -\frac{1}{N}\sum_{k=1}^{N}\log\frac{\exp\big(\cos(\mathbf{i}_k,\mathbf{t}_k)/\tau\big)}{\sum_{j=1}^{N}\exp\big(\cos(\mathbf{i}_k,\mathbf{t}_j)/\tau\big)}\qquad \mathcal{L}=\tfrac12\big(\mathcal{L}_{\text{img}\to\text{txt}}+\mathcal{L}_{\text{txt}\to\text{img}}\big)$$</div>
+    <div class="cols c64">
+      <ul class="b">
+        <li class="fragment">An <b>N-way classification</b> per row, whose classes are the captions of the batch</li>
+        <li class="fragment">τ is <b>learned</b>: initialised at 0.07, with 1/τ capped at 100</li>
+      </ul>
+      <div class="run fragment">
+        <div class="run-h">run 2026-11-11 · CLIP ViT-B/16 · row “cat”</div>
+        <table class="t compact full num">
+          <thead><tr><th>τ</th><th>cat</th><th>coffee</th><th>rocket</th><th>galaxies</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>0.26</td><td>0.25</td><td>0.24</td><td>0.25</td></tr>
+            <tr><td>0.1</td><td>0.36</td><td>0.24</td><td>0.19</td><td>0.21</td></tr>
+            <tr><td>0.01</td><td class="hi">0.98</td><td>0.02</td><td>0.00</td><td>0.00</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>InfoNCE = cross-entropy where the correct “class” is the matching caption. Do it for rows (image → text) and columns (text → image), average.</p>
+    <p>Temperature: with τ = 1 the softmax over cosines in [−1, 1] is almost flat; the model could never be confident. CLIP learns log(1/τ); after training it hits the cap of 100 (our checkpoint: logit_scale.exp() = 100.0).</p>
+    <p>Pseudo-code is in Fig. 3 of the CLIP paper: about 10 lines of numpy.</p>
+  </aside>
+</section>
+
+<!-- 2.5 What OpenAI trained -->
+<section class="slide">
+  <h2>What OpenAI actually trained</h2>
+  <div class="body">
+    <div class="cols c64">
+      <table class="t full compact">
+        <tbody>
+          <tr><td><b>Data</b></td><td>400M (image, text) pairs from the internet; <span class="neg">never released</span></td></tr>
+          <tr><td><b>Image encoders</b></td><td>5 ResNets and 3 ViTs (B/32, B/16, L/14), + L/14 at 336 px</td></tr>
+          <tr><td><b>Text encoder</b></td><td>Transformer, 63M params, 12 layers, width 512, ≤ 76 tokens</td></tr>
+          <tr><td><b>Shared space</b></td><td>512-d (B models) · 768-d (L/14)</td></tr>
+          <tr><td><b>Batch</b></td><td>32,768 pairs · 32 epochs (≈ 12.8B pairs seen)</td></tr>
+          <tr><td><b>Compute</b></td><td>ViT-L/14: 12 days on 256 V100 · RN50x64: 18 days on 592 V100</td></tr>
+        </tbody>
+      </table>
+      <div class="stack" style="gap:16px">
+        <div class="card tight acc-b fragment"><p class="lead" style="margin:0">The architecture is ordinary. <b>Scale of data and batch</b> is what makes it work.</p></div>
+        <div class="card tight fragment"><p class="small" style="margin:0"><b>Open replication:</b> LAION-400M / LAION-5B datasets + OpenCLIP. Web data brings web biases, copyrighted and harmful content.</p></div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>All from the CLIP paper (arXiv:2103.00020), section 2: 32 epochs, minibatch 32,768, RN50x64 18 days on 592 V100, largest ViT 12 days on 256 V100, text encoder 63M / 12 layers / 512 wide / 8 heads, sequence capped at 76.</p>
+    <p>Correction to the old slides: CLIP was not trained for “400M steps” but 32 epochs over 400M pairs, i.e. about 390K steps of 32,768 pairs.</p>
+    <p>Our loaded CLIP ViT-B/16: 85.8M vision + 63.2M text parameters (run 2026-11-11).</p>
+  </aside>
+</section>
+
+<!-- 2.6 Zero-shot -->
+<section class="slide">
+  <h2>Zero-shot classification: a classifier made of sentences</h2>
+  <div class="body">
+    <div class="anim" data-anim="zero-shot"></div>
+  </div>
+  <aside class="notes">
+    <p>Real values (run 2026-11-11, CLIP ViT-B/16). Classes chosen at test time; any label set works, including classes that did not exist when the model was trained.</p>
+    <p>With bare labels (“cat”) the cat gets 0.981; with “a photo of a cat.” 0.998. Captions on the web look like sentences, not single words, so prompts that look like captions work better.</p>
+    <p>The same shared space also gives text → image search (embed the query, rank all images by cosine) and image → image search.</p>
+  </aside>
+</section>
+
+<!-- 2.7 Results -->
+<section class="slide">
+  <h2>Without a single ImageNet label</h2>
+  <div class="body">
+    <p class="small muted" style="margin:0">ImageNet top-1 accuracy</p>
+    <div class="hbar" style="grid-template-columns:420px 1fr">
+      <span>Visual N-Grams, zero-shot (2017)</span><div class="tr"><div class="fl two" style="width:11.5%"><span class="out">11.5</span></div></div>
+      <span>ResNet-50, <b>supervised</b> on 1.28M labels</span><div class="tr"><div class="fl two" style="width:76.2%">76.2</div></div>
+      <span>CLIP ViT-L/14 @336 px, <b>zero-shot</b></span><div class="tr"><div class="fl" style="width:76.2%">76.2</div></div>
+    </div>
+    <ul class="b fragment">
+      <li>Prompt “a photo of a {label}.”: <b>+1.3</b> points; averaging 80 prompt templates: <b>+3.5</b> more</li>
+      <li>Evaluated zero-shot on 30+ datasets (OCR, action recognition, geo-localisation…)</li>
+    </ul>
+  </div>
+  <aside class="notes">
+    <p>CLIP paper abstract and section 3: zero-shot ImageNet goes from 11.5% (Visual N-Grams) to 76.2%, matching the original ResNet-50 without using any of its 1.28M training examples. Prompt engineering and ensembling together add almost 5 points.</p>
+    <p>The best zero-shot number is the largest model; our ViT-B/16 is lower. The point is not the number but the regime: no labels, no task-specific training.</p>
+  </aside>
+</section>
+
+<!-- 2.8 Exercise: guess the cosine -->
+<section class="slide ex">
+  <h2>Guess the cosine</h2>
+  <div class="body">
+    <p class="lead">CLIP text encoder. Which caption is <b>closer</b> to “a photo of a cat”?</p>
+    <div class="cols">
+      <div class="card tc"><p class="big">“a photo that is <b>not</b> a cat”</p><p class="big fragment answer-num">0.917</p></div>
+      <div class="card tc"><p class="big">“a photo of a rocket”</p><p class="big fragment answer-num">0.821</p></div>
+    </div>
+    <div class="answer fragment">
+      <div class="run" style="margin:0">
+        <div class="run-h">run 2026-11-11 · CLIP ViT-B/16 text encoder · cosine between captions</div>
+        <table class="t compact full num">
+          <tbody>
+            <tr><td>“a dog to the left of a cat” · “a cat to the left of a dog”</td><td><b>0.986</b></td></tr>
+            <tr><td>“a photo of three dogs” · “a photo of five dogs”</td><td><b>0.914</b></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>Let the room vote first. Most people pick the rocket as farther, which is right, but they expect “not a cat” to be far too. It is the closest of all: negation barely moves the embedding.</p>
+    <p>Then the bonus pairs: word order (0.986) and numbers (0.914) barely matter either.</p>
+    <p>With the cat image: “a photo of a cat” 0.290, “a photo that is not a cat” 0.253, “a photo of a dog” 0.226. Softmax still picks “a cat”, but “not a cat” is the runner-up (0.022).</p>
+  </aside>
+</section>
+
+<!-- 2.9 Failure modes -->
+<section class="slide">
+  <h2>What does <i>not</i> come for free</h2>
+  <div class="body">
+    <div class="cols four top">
+      <div class="card neg-b"><h3>Counting</h3><p class="small">“three dogs” ≈ “five dogs” (0.91)</p></div>
+      <div class="card neg-b"><h3>Spatial relations</h3><p class="small">“dog left of cat” ≈ “cat left of dog” (0.99)</p></div>
+      <div class="card neg-b"><h3>Negation</h3><p class="small">“not a cat” lands next to “a cat” (0.92)</p></div>
+      <div class="card neg-b"><h3>Fine-grained</h3><p class="small">similar breeds, models, dishes are hard to tell apart</p></div>
+    </div>
+    <ul class="b fragment">
+      <li><b>Why:</b> to pick the right caption among 32,767 random web captions, recognising the <b>concepts</b> is enough; order, numbers and “not” rarely decide</li>
+      <li class="fragment">These are structural, not bugs. <b>VLMs built on CLIP inherit them</b> (section 03)</li>
+    </ul>
+  </div>
+  <aside class="notes">
+    <p>The contrastive task only requires telling the right caption apart from the other captions in the batch. Random negatives almost never differ only by word order or a count, so the model is never forced to encode them: the text embedding behaves like a bag of concepts.</p>
+    <p>Fixes in the literature: hard negatives (captions with swapped words or counts), denser captions, region-level objectives.</p>
+  </aside>
+</section>
+
+<!-- 2.10 SigLIP -->
+<section class="slide">
+  <h2>SigLIP: replace the softmax by a sigmoid</h2>
+  <div class="body">
+    <div class="formula" style="font-size:21px;margin:0">$$\mathcal{L} = -\frac{1}{N}\sum_{k,j}\log\sigma\big(z_{kj}\,(t\cos(\mathbf{i}_k,\mathbf{t}_j)+b)\big),\qquad z_{kj}=\begin{cases}+1 & k=j\\-1 & k\neq j\end{cases}$$</div>
+    <div class="anim" data-anim="siglip-matrix" data-opts='{"crop":[24,640]}'></div>
+  </div>
+  <aside class="notes">
+    <p>Zhai et al. 2023 (arXiv:2303.15343). Each image–text pair becomes an independent binary classification. The softmax couples all pairs of the batch (every row needs all logits to normalise); the sigmoid does not, which simplifies distributed training. A batch around 32k was found sufficient; going to 1M gave diminishing returns.</p>
+    <p>Real SigLIP-B/16 logits (run 2026-11-11): t ≈ 117, b ≈ −12.9. The large negative bias reflects that almost all pairs are negatives; absolute sigmoid probabilities are therefore low (cat 0.002) but the diagonal still dominates every row and column.</p>
+    <p>Numbers to quote: SigLiT (sigmoid loss with a locked, pre-trained image tower) reached 84.5% zero-shot ImageNet in 2 days on 4 TPUv4 chips. SigLIP 2 (Feb 2025) is the default vision tower of open VLMs (e.g. Qwen3-VL, section 03).</p>
+  </aside>
+</section>
+
+<!-- =================================================================== 3. VLM -->
+<section class="slide divider" data-section="Vision-language models">
+  <div class="dv-left">
+    <div class="dv-num">03</div>
+    <div class="dv-title">Vision-language models</div>
+    <div class="dv-sub">Give the image to a language model</div>
+    <ol class="course-map" data-auto></ol>
+  </div>
+  <div class="dv-right">
+    <div class="brackets"><img src="assets/img/hubble.jpg" alt="Hubble eXtreme Deep Field" style="max-height:500px"></div>
+    <div class="credit">Hubble eXtreme Deep Field, NASA, public domain, via scikit-image</div>
+  </div>
+  <aside class="notes"><p><b>Timing:</b> target start ≈ 0:50, end ≈ 1:10.</p></aside>
+</section>
+
+<!-- 3.1 Score vs answer -->
+<section class="slide">
+  <h2>From a score to an answer</h2>
+  <div class="body">
+    <div class="cols">
+      <div class="card">
+        <div class="tag">CLIP</div>
+        <p class="lead"><span class="mono">f(image, “a photo of a cat”)</span></p>
+        <p class="big tc" style="font-size:56px;margin:10px 0">0.29</p>
+        <p class="small muted">compares two finished vectors; you must supply the candidate texts</p>
+      </div>
+      <div class="card acc-b fragment">
+        <div class="tag">what we want</div>
+        <p class="lead"><span class="mono">f(image, “What is unusual here?”)</span></p>
+        <p class="lead tc" style="margin:18px 0">“The cat is staring straight at the camera, very close to the lens…”</p>
+        <p class="small muted">open questions, free text, conversation</p>
+      </div>
+    </div>
+    <p class="lead tc fragment">We already have a machine that writes text: an <b>LLM</b>. Can it read image tokens?</p>
+  </div>
+  <aside class="notes">
+    <p>CLIP's only interface is a dot product between two vectors computed separately. The text side never looks at the image while it is being processed, and nothing generates text.</p>
+    <p>An LLM generates text conditioned on a sequence of embeddings. If we can turn an image into embeddings the LLM understands, we get generation for free.</p>
+  </aside>
+</section>
+
+<!-- 3.2 Three blocks -->
+<section class="slide">
+  <h2>Every VLM: three blocks</h2>
+  <div class="body">
+    <div class="flow xl">
+      <div class="bx b">Vision encoder<span class="s">a CLIP / SigLIP ViT<br>usually pre-trained</span></div>
+      <div class="ar">→</div>
+      <div class="bx a fragment">Projector<span class="s">the bridge<br>(new, trained)</span></div>
+      <div class="ar fragment">→</div>
+      <div class="bx fragment" style="border-color:var(--pos);background:color-mix(in srgb,var(--pos) 12%,var(--surface))">Language model<span class="s">a pre-trained LLM<br>generates the answer</span></div>
+    </div>
+    <p class="lead tc fragment"><span class="mono">[576 × 1024]</span> patch features → <span class="mono">[576 × 4096]</span> “visual tokens” in the LLM’s embedding space</p>
+    <p class="lead tc fragment">Architectures differ mostly in the <b>middle block</b>.</p>
+  </div>
+  <aside class="notes">
+    <p>Shapes are LLaVA-1.5-7B's: CLIP ViT-L/14 at 336 px gives 576 patch vectors of width 1024; Vicuna-7B's embedding width is 4096.</p>
+    <p>Why reuse CLIP-style encoders and not an ImageNet ViT? Their features were trained to align with language, which makes the projector's job easy.</p>
+  </aside>
+</section>
+
+<!-- 3.3 Four bridges (overview) -->
+<section class="slide">
+  <h2>Four ways to build the bridge</h2>
+  <div class="body">
+    <div class="cols four top">
+      <div class="card acc-b">
+        <div class="tag">LLaVA · 2023</div><h3>MLP projector</h3>
+        <div class="mini"><span class="m b">576 patches</span>→<span class="m a">MLP</span>→<span class="m a">576 tokens</span></div>
+        <p class="small"><span class="pos">✓ tiny (≈ 21M), simple</span><br><span class="neg">✗ long sequences</span></p>
+      </div>
+      <div class="card">
+        <div class="tag">BLIP-2 · 2023</div><h3>Q-Former</h3>
+        <div class="mini"><span class="m b">patches</span>→<span class="m a">32 queries</span>→<span class="m a">32 tokens</span></div>
+        <p class="small"><span class="pos">✓ short, fixed size; LLM frozen</span><br><span class="neg">✗ bottleneck can drop detail</span></p>
+      </div>
+      <div class="card">
+        <div class="tag">Flamingo · 2022</div><h3>Cross-attention</h3>
+        <div class="mini"><span class="m b">patches</span>→<span class="m a">64 tokens</span>⇢<span class="m" style="border-color:var(--pos)">x-attn in LLM</span></div>
+        <p class="small"><span class="pos">✓ few-shot, many images</span><br><span class="neg">✗ ≈ 10B new params, LLM modified</span></p>
+      </div>
+      <div class="card">
+        <div class="tag">Gemma 4 12B · 2026</div><h3>No encoder</h3>
+        <div class="mini"><span class="m">raw patches</span>→<span class="m a">1 matmul</span>→<span class="m" style="border-color:var(--pos)">LLM</span></div>
+        <p class="small"><span class="pos">✓ one model, simplest pipeline</span><br><span class="neg">✗ the LLM must learn vision itself</span></p>
+      </div>
+    </div>
+    <p class="lead tc">Open models mostly use <b>the MLP</b> (e.g. Qwen3-VL, 2025); in 2026 some drop the encoder entirely. One slide each →</p>
+  </div>
+  <aside class="notes">
+    <p>Overview first, then one animated slide per bridge (≈ 1–1.5 min each). If short on time, show this slide and only the MLP one.</p>
+    <p>Corrections to the old slides: Flamingo does not use CLIP (NFNet-F6) and adds ≈ 10B parameters, not 1.5B; LLaVA-1.5’s MLP is ≈ 21M (1024×4096 + 4096×4096 + biases = 20,979,712 for the 7B), not 2M. GPT-4V’s architecture was never disclosed.</p>
+    <p>Qwen3-VL (tech report Nov 2025): SigLIP-2 SO-400M encoder, patch 16, 2-layer MLP merging 2×2 neighbours, plus DeepStack (features from 3 intermediate ViT layers injected into the first 3 LLM layers).</p>
+  </aside>
+</section>
+
+<!-- 3.3 Pipeline -->
+<section class="slide">
+  <h2>Bridge 1 · MLP projector (LLaVA)</h2>
+  <div class="body">
+    <div class="anim" data-anim="vlm-pipeline"></div>
+  </div>
+  <aside class="notes">
+    <p>Six clicks: input, vision encoder (a 24 × 24 grid of vectors), flatten into a sequence (as in ViT), projector (each vector → 4096-d), the visual tokens slide into the LLM in front of the text tokens, then generation. 8 squares stand for the 576 vectors; the flattened row stays on screen while its projected copy moves on.</p>
+    <p>LLaVA (Liu et al., 2023) and LLaVA-1.5: the simplest recipe, and the one most open models still follow.</p>
+    <p>The LLM does not know which tokens came from an image: visual tokens are just 576 extra embeddings in the context. Text tokens attend to them with ordinary causal self-attention.</p>
+    <p>LLaVA-1.5's projector: Linear(1024 → 4096), GELU, Linear(4096 → 4096) ≈ 21M parameters, 0.3% of a 7B model. (The old slides said 2M: that was wrong.)</p>
+  </aside>
+</section>
+
+<!-- 3.4b Q-Former -->
+<section class="slide">
+  <h2>Bridge 2 · Q-Former (BLIP-2)</h2>
+  <div class="body">
+    <div class="anim" data-anim="bridge-qformer"></div>
+  </div>
+  <aside class="notes">
+    <p>BLIP-2 (Li et al. 2023, arXiv:2301.12597): frozen image encoder (EVA-CLIP ViT-g, 257 × 1408 features) and frozen LLM (OPT, FlanT5). The Q-Former (188M parameters) holds 32 learned query vectors that cross-attend to the image features; its 32 outputs are projected to the LLM width.</p>
+    <p>Pros: the LLM always receives 32 tokens, whatever the resolution; nothing in the LLM is trained. Beat Flamingo-80B by 8.7 points on zero-shot VQAv2 with 54× fewer trainable parameters. Con: 257 → 32 is a bottleneck; fine details (small text, counting) can be lost.</p>
+    <p>The cross-attention line thicknesses are illustrative.</p>
+  </aside>
+</section>
+
+<!-- 3.4c Flamingo -->
+<section class="slide">
+  <h2>Bridge 3 · Gated cross-attention (Flamingo)</h2>
+  <div class="body">
+    <div class="anim" data-anim="bridge-xattn"></div>
+  </div>
+  <aside class="notes">
+    <p>Flamingo (Alayrac et al. 2022, arXiv:2204.14198): frozen NFNet-F6 vision encoder; a Perceiver Resampler turns its features into 64 visual tokens per image; GATED XATTN-DENSE layers are inserted between the frozen layers of Chinchilla-70B (about every 7 layers); ≈ 10B new parameters.</p>
+    <p>The visual tokens never enter the text sequence: text tokens query them inside the new layers. Each new layer’s output is multiplied by tanh(α) with α initialised at 0, so at the start the model is exactly the frozen LLM and training is stable.</p>
+    <p>Strength: interleaved text and many images, few-shot prompting. Cost: the LLM architecture is modified and the new layers are large.</p>
+  </aside>
+</section>
+
+<!-- 3.4d Encoder-free -->
+<section class="slide">
+  <h2>Bridge 4 · No encoder at all (Gemma 4 12B, 2026)</h2>
+  <div class="body">
+    <div class="anim" data-anim="bridge-encfree"></div>
+  </div>
+  <aside class="notes">
+    <p>Gemma 4 12B (Google developers blog, 3 Jun 2026): a 35M-parameter “vision embedder” replaces the 27 ViT layers used by the other Gemma 4 models. Raw 48 × 48 pixel patches are projected to the LLM hidden size with a single matmul, then a factorised coordinate lookup (separate X and Y tables) adds position. The tokens go straight into the decoder.</p>
+    <p>The 6 × 6 grid on the cat is illustrative (the real number of patches depends on the image size).</p>
+    <p>Full circle with section 01: this is exactly ViT’s patch embedding, but feeding a language model. The trade-off: no pre-trained visual features to lean on, so the LLM must learn vision from its own (large) multimodal training data.</p>
+  </aside>
+</section>
+
+<!-- 3.6 Training -->
+<section class="slide">
+  <h2>Training in two stages (LLaVA)</h2>
+  <div class="body">
+    <div class="cols">
+      <div class="card">
+        <div class="tag">stage 1 · feature alignment</div>
+        <div class="stg"><span class="lk">🔒</span> vision encoder</div>
+        <div class="stg on"><span class="lk">✎</span> projector</div>
+        <div class="stg"><span class="lk">🔒</span> LLM</div>
+        <p class="small"><b>595K</b> image–caption pairs (filtered CC3M). Task: write the caption.</p>
+        <p class="small muted">The projector learns to “speak” the LLM’s embedding language.</p>
+      </div>
+      <div class="card acc-b fragment">
+        <div class="tag">stage 2 · visual instruction tuning</div>
+        <div class="stg"><span class="lk">🔒</span> vision encoder</div>
+        <div class="stg on"><span class="lk">✎</span> projector</div>
+        <div class="stg on"><span class="lk">✎</span> LLM</div>
+        <p class="small"><b>158K</b> multimodal conversations: <span class="mono small">USER: &lt;image&gt; question → ASSISTANT: answer</span></p>
+        <p class="small muted">Connects the LLM’s existing chat skills to the image.</p>
+      </div>
+    </div>
+    <p class="lead tc fragment">Loss in both stages: plain <b>next-token prediction</b> on the answer text.</p>
+  </div>
+  <aside class="notes">
+    <p>LLaVA paper (arXiv:2304.08485): stage 1 trains only the projection on 595K CC3M pairs; stage 2 updates the projection and the LLM end-to-end on 158K instruction samples; the vision encoder stays frozen throughout.</p>
+    <p>LLaVA-1.5 used the same recipe with 1.2M public samples in total (adding academic VQA data) and trains in about one day on one 8×A100 node.</p>
+    <p>Analogy: stage 1 learns the vocabulary, stage 2 learns to hold a conversation.</p>
+  </aside>
+</section>
+
+<!-- 3.7 Synthetic data (optional) -->
+<section data-optional class="slide">
+  <h2>Where the 158K conversations came from</h2>
+  <div class="body">
+    <div class="flow">
+      <div class="bx">COCO image<span class="s">captions + boxes<br>as <b>text</b></span></div>
+      <div class="ar">→</div>
+      <div class="bx b">GPT-4, text only<span class="s">never sees the pixels</span></div>
+      <div class="ar">→</div>
+      <div class="bx a">158K samples<span class="s">58K conversations<br>23K detailed descriptions<br>77K complex reasoning</span></div>
+      <div class="ar">→</div>
+      <div class="bx">paired with the<br>real image<span class="s">stage 2 data</span></div>
+    </div>
+    <div class="cols">
+      <div class="card tight pos-b"><b>Why it works</b><p class="small">a strong LLM knows what good visual conversations look like</p></div>
+      <div class="card tight neg-b"><b>What to watch</b><p class="small">its mistakes and priors become training data (hallucinations included)</p></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>LLaVA paper, section 3: GPT-4 received symbolic descriptions of COCO images (five captions and object boxes with labels and coordinates) and generated three kinds of data. The image itself was never sent.</p>
+    <p>Today, synthetic data generated by strong VLMs is standard in VLM training.</p>
+  </aside>
+</section>
+
+<!-- 3.8 Tiny VLM live -->
+<section class="slide">
+  <h2>A real VLM on a laptop CPU</h2>
+  <div class="body">
+    <div class="cols c64">
+      <div class="mock">
+        <div class="bar"><i></i><i></i><i></i><span style="margin-left:14px">SmolVLM-256M-Instruct · run 2026-11-11 · 2 CPU cores</span></div>
+        <div class="term" style="font-size:21px">
+          <div class="dim">vision 86M (SigLIP) · connector 7M · LLM 135M · image → 832 tokens</div>
+          <div><span class="p">User:</span> &lt;image&gt; Describe this image in one sentence.</div>
+          <div class="fragment"><span class="tool">Assistant:</span> In this image we can see a cat.  <span class="ok">✓</span></div>
+          <div class="fragment"><span class="p">User:</span> &lt;image&gt; How many cats are in this image?</div>
+          <div class="fragment"><span class="tool">Assistant:</span> There are two cats in the image.  <span class="err">✗</span></div>
+          <div class="fragment"><span class="p">User:</span> &lt;image&gt; Is there a dog in this image? Answer yes or no.</div>
+          <div class="fragment"><span class="tool">Assistant:</span> No.  <span class="ok">✓</span></div>
+        </div>
+      </div>
+      <div class="stack" style="gap:14px">
+        <img src="assets/img/cat.jpg" alt="Close-up photo of a tabby cat" style="height:220px;border-radius:10px;align-self:center">
+        <p class="lead fragment"><b>Fluent ≠ grounded.</b> Counting fails, as in CLIP.</p>
+        <p class="small muted fragment">Bigger VLMs do much better, but object hallucination and counting remain classic failure modes.</p>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>Real outputs, greedy decoding, about 18 s per answer on 2 CPU cores (transformers 5.22.2). The model: SigLIP-based vision encoder (86.4M), a connector that shuffles pixels and projects (7.1M), SmolLM2-135M language model. Total 256.5M parameters.</p>
+    <p>The image was split into tiles: 13 × 64 = 832 image tokens for a 451 × 300 photo; the whole prompt is about 880 tokens, so the image is ≈ 95% of it.</p>
+    <p>“Two cats” is a confident hallucination from a very small model; it is a good prompt to discuss evaluation (POPE, counting benchmarks) and why VLM answers should be checked.</p>
+  </aside>
+</section>
+
+<!-- 3.9 Image tokens -->
+<section class="slide">
+  <h2>Images are expensive: count the tokens</h2>
+  <div class="body">
+    <table class="t full num">
+      <thead><tr><th>Model</th><th>Input</th><th>Image tokens</th></tr></thead>
+      <tbody>
+        <tr><td>LLaVA (CLIP ViT-L/14)</td><td>224 × 224</td><td>256</td></tr>
+        <tr><td>LLaVA-1.5</td><td>336 × 336</td><td>576</td></tr>
+        <tr class="fragment"><td>LLaVA-NeXT (Jan 2024, “AnyRes” tiles)</td><td>up to 672 × 672</td><td>up to 2,880</td></tr>
+        <tr class="fragment"><td>SmolVLM-256M on our cat (tiles)</td><td>451 × 300</td><td>832</td></tr>
+        <tr class="fragment"><td>Qwen3-VL (patch 16, 2 × 2 merge)</td><td>1024 × 1024, native</td><td>≈ 1,024</td></tr>
+      </tbody>
+    </table>
+    <p class="lead tc fragment">More pixels → better OCR and small details, but a longer context. <b>Merging and tiling</b> are where VLMs trade quality for cost.</p>
+  </div>
+  <aside class="notes">
+    <p>LLaVA-NeXT blog (30 Jan 2024): 4× more pixels (672×672, 336×1344, 1344×336) by tiling; 4 tiles + a global view × 576 = 2,880 tokens.</p>
+    <p>Qwen3-VL: 16-px patches, then a 2×2 merge, so one token per 32 × 32 pixels: a 1024 × 1024 image gives 32 × 32 = 1,024 tokens. Dynamic resolution: the token count follows the image size.</p>
+    <p>Callback to the patch-embedding slide: tokens = (H / p) × (W / p).</p>
+  </aside>
+</section>
+
+<!-- 3.10 Timeline -->
+<section class="slide">
+  <h2>How we got here</h2>
+  <div class="body">
+    <div class="timeline">
+      <div class="axis"></div>
+      <div class="ev up" style="left:6%"><div class="y">2012</div>CNNs win ImageNet (AlexNet)</div>
+      <div class="ev dn" style="left:18%"><div class="y">2020</div>ViT: patches as tokens</div>
+      <div class="fragment fade">
+        <div class="ev up" style="left:31%"><div class="y">2021</div>CLIP: one space for images and text</div>
+        <div class="ev dn" style="left:44%"><div class="y">2022–23</div>Flamingo, BLIP-2, LLaVA: bridges to LLMs</div>
+      </div>
+      <div class="fragment fade">
+        <div class="ev up" style="left:57%"><div class="y">2023–24</div>natively multimodal assistants (Gemini, GPT-4o)</div>
+        <div class="ev dn" style="left:70%"><div class="y">2025</div>SigLIP 2, DINOv3, Qwen3-VL, SAM 3</div>
+      </div>
+      <div class="fragment fade">
+        <div class="ev era up" style="left:86%"><div class="y">2026</div>image input built into new LLMs; encoder-free designs</div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>Gemini 1.0 (Dec 2023) and GPT-4o (May 2024) were presented as natively multimodal: trained on several modalities from the start rather than bolting an encoder onto a finished LLM. Their architectures are not public.</p>
+    <p>2026: open LLM families ship image input in their main models (e.g. Gemma 4 in Apr 2026, Qwen3.8-27B in Aug 2026), and Gemma 4 12B (Jun 2026) drops the vision encoder altogether (next slide).</p>
+  </aside>
+</section>
+
+<!-- 3.11 2026: the encoder can disappear -->
+<section class="slide">
+  <h2>2026: the bridge keeps shrinking</h2>
+  <div class="body">
+    <div class="cols three top">
+      <div class="card"><div class="tag">2023 · LLaVA</div><h3>frozen CLIP + MLP + LLM</h3><p class="small">three pre-trained parts, glued by ≈ 21M parameters</p></div>
+      <div class="card fragment"><div class="tag">Nov 2025 · Qwen3-VL</div><h3>SigLIP-2 + MLP merger + LLM</h3><p class="small">2B → 235B-A22B, Apache-2.0, 256K context; ViT features injected into several LLM layers (DeepStack)</p></div>
+      <div class="card acc-b fragment"><div class="tag">Jun 2026 · Gemma 4 12B</div><h3>no vision encoder</h3><p class="small">raw 48 × 48 patches → <b>one matrix multiply</b> → LLM hidden size, + learned x / y positions. The LLM does all the vision.</p></div>
+    </div>
+    <p class="lead tc fragment">Look familiar? It is ViT’s <b>patch embedding</b> (section 01), feeding the language model directly.</p>
+  </div>
+  <aside class="notes">
+    <p>Qwen3-VL technical report (arXiv:2511.21631): dense 2B/4B/8B/32B and MoE 30B-A3B, 235B-A22B; SigLIP-2 encoder; 2-layer MLP merger; DeepStack; interleaved MRoPE; native 256K context.</p>
+    <p>Gemma 4 12B (Google developers blog, 3 Jun 2026): a 35M-parameter “vision embedder” replaces the 27 ViT layers of the other Gemma 4 models; raw 48×48 patches are projected to the LLM hidden size with a single matmul, plus a factorised X/Y coordinate lookup.</p>
+    <p>Closed frontier assistants all take images (and often produce them), but their architectures are undisclosed.</p>
+    <p>Full circle: the lecture started with “cut the image into patches and multiply by W”. In 2026 that can be the whole vision front-end.</p>
+  </aside>
+</section>
+
+<!-- =================================================================== Wrap-up -->
+<section class="slide">
+  <h2>Three ideas to keep</h2>
+  <div class="body">
+    <div class="cols three top">
+      <div class="card"><div class="stat"><div class="v">01</div><div class="l"><b>An image is a sequence of patch tokens</b></div></div><p class="small">16 × 16 patch → linear → token. Then a standard Transformer. Needs lots of data.</p></div>
+      <div class="card"><div class="stat"><div class="v">02</div><div class="l"><b>Captions beat labels</b></div></div><p class="small">Contrastive (CLIP) or sigmoid (SigLIP) training puts images and text in one space: search and zero-shot for free. Counting, order, negation not included.</p></div>
+      <div class="card acc-b"><div class="stat"><div class="v">03</div><div class="l"><b>A VLM is an LLM with image tokens</b></div></div><p class="small">Vision encoder → projector → LLM, trained by next-token prediction. Fluent is not grounded: check the answers.</p></div>
+    </div>
+  </div>
+  <aside class="notes"><p><b>Timing:</b> target ≈ 1:10. Two minutes of recap, then questions.</p></aside>
+</section>
+
+<section class="slide">
+  <h2>Go further</h2>
+  <div class="body">
+    <div class="cols">
+      <div class="card">
+        <h3>Notebooks</h3>
+        <ul class="b tight">
+          <li><b>Block 2:</b> ViT attention maps, all 12 heads, patch sizes</li>
+          <li><b>Block 4:</b> zero-shot CLIP, prompt phrasing, a 20-image search engine, break it (counting, space, negation)</li>
+          <li><b>Block 6:</b> a LLaVA-style VLM: projector, visual question answering, hallucinations</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Papers</h3>
+        <ul class="b tight small">
+          <li>ViT · Dosovitskiy et al. · arXiv:2010.11929</li>
+          <li>CLIP · Radford et al. · arXiv:2103.00020</li>
+          <li>SigLIP · Zhai et al. · arXiv:2303.15343</li>
+          <li>Flamingo · Alayrac et al. · arXiv:2204.14198</li>
+          <li>BLIP-2 · Li et al. · arXiv:2301.12597</li>
+          <li>LLaVA · arXiv:2304.08485 · LLaVA-1.5 · arXiv:2310.03744</li>
+          <li>Qwen3-VL · arXiv:2511.21631 · DINOv3 · arXiv:2508.10104</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <aside class="notes"><p>The notebooks are the practical sessions from the longer version of this course.</p></aside>
+</section>
+
+<!-- Credits -->
+<section class="slide credits">
+  <h2>Credits and sources</h2>
+  <div class="body">
+    <ul class="credits-list">
+      <li>“Chelsea the cat”, Stefan van der Walt, CC0 (scikit-image sample data)</li>
+      <li>Coffee cup, Rachel Michetti, courtesy of Pikolo Espresso Bar, CC0 (scikit-image)</li>
+      <li>DSCOVR launch on Falcon 9, SpaceX, public domain (scikit-image)</li>
+      <li>Hubble eXtreme Deep Field, NASA, public domain (scikit-image)</li>
+      <li>Fundus photograph of a normal left eye, Mikael Häggström, CC0 (scikit-image)</li>
+      <li>Real model runs (2026-11-11, CPU, transformers 5.22.2): google/vit-base-patch16-224 · openai/clip-vit-base-patch16 · google/siglip-base-patch16-224 · HuggingFaceTB/SmolVLM-256M-Instruct</li>
+      <li>Attention rollout: Abnar &amp; Zuidema, 2020</li>
+      <li>Figures redrawn from the ViT, CLIP, SigLIP, Flamingo, BLIP-2 and LLaVA papers (arXiv IDs on the previous slide)</li>
+      <li>DINOv3: ai.meta.com/blog/dinov3-self-supervised-vision-model (14 Aug 2025)</li>
+      <li>SAM 3: ai.meta.com/research/publications/sam-3-segment-anything-with-concepts (19 Nov 2025)</li>
+      <li>LLaVA-NeXT: llava-vl.github.io/blog/2024-01-30-llava-next</li>
+      <li>Gemma 4 12B: developers.googleblog.com/gemma-4-12b-the-developer-guide (3 Jun 2026)</li>
+      <li>Qwen releases 2026: en.wikipedia.org/wiki/Qwen (checked 2026-11-11)</li>
+    </ul>
+  </div>
+  <aside class="notes"><p>Every image in the deck is CC0 or public domain; no third-party figures are reproduced.</p></aside>
+</section>
+
+<section class="slide divider" data-section="Wrap-up" data-nomap>
+  <div class="dv-left">
+    <div class="dv-num">?</div>
+    <div class="dv-title">Questions</div>
+    <div class="dv-sub">Merci ! · Thank you!</div>
+  </div>
+  <div class="dv-right">
+    <div class="brackets"><img src="assets/img/rocket-full.jpg" alt="Falcon 9 rocket launch" style="max-height:480px"></div>
+    <div class="credit">DSCOVR launch on Falcon 9, SpaceX, public domain, via scikit-image</div>
+  </div>
+  <aside class="notes"><p>Closing slide.</p></aside>
+</section>
+
+</div></div></div>
+<!-- Libraries (vendored locally: KaTeX 0.16.9, highlight.js 11.9.0) -->
+<script src="assets/vendor/katex/katex.min.js"></script>
+<script src="assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script src="assets/vendor/hljs/highlight.min.js"></script>
+<!-- Real data exported from the model runs -->
+<script src="assets/js/vit-data.js"></script>
+<!-- Animation components: anim-core.js first -->
+<script src="assets/js/anims/anim-core.js"></script>
+<script src="assets/js/anims/anim-tf-recap.js"></script>
+<script src="assets/js/anims/anim-pixel-options.js"></script>
+<script src="assets/js/anims/anim-vit-patchify.js"></script>
+<script src="assets/js/anims/anim-pos-sim.js"></script>
+<script src="assets/js/anims/anim-cls-token.js"></script>
+<script src="assets/js/anims/anim-vgg-rf.js"></script>
+<script src="assets/js/anims/anim-receptive-field.js"></script>
+<script src="assets/js/anims/anim-clip-space.js"></script>
+<script src="assets/js/anims/anim-clip-matrix.js"></script>
+<script src="assets/js/anims/anim-zero-shot.js"></script>
+<script src="assets/js/anims/anim-vlm-pipeline.js"></script>
+<script src="assets/js/anims/anim-bridges.js"></script>
+<!-- Deck engine last -->
+<script src="assets/js/deck.js"></script>
+<!-- Presentation mode: Present button / P key -->
+<script src="assets/js/present.js"></script>
+
+</body></html>

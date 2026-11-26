@@ -47,6 +47,9 @@ nav:
     - Conformal Prediction:
       - Course and practical session: conformal/conformal.md
 
+    - Modern Computer Vision:
+      - Course: vlm/vlm.md
+
     - Retrieval-Augmented Generation:
       - Course and practical session: rag/rag.md
       - Quiz: rag/quizz.md
