@@ -1,0 +1,93 @@
+/* cv.css — components specific to the "Modern computer vision" deck (on top of deck.css). Colours: tokens only. */
+.mt-s { margin-top: 10px; }
+
+/* title slide: cat with a 14 x 14 patch grid */
+.ttl-img { position: relative; width: 220px; height: 220px; border-radius: 10px; overflow: hidden; box-shadow: var(--shadow); }
+.ttl-img img { width: 100%; height: 100%; display: block; }
+.ttl-img i { position: absolute; inset: 0;
+  background-image: linear-gradient(to right, rgba(255,255,255,.75) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,.75) 1px, transparent 1px);
+  background-size: calc(100% / 14) calc(100% / 14); }
+
+/* "real run" box */
+.run { border: 2px dashed var(--line); border-radius: 12px; padding: 10px 16px 14px; background: var(--surface-2); }
+.run-h { font: 600 17px/1.3 var(--font-mono); color: var(--muted); margin-bottom: 8px; }
+.run .hbar { font-size: 22px; }
+
+/* ViT architecture */
+.vit-arch { display: flex; align-items: center; justify-content: center; gap: 18px; }
+.va-col { display: flex; flex-direction: column; align-items: center; gap: 6px; width: 210px; }
+.va-in { border: 2px solid var(--line); border-radius: 12px; padding: 10px 12px; background: var(--surface-2); text-align: center; font-size: 22px; line-height: 1.2; width: 100%; }
+.va-in.acc { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 14%, var(--surface)); font-weight: 600; }
+.va-ar { color: var(--accent); font-size: 28px; font-weight: 700; line-height: 1; }
+.va-ar.side { font-size: 36px; }
+
+/* two towers (CLIP) */
+.two-tower { display: flex; flex-direction: column; gap: 14px; align-items: center; }
+.tt-row { display: flex; align-items: center; gap: 16px; }
+.tt-row .bx, .stage-bx { border: 2px solid var(--line); border-radius: 14px; padding: 14px 20px; background: var(--surface-2); text-align: center; font-size: 28px; line-height: 1.2; min-width: 300px; }
+.tt-row .bx.a { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, var(--surface)); }
+.tt-row .bx.b { border-color: var(--accent-2); background: color-mix(in srgb, var(--accent-2) 10%, var(--surface)); }
+.tt-row .bx.vec { min-width: 200px; font-family: var(--font-mono); font-size: 26px; }
+.tt-row .bx .s { display: block; font: 400 20px/1.2 var(--font-body); color: var(--muted); margin-top: 4px; }
+.tt-row .ar { color: var(--accent); font-size: 34px; font-weight: 700; }
+.tt-img { width: 120px; height: 120px; object-fit: cover; border-radius: 10px; }
+.tt-txt { width: 220px; font-size: 24px; text-align: center; border: 2px solid var(--accent); border-radius: 10px; padding: 10px; background: color-mix(in srgb, var(--accent) 8%, var(--surface)); }
+.tt-mid { display: flex; flex-direction: column; align-items: center; gap: 2px; margin-left: 560px; }
+.tt-mid .big { font-family: var(--font-mono); color: var(--accent-ink); }
+
+/* CLIP divider: 2 x 2 image/caption pairs */
+.dv-pairs { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; width: 520px; }
+.dv-pairs figure { margin: 0; display: flex; flex-direction: column; gap: 6px; }
+.dv-pairs img { width: 100%; height: 190px; object-fit: cover; border-radius: 10px; display: block; }
+.dv-pairs figcaption { font-size: 19px; color: var(--muted); text-align: center; font-style: italic; }
+
+/* exercise numbers */
+.answer-num { font-family: var(--font-mono); color: var(--accent-ink); font-size: 48px !important; margin: 6px 0 0; }
+
+/* bridges: mini flows */
+.mini { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; font-size: 20px; color: var(--muted); margin: 6px 0 10px; }
+.mini .m { border: 2px solid var(--line); border-radius: 8px; padding: 3px 8px; color: var(--fg); background: var(--surface); white-space: nowrap; }
+.mini .m.a { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, var(--surface)); }
+.mini .m.b { border-color: var(--accent-2); background: color-mix(in srgb, var(--accent-2) 10%, var(--surface)); }
+
+/* training stages */
+.stg { border: 2px solid var(--line); border-radius: 10px; padding: 8px 14px; margin: 0 0 8px; font-size: 24px; background: var(--surface-2); color: var(--muted); }
+.stg.on { border-color: var(--pos); background: color-mix(in srgb, var(--pos) 14%, var(--surface)); color: var(--fg); font-weight: 600; }
+.stg .lk { display: inline-block; width: 1.6em; }
+
+/* coloured text tokens with their IDs (text vs image slide) */
+.tokrow { display: flex; justify-content: center; gap: 6px; margin: 26px 0 22px; flex-wrap: wrap; }
+.tokrow .tk { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.tokrow .tk b { font: 600 30px/1 var(--font-mono); padding: 8px 9px; border-radius: 10px; border: 2px solid var(--c);
+  background: color-mix(in srgb, var(--c) 18%, var(--surface)); color: var(--fg); white-space: pre; }
+.tokrow .tk i { font: 400 18px/1 var(--font-mono); font-style: normal; color: var(--muted); }
+
+/* 2026 slide: visual cards */
+.vcard { display: flex; flex-direction: column; gap: 8px; }
+.vcard h3 { margin: 0; }
+.vis { display: flex; align-items: center; justify-content: center; gap: 6px; min-height: 230px; }
+.vis.col { flex-direction: column; gap: 10px; }
+.vis img { width: 128px; height: 128px; object-fit: cover; border-radius: 8px; display: block; }
+.vis.col > img { width: 190px; height: 190px; }
+.vis img.px { image-rendering: pixelated; }
+.vis img.sm { width: 84px; height: 84px; }
+.vis-ar { color: var(--accent); font-weight: 700; font-size: 24px; }
+.vis-cap { font-size: 18px; color: var(--muted); text-align: center; margin: 0; line-height: 1.25; }
+.vis-src { font-size: 14px; color: var(--muted); text-align: center; margin: 0; }
+.mini-bars { display: grid; grid-template-columns: auto 70px auto; gap: 4px 8px; align-items: center; font-size: 15px; width: 100%; }
+.mini-bars i { display: block; height: 14px; width: var(--w); min-width: 2px; background: var(--accent); border-radius: 0 4px 4px 0; }
+.mini-bars b { font: 600 14px var(--font-mono); }
+
+/* presentation mode (present.js) */
+#present-btn { position: fixed; top: calc(12px + env(safe-area-inset-top, 0px)); right: calc(12px + env(safe-area-inset-right, 0px)); z-index: 70;
+  font: 600 15px/1 var(--font-body); padding: 9px 14px; border-radius: 999px; border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--surface) 92%, transparent); color: var(--fg); box-shadow: var(--shadow); cursor: pointer;
+  opacity: 0; transition: opacity .25s; }
+#present-btn span { color: var(--accent-ink); margin-right: 4px; }
+body.pointer-active #present-btn, #present-btn:focus-visible, #present-btn:hover { opacity: 1; }
+#present-btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+body.presenting { background: #000; }
+body.presenting #viewport { background: #000; }
+body.presenting #stage { box-shadow: none; }
+body.presenting.idle, body.presenting.idle * { cursor: none !important; }
+@media print { #present-btn { display: none; } }
